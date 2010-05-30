@@ -1,0 +1,4 @@
+Branch & Bound Z*: 566.00       Explored_nodes: 1899     Best node: 1822        
+Nodes list solution (cplex): 6 35 42 71 96 115 
+/home/yari/Projects/Generatore_istanze_EWCP/Release/test_e_120c20.dat Z_opt: 566.00  r_best_PB: 535.00  r_DB: 726.20  r_gap: 35.74 %  t_root: 1.24  Best_n: 1822  depth_best: 10   Exp_nodes: 1899   max_depth: 12  Time: 945.80
+
