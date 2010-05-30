@@ -41,11 +41,9 @@
 
 #define MEWCP_GAP_TOLERANCE 0.001
 #define MEWCP_POTENTIAL_PARAMETER 5
-#define MEWCP_REUSE_MATRIX 2
+#define MEWCP_REUSE_MATRIX 1
 #define MEWCP_SET_PNORM_TOLERANCE 1.0
 #define MEWCP_ALPHA 1.0
-
-//#define MEWCP_R_ZERO 1.0
 
 #define MEWCP_EPSILON 10E-4
 #define MEWCP_MIN_DOUBLE -10E7 /* Is the (double) -infinity */
@@ -162,12 +160,11 @@ void MEWCP_generate_list_blocked_nodes_branching_sons(list_blocked_nodes_t * fat
         const unsigned int cardinality_partition  );
 
 /* Execute sd to the open_node */
-void MEWCP_bound(open_node_t * open_node, constraint_t * constraints_matrix,matrix_weights_t * matrix_weigths, double * bi,
+void MEWCP_bound(open_node_t * open_node, constraint_t * constraints_matrix,matrix_weights_t * matrix_weigths,double * bi,
                  const unsigned int num_constraints,
                  const unsigned int dim_matrix,
                  const unsigned int num_nodes,
-                 const unsigned int num_partitions,
-                 const double best_PB);
+                 const unsigned int num_partitions);
 
 
 bool MEWCP_branch( open_node_t * open_node,

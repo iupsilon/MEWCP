@@ -56,7 +56,7 @@ solution_bb_t * MEWCP_branch_and_bound(open_node_t * open_root_node, constraint_
 
 
     /* Let's consider root node */
-    MEWCP_bound(open_root_node,constraints_matrix,matrix_weigths, bi,num_constraints, dim_matrix, num_nodes,num_partitions, list_branching->best_primal);
+    MEWCP_bound(open_root_node,constraints_matrix,matrix_weigths, bi,num_constraints, dim_matrix, num_nodes,num_partitions);
 
     if( (open_root_node->PB - list_branching->best_primal) >= MEWCP_EPSILON)
     {
@@ -115,8 +115,8 @@ solution_bb_t * MEWCP_branch_and_bound(open_node_t * open_root_node, constraint_
 
             if (possible_branch == true)
             {
-                MEWCP_bound(son_left,constraints_matrix,matrix_weigths, bi,num_constraints,dim_matrix,num_nodes,num_partitions,  list_branching->best_primal );
-                MEWCP_bound(son_right,constraints_matrix,matrix_weigths, bi,num_constraints,dim_matrix,num_nodes,num_partitions, list_branching->best_primal );
+                MEWCP_bound(son_left,constraints_matrix,matrix_weigths, bi,num_constraints,dim_matrix,num_nodes,num_partitions);
+                MEWCP_bound(son_right,constraints_matrix,matrix_weigths, bi,num_constraints,dim_matrix,num_nodes,num_partitions);
 
                 /* I check if PB is improved */
                 if( (son_left->PB - list_branching->best_primal) >= MEWCP_EPSILON)
@@ -210,12 +210,12 @@ void MEWCP_close_open_node(list_branching_t * list_branching, open_node_t * open
     MEWCP_free_open_node(open_node);
 }
 
+
 void MEWCP_bound(open_node_t * open_node, constraint_t * constraints_matrix,matrix_weights_t * matrix_weigths, double * bi,
                  const unsigned int num_constraints,
                  const unsigned int dim_matrix,
                  const unsigned int num_nodes,
-                 const unsigned int num_partitions,
-                 const double best_PB)
+                 const unsigned int num_partitions)
 {
 
 #if defined MEWCP_CONVERTER_DSDP_VERBOSE1
@@ -280,22 +280,17 @@ void MEWCP_bound(open_node_t * open_node, constraint_t * constraints_matrix,matr
     info=DSDPSetPotentialParameter(dsdp,MEWCP_POTENTIAL_PARAMETER);
     info=DSDPReuseMatrix(dsdp,MEWCP_REUSE_MATRIX);
     info=DSDPSetPNormTolerance(dsdp,MEWCP_SET_PNORM_TOLERANCE);
-	//info = DSDPSetR0(dsdp,);
-	
 
-	/* I stop the computation when DD is greater to -best_PB */ 
-	info = DSDPSetDualBound( dsdp, -best_PB);	 
-	
-		
-	
-#if defined MEWCP_BOUNDING_VERBOSE2
+
+
+#if defined MEWCP_DSDP_DEBUG
 
     DSDPSetStandardMonitor(dsdp, 1); /* verbose each iteration */
     DSDPLogInfoAllow(1,0);
 #endif
 
 
-   
+    DSDPSetup(dsdp);
 
     /* Now I set the initial values of the variables y in (D) */
     for (i=0; i< num_constraints; ++i)
@@ -303,10 +298,8 @@ void MEWCP_bound(open_node_t * open_node, constraint_t * constraints_matrix,matr
         DSDPSetY0(dsdp, i+1, open_node->vect_y[i]);
 
     }
-	
-	DSDPSetup(dsdp);
-	DSDPSolve(dsdp);
-       
+
+    DSDPSolve(dsdp);
     DSDPComputeX(dsdp);
 
     DSDPStopReason(dsdp, &reason);
@@ -324,9 +317,9 @@ void MEWCP_bound(open_node_t * open_node, constraint_t * constraints_matrix,matr
 
     SDPConeGetXArray(sdpcone, 0, &sol_vect_X, &sol_dim_vect_X);
 
-    printf("\n");
-    SDPConeViewX(sdpcone, 0, num_nodes, sol_vect_X, sol_dim_vect_X);
-    printf("\n");
+    //printf("\n");
+    //SDPConeViewX(sdpcone, 0, num_nodes, sol_vect_X, sol_dim_vect_X);
+    //printf("\n");
 
 #endif
 
@@ -485,8 +478,7 @@ branching_open_node_t * MEWCP_find_worst_bound_element(list_branching_t * list_b
     assert(MEWCP_is_list_branching_empty(list_branching) == false);
 #endif
 
-    /* I search worse element from the tail */
-    for(element = list_branching->tail; element != NULL; element = element->prev_branching_node)
+    for(element = list_branching->head; element != NULL; element = element->next_branching_node)
     {
         if( (element->open_node->DB -  worst_bound) >= MEWCP_EPSILON )
         {
@@ -516,7 +508,7 @@ bool MEWCP_is_list_branching_empty(list_branching_t * list_branching)
 
 void MEWCP_push_open_node(open_node_t * open_node, list_branching_t * list_branching)
 {
-	/* I insert the element to the head */
+
     branching_open_node_t * element;
     branching_open_node_t * element_tmp;
 
