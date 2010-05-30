@@ -5,16 +5,19 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../MEWCP_dsdp.c \
+../MEWCP_tabu.c \
 ../converter_dsdp.c \
 ../main.c 
 
 OBJS += \
 ./MEWCP_dsdp.o \
+./MEWCP_tabu.o \
 ./converter_dsdp.o \
 ./main.o 
 
 C_DEPS += \
 ./MEWCP_dsdp.d \
+./MEWCP_tabu.d \
 ./converter_dsdp.d \
 ./main.d 
 

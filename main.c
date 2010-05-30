@@ -13,7 +13,8 @@
 #include "dsdp/dsdp5.h"
 #include "converter_dsdp.h"
 #include "MEWCP_dsdp.h"
-
+#include "MEWCP_tabu.h"
+#include "MEWCP_tabu_definitions.h"
 
 
 int main (int argc, char * argv[])
@@ -60,34 +61,52 @@ int main (int argc, char * argv[])
     unsigned int num_nodes;
     unsigned int num_partitions, cardinality_partition;
 
-
     double  * bi;
-    double * vect_mat_branching_constraints;
-    double ** constraints_matrix;
-
-    /*
-    SDPCone sdpcone;
-    DSDP dsdp;
-    DSDPTerminationReason reason;
-    */
+    constraint_t * vect_mat_branching_constraints;
+    constraint_t * constraints_matrix;
 
     open_node_t * open_node;
-
-    filename_in = argv[1];
-
-
     num_blocks = NUM_BLOCKS;
 
-    MEWCP_generate_sdp_constraints(filename_in,&constraints_matrix,&bi, &vect_mat_branching_constraints,MEWCP_ALPHA,
+
+    /* Now I load the instance */
+    iteration_t iterations;
+
+    matrix_weights_t matrix_weights;
+    node_list_t node_list;
+
+    tabu_result_t tabu_result;
+
+    iterations = atoi(argv[1]);
+    filename_in = argv[2];
+
+    MEWCP_load_AMPL_instance(filename_in,&matrix_weights);
+
+    num_nodes = matrix_weights.n;
+    num_partitions  = matrix_weights.m;
+    cardinality_partition = matrix_weights.c;
+
+    MEWCP_create_node_list(&matrix_weights,&node_list);
+    MEWCP_initialize_node_list(&matrix_weights,&node_list);
+    MEWCP_compute_starting_solution(&matrix_weights,&node_list);
+
+    tabu_result = MEWCP_compute_tabu_search(iterations,&matrix_weights,&node_list);
+	
+
+    MEWCP_print_solution(&matrix_weights,&tabu_result.solution);
+
+
+    printf("%d %d\n",tabu_result.solution.Z,tabu_result.last_improvement_iteration);
+
+	//return EXIT_SUCCESS;
+
+    MEWCP_generate_sdp_constraints(&matrix_weights, &constraints_matrix,&bi, &vect_mat_branching_constraints,MEWCP_ALPHA,
                                    c_cardinality,
                                    c_simple_MC,c_improved_MC_A,
                                    c_improved_MC_B,c_improved_MC_C,
                                    c_4C2,
                                    c_4C3_A,
                                    c_4C3_B,
-                                   &num_nodes,
-                                   &num_partitions,
-                                   &cardinality_partition,
                                    &num_constraints);
 
 
@@ -104,19 +123,20 @@ int main (int argc, char * argv[])
     MEWCP_generate_constraints_branch(open_node->list_blocked_nodes, vect_mat_branching_constraints,dim_matrix,num_nodes, cardinality_partition);
 
 
-	/* I simply allocate a 0 vect_y */
-	open_node->vect_y = MEWCP_allocate_vect_y(num_constraints);
-	MEWCP_clone_vect_y(bi,open_node->vect_y,num_constraints);
-	
+    /* I simply allocate a 0 vect_y */
+    open_node->vect_y = MEWCP_allocate_vect_y(num_constraints);
+    MEWCP_clone_vect_y(bi,open_node->vect_y,num_constraints);
 
-    MEWCP_branch_and_bound(open_node,constraints_matrix,bi,num_constraints,dim_matrix,num_nodes,num_partitions);
 
-	#if defined MEWCP_DSDP_DEBUG
-	printf("\tEnd Branch and bound... \n");	
-	#endif
+    MEWCP_branch_and_bound(open_node,constraints_matrix, &matrix_weights,bi,num_constraints,dim_matrix,num_nodes,num_partitions,tabu_result.solution.Z,tabu_result.solution.node_solution);
+
+#if defined MEWCP_DSDP_DEBUG
+
+    printf("\tEnd Branch and bound... \n");
+#endif
 
     //MEWCP_close_open_node(open_node);
-    
+
     /*
     MEWCP_bound( open_node,  constraints_matrix,  bi,
                                    num_constraints,
@@ -324,6 +344,8 @@ int main (int argc, char * argv[])
      
         DSDPDestroy ( dsdp);
      */
+    MEWCP_free_matrix_weights(&matrix_weights);
+    MEWCP_free_node_list(&node_list);
 
     return EXIT_SUCCESS;
 }

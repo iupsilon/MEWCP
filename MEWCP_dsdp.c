@@ -14,15 +14,18 @@
 #include <memory.h>
 
 #include "converter_dsdp.h"
+#include "MEWCP_tabu.h"
 #include "MEWCP_dsdp.h"
 #include "dsdp/dsdp5.h"
 
 
-void MEWCP_branch_and_bound(open_node_t * open_root_node, double ** constraints_matrix, double * bi,
+void MEWCP_branch_and_bound(open_node_t * open_root_node, constraint_t * constraints_matrix, matrix_weights_t * matrix_weigths, double * bi,
                             const unsigned int num_constraints,
                             const unsigned int dim_matrix,
                             const unsigned int num_nodes,
-                            const unsigned int num_partitions)
+                            const unsigned int num_partitions,
+                            double best_primal_obj,
+                             int * list_node_best_solution)
 {
 
 #if defined MEWCP_CONVERTER_DSDP_VERBOSE1
@@ -38,22 +41,28 @@ void MEWCP_branch_and_bound(open_node_t * open_root_node, double ** constraints_
     open_node_t * open_node_worst_bound;
     bool possible_branch;
 
+    float gap; /* is the current % gap */
+
 
     list_branching = MEWCP_allocate_list_branching();
+    list_branching->list_nodes_best_solution = MEWCP_allocate_list_nodes_solution(num_partitions);
 
 
     /* First I compute Tabu search in order to get a good Primal Bound */
-    // ******************* TABU SEARCH!
-    list_branching->best_primal = MEWCP_MIN_DOUBLE;
-
+    list_branching->best_primal = best_primal_obj;
+	MEWCP_clone_list_nodes_solution(list_node_best_solution,list_branching->list_nodes_best_solution, num_partitions);
 
 
     /* Let's consider root node */
-    MEWCP_bound(open_root_node,constraints_matrix,bi,num_constraints,dim_matrix,num_nodes,num_partitions);
-    /* JUST TEMPORARILY */
-    list_branching->best_primal = open_root_node->PB;
+    MEWCP_bound(open_root_node,constraints_matrix,matrix_weigths, bi,num_constraints, dim_matrix, num_nodes,num_partitions);
+    //list_branching->best_primal = open_root_node->PB;
+    //MEWCP_clone_list_nodes_solution(open_root_node->list_nodes_solution,list_branching->list_nodes_best_solution, num_partitions);
+    /* XXXXXXXXXXXXXXXXXXXXXXXXXX TOGLIERE BOUND */
 
     MEWCP_push_open_node(open_root_node,list_branching);
+
+
+
     /* All done, I'm ready to start with branching procedure */
 
 
@@ -67,29 +76,48 @@ void MEWCP_branch_and_bound(open_node_t * open_root_node, double ** constraints_
 
         if ( (open_node_worst_bound->DB - list_branching->best_primal) > MEWCP_EPSILON )
         {
+
+            gap = (open_node_worst_bound->DB - list_branching->best_primal)/list_branching->best_primal * 100;
+#if defined MEWCP_DSDP_VERBOSE2
+
+            printf("\n++ Current DB(%d): %.2lf \tBest P(%d): %.2lf \t open nodes: %d\t gap: %.3f \n",open_node_worst_bound->id_node,open_node_worst_bound->DB, list_branching->id_node_best_primal,list_branching->best_primal, list_branching->number_open_nodes,gap);
+#endif
+
             possible_branch = MEWCP_branch(open_node_worst_bound,dim_matrix,num_nodes,num_partitions,num_constraints, &son_left,&son_right);
 
             if (possible_branch == true)
             {
-                MEWCP_bound(son_left,constraints_matrix,bi,num_constraints,dim_matrix,num_nodes,num_partitions);
-                MEWCP_bound(son_right,constraints_matrix,bi,num_constraints,dim_matrix,num_nodes,num_partitions);
+                MEWCP_bound(son_left,constraints_matrix,matrix_weigths, bi,num_constraints,dim_matrix,num_nodes,num_partitions);
+                MEWCP_bound(son_right,constraints_matrix,matrix_weigths, bi,num_constraints,dim_matrix,num_nodes,num_partitions);
 
                 /* I check if PB is improved */
-                if( (son_left->PB - list_branching->best_primal) > MEWCP_EPSILON)
+                if( (son_left->PB - list_branching->best_primal) >= MEWCP_EPSILON)
                 {
                     list_branching->best_primal = son_left->PB;
                     list_branching->id_node_best_primal = son_left->id_node;
+                    MEWCP_clone_list_nodes_solution(son_left->list_nodes_solution,list_branching->list_nodes_best_solution, num_partitions);
+#if defined MEWCP_DSDP_VERBOSE2
+
+                    printf("\t*****  Node: %d\tNew best PB: %.2lf\n",son_left->id_node,son_left->PB );
+#endif
+
                 }
-                if( (son_right->PB - list_branching->best_primal) > MEWCP_EPSILON)
+                if( (son_right->PB - list_branching->best_primal) >= MEWCP_EPSILON)
                 {
                     list_branching->best_primal = son_right->PB;
                     list_branching->id_node_best_primal = son_right->id_node;
+                    MEWCP_clone_list_nodes_solution(son_right->list_nodes_solution,list_branching->list_nodes_best_solution, num_partitions);
+#if defined MEWCP_DSDP_VERBOSE2
+
+                    printf("\t*****  Node: %d\tNew best PB: %.2lf\n",son_right->id_node,son_right->PB );
+#endif
+
                 }
 
                 /* I insert new nodes into the branching list if possible */
                 if ( (list_branching->best_primal - son_left->DB ) > MEWCP_EPSILON)
                 {
-                    MEWCP_close_open_node(son_left);
+                    MEWCP_close_open_node(list_branching,son_left);
                 }
                 else
                 {
@@ -98,7 +126,7 @@ void MEWCP_branch_and_bound(open_node_t * open_root_node, double ** constraints_
 
                 if ( (list_branching->best_primal - son_right->DB ) > MEWCP_EPSILON)
                 {
-                    MEWCP_close_open_node(son_right);
+                    MEWCP_close_open_node(list_branching,son_right);
                 }
                 else
                 {
@@ -115,7 +143,7 @@ void MEWCP_branch_and_bound(open_node_t * open_root_node, double ** constraints_
 
         /* I can close the node! */
 
-        MEWCP_close_open_node(open_node_worst_bound);
+        MEWCP_close_open_node(list_branching,open_node_worst_bound);
 
 
 
@@ -134,7 +162,9 @@ void MEWCP_branch_and_bound(open_node_t * open_root_node, double ** constraints_
 #if defined MEWCP_DSDP_VERBOSE1
     printf("\nBranch & Bound Z*: %.2lf\tExplored_nodes: %d\t Best node: %d\n",list_branching->best_primal,list_branching->number_explored_nodes, list_branching->id_node_best_primal);
 #endif
-
+#if defined MEWCP_DSDP_VERBOSE2
+MEWCP_print_list_nodes_solution_cplex(list_branching->list_nodes_best_solution, num_partitions);
+#endif
 
 
     /* Freeing structures */
@@ -144,17 +174,18 @@ void MEWCP_branch_and_bound(open_node_t * open_root_node, double ** constraints_
 
 }
 
-void MEWCP_close_open_node(open_node_t * open_node)
+void MEWCP_close_open_node(list_branching_t * list_branching, open_node_t * open_node)
 {
 #if defined MEWCP_DSDP_VERBOSE1
     printf("-- Close node: %d\n",open_node->id_node);
 #endif
 
+    list_branching->number_explored_nodes += 1;
     MEWCP_free_open_node(open_node);
 }
 
 
-void MEWCP_bound(open_node_t * open_node, double ** constraints_matrix, double * bi,
+void MEWCP_bound(open_node_t * open_node, constraint_t * constraints_matrix,matrix_weights_t * matrix_weigths, double * bi,
                  const unsigned int num_constraints,
                  const unsigned int dim_matrix,
                  const unsigned int num_nodes,
@@ -201,19 +232,18 @@ void MEWCP_bound(open_node_t * open_node, double ** constraints_matrix, double *
     {
         if (i != num_constraints ) /* It's not the last constraint matrix */
         {
-            SDPConeSetADenseVecMat(sdpcone, 0, i, num_nodes, MEWCP_ALPHA , constraints_matrix[i], dim_matrix);
+            SDPConeSetASparseVecMat(sdpcone, 0, i, num_nodes, MEWCP_ALPHA, 0, constraints_matrix[i].index, constraints_matrix[i].weight, constraints_matrix[i].num_nz);
+
         }
         else /* It's the last matrix containing branching contraints */
         {
-            SDPConeSetADenseVecMat(sdpcone, 0, i, num_nodes, 1 , open_node->vect_mat_branching_contraint, dim_matrix);
+            SDPConeSetASparseVecMat(sdpcone, 0, i, num_nodes, MEWCP_ALPHA, 0, open_node->vect_mat_branching_contraint->index, open_node->vect_mat_branching_contraint->weight, open_node->vect_mat_branching_contraint->num_nz);
+
         }
 
-
-
-
 #if defined MEWCP_BOUNDING_DEBUG
-
-        //SDPConeViewDataMatrix(sdpcone, 0, i);
+        printf("%d Another contrain matrix:\n",i);
+        SDPConeViewDataMatrix(sdpcone, 0, i);
 #endif
 
     }
@@ -240,7 +270,7 @@ void MEWCP_bound(open_node_t * open_node, double ** constraints_matrix, double *
     for (i=0; i< num_constraints; ++i)
     {
         DSDPSetY0(dsdp, i+1, open_node->vect_y[i]);
-       
+
     }
 
     DSDPSolve(dsdp);
@@ -289,17 +319,23 @@ void MEWCP_bound(open_node_t * open_node, double ** constraints_matrix, double *
     /* I compute the rounding of diagonan_X */
     open_node->list_nodes_solution = MEWCP_allocate_list_nodes_solution(num_partitions);
     MEWCP_compute_sdp_rounding(open_node->diagX,open_node->list_nodes_solution,num_nodes,cardinality_partition);
+#if defined MEWCP_BOUNDING_VERBOSE2
+
     MEWCP_print_list_nodes_solution(open_node->list_nodes_solution,num_partitions);
+#endif
 
-    z_rouded = MEWCP_evaluate_list_nodes_solution(open_node->list_nodes_solution,constraints_matrix[0],num_partitions);
-
-
-
+    z_rouded = MEWCP_evaluate_list_nodes_solution(open_node->list_nodes_solution,matrix_weigths,num_partitions);
 
 
-#if defined MEWCP_DSDP_VERBOSE1
 
-    printf("(%d) (P) Obj_value: %.2lf \t Rounded: %.2lf \t Trace(X): %.2lf \t Termination value: %d\n",open_node->id_node, pobj,z_rouded, sol_traceX,reason);
+#if defined MEWCP_BOUNDING_DEBUG
+
+    printf("Trace X: %.2lf\n",sol_traceX);
+#endif
+
+#if defined MEWCP_BOUNDING_VERBOSE1
+
+    printf("(%d) (P) Obj_value: %.2lf \t Rounded: %.2lf \t Termination value: %d\n",open_node->id_node, pobj,z_rouded, reason);
 #endif
 
 
@@ -415,7 +451,7 @@ branching_open_node_t * MEWCP_find_worst_bound_element(list_branching_t * list_b
     printf("* MEWCP_find_worst_bound_element *\n");
 #endif
 
-    branching_open_node_t * worst_element;
+    branching_open_node_t * worst_element = NULL;
     branching_open_node_t * element;
     double worst_bound;
 
@@ -428,7 +464,7 @@ branching_open_node_t * MEWCP_find_worst_bound_element(list_branching_t * list_b
 
     for(element = list_branching->head; element != NULL; element = element->next_branching_node)
     {
-        if( (element->open_node->DB -  worst_bound) > MEWCP_MIN_DOUBLE )
+        if( (element->open_node->DB -  worst_bound) >= MEWCP_EPSILON )
         {
             worst_bound = element->open_node->DB;
             worst_element = element;
@@ -489,7 +525,7 @@ void MEWCP_push_open_node(open_node_t * open_node, list_branching_t * list_branc
     }
 
     list_branching->number_open_nodes += 1;
-    list_branching->number_explored_nodes += 1;
+
 
 }
 
@@ -539,7 +575,7 @@ open_node_t * MEWCP_pop_open_node( list_branching_t * list_branching)
 
 open_node_t * MEWCP_pop_specific_open_node(branching_open_node_t * branching_open_node , list_branching_t * list_branching)
 {
-#if defined MEWCP_DSDP_VERBOSE1
+#if defined MEWCP_DSDP_DEBUG
     printf("* MEWCP_pop_specific_open_node: %d *\n",branching_open_node->open_node->id_node);
 #endif
 
@@ -654,95 +690,103 @@ bool MEWCP_generate_equi_branch_node(double * diag_X, const unsigned int n, cons
     printf("* MEWCP_generate_equi_branch_node *\n");
 #endif
 
-
     unsigned int i,j,c;
     double sum_partition[m];
     int  id_node_part[m];
-    double min_sum_tmp;
+    int num_fract_var[m];
+    double min_diff;
+    double cur_min_diff;
 
-
-    double sum_prev, sum_cur;
+    double  sum_cur;
+    int max_num_fract_var =0;
 
     c = n/m;
 
     for(i=0;i<m;++i)
     {
+
+        cur_min_diff = 1;
         sum_cur = 0;
-        sum_prev =0;
+
+        num_fract_var[i] = 0;
+
 
         for(j=i*c;j<(i*c +c); ++j )
         {
-            sum_cur = sum_prev + diag_X[j];
-#if defined MEWCP_BRANCHING_DEBUG
+            /* I find the number of fractional variables */
+            sum_cur += diag_X[j];
 
-            printf("Part: %d \t diag[%d]: %.2lf \t Sum: %.2lf\n",i,j,diag_X[j],sum_cur);
-#endif
 
-            if ( ( (double) 1.0 - diag_X[j] <  MEWCP_EPSILON) ) /* only one element not zero I cannot branch! */
+            if ( (fabs(sum_cur - 0.5) < cur_min_diff) && (diag_X[j] > MEWCP_EPSILON )  && ( (1.0 - diag_X[j])  > MEWCP_EPSILON)  )
             {
-#if defined MEWCP_BRANCHING_DEBUG
-                printf("Partition: %d only one node is 1\n",i);
-#endif
+                cur_min_diff = fabs(sum_cur - 0.5);
 
-                id_node_part[i] = -1;
-                sum_partition[i] = -1;
-                break;
-
-            }
-            else if ( (sum_cur - 0.5 >= MEWCP_EPSILON) && (j != (i*c +c -1)) ) /* OK I have 1/2 and more considering not all the elements */
-            {
                 id_node_part[i] = j;
                 sum_partition[i] = sum_cur;
-                break;
-            }
-            else if ( (sum_cur - 0.5 > MEWCP_EPSILON) && (j == (i*c +c -1)) ) /* BRRR I have 1/2 and more considering not the elements */
-            {
-                id_node_part[i] = j-1;
-                sum_partition[i] = sum_prev;
-                break;
-            }
 
+                num_fract_var[i] += 1;
 
-            sum_prev = sum_cur;
+                if (num_fract_var[i] > max_num_fract_var)
+                {
+                    /* I set the maximum fractional number of variables */
+                    max_num_fract_var = num_fract_var[i];
+                }
+
+            }
+#if defined MEWCP_BRANCHING_DEBUG
+
+            printf("Part: %d \t diag[%d]: %.5lf \t Sum: %.5lf num_fract: %d\n",i,j,diag_X[j],sum_cur,num_fract_var[i]);
+#endif
+
         }
 #if defined MEWCP_BRANCHING_DEBUG
         printf("Ho preso: %d \t somma: %.2lf\n",id_node_part[i],sum_partition[i]);
 #endif
 
     }
-
-    min_sum_tmp = (double) 1.0;
+    min_diff = 1;
     for (i=0;i<m;++i)
     {
-        if (  (( (sum_partition[i] - min_sum_tmp) < MEWCP_EPSILON)) &&   (sum_partition[i] != -1)  )
+        if ( num_fract_var[i] == max_num_fract_var )
         {
-            printf("sumpart[%d]: %lf\n", i, sum_partition[i]);
-            min_sum_tmp = sum_partition[i];
 
 
-            *out_id_node = id_node_part[i];
-            *out_num_part = i;
-        }
-    }
-#if defined MEWCP_CONVERTER_DSDP_DEBUG
 
-    for(i=0;i<m;++i)
-    {
-        printf("Partition: %d \t Sum: %.3lf \t id_node: %d\n",i, sum_partition[i], id_node_part[i]);
-    }
+            /* I take the partition node nearest to sum 0.5 */
 
+            if (  ( fabs(sum_partition[i] - 0.5) < min_diff)   )
+            {
+
+
+                min_diff = fabs(sum_partition[i] - 0.5);
+#if defined MEWCP_BRANCHING_DEBUG
+
+                printf("sum_part[%d]: %.2lf \t mindiff: %.2lf\n",i,sum_partition[i], min_diff);
 #endif
 
+                *out_id_node = id_node_part[i];
+                *out_num_part = i;
+            }
+
+        }
+    }
 
 
-    if ( (min_sum_tmp < MEWCP_EPSILON) || (( 1.0 - min_sum_tmp)< MEWCP_EPSILON))
+
+    if ( max_num_fract_var < 1 )
     {
+
         return false;
     }
     else
     {
+#if defined MEWCP_BRANCHING_DEBUG
+        printf("taken\t part: %d \t node: %d\n",*out_num_part, *out_id_node);
+#endif
+
         return true;
     }
+
 }
 
 
@@ -770,49 +814,43 @@ void MEWCP_add_blocked_node(const unsigned int id_node, list_blocked_nodes_t * l
     /* All structures are updated */
 }
 
-double MEWCP_evaluate_list_nodes_solution(unsigned int * list_node_solution, double * vect_matrix_weights,const unsigned int m)
+double MEWCP_evaluate_list_nodes_solution(int * list_node_solution, matrix_weights_t * matrix_weights ,const unsigned int m)
 {
 #if defined MEWCP_CONVERTER_DSDP_VERBOSE1
     printf("* MEWCP_evaluate_list_nodes_solution *\n");
 #endif
 
     unsigned int i,j;
-    unsigned int pos_vect;
+
     double z_tmp;
+    int pos_i;
+    int pos_j;
 
     z_tmp = 0;
+
+
 
     for (i=0;i<m;++i)
     {
         for(j=i; j<m;++j)
         {
-            if(list_node_solution[i] >= list_node_solution[j])
-            {
-                pos_vect = MEWCP_convert_coords_ij_to_vector_matrix(list_node_solution[i]+1, list_node_solution[j]+1);
-            }
-            else
-            {
-                pos_vect = MEWCP_convert_coords_ij_to_vector_matrix(list_node_solution[j]+1, list_node_solution[i]+1);
-            }
-
-            if (i==j)
-            {
-                z_tmp += vect_matrix_weights[pos_vect];
-            }
-            else /* I have to consider 2* because of in the W matris non diagonal element are considered /2 */
-            {
-                z_tmp += 2*vect_matrix_weights[pos_vect];
-            }
-
+            pos_i = list_node_solution[i];
+            pos_j = list_node_solution[j];
+            z_tmp += (double) matrix_weights->weight[pos_i][pos_j];
         }
     }
 #if defined MEWCP_CONVERTER_DSDP_DEBUG
-    printf("Objective value of node_list: %.2lf\n",-z_tmp);
+    printf("Objective value of node_list: %.2lf\n",z_tmp);
 #endif
 
-    return -z_tmp;
+    return z_tmp;
 }
 
+int sort_compare (const void * a, const void * b)
+{
+	return ( *(int*)a - *(int*)b );
+		
+}
 
 open_node_t * MEWCP_allocate_open_node(void)
 {
@@ -900,8 +938,9 @@ list_branching_t * MEWCP_allocate_list_branching(void)
 #endif
 
     list_branching_t * list_branching;
-    list_branching = (list_branching_t *) calloc(1,sizeof(list_branching_t));
 
+    list_branching = (list_branching_t *) calloc(1,sizeof(list_branching_t));
+    list_branching->list_nodes_best_solution = NULL;
     list_branching->branching_open_node_t = NULL;
     list_branching->head = NULL;
     list_branching->tail = NULL;
@@ -914,7 +953,7 @@ list_branching_t * MEWCP_allocate_list_branching(void)
 }
 
 
-double ** MEWCP_allocate_sdp_constraints_matrix(const unsigned int n, const unsigned int num_constraints )
+constraint_t * MEWCP_allocate_sdp_constraints_matrix(const unsigned int n, const unsigned int num_constraints )
 {
 #if defined MEWCP_CONVERTER_DSDP_VERBOSE1
     printf("* MEWCP_allocate_sdp_constraints_matrix *\n");
@@ -925,11 +964,11 @@ double ** MEWCP_allocate_sdp_constraints_matrix(const unsigned int n, const unsi
 
     dim_vect_matrix = n*(n+1)/2;
 
-    double ** sdp_constraints_matrix;
+    constraint_t * sdp_constraints_matrix;
 
     /* I allocate the constraints matrix that is card(b) -1
     * I don't consider the last matrix of branching constraints */
-    sdp_constraints_matrix = (double **) calloc(num_constraints , sizeof(double *));
+    sdp_constraints_matrix = (constraint_t *) calloc(num_constraints , sizeof(constraint_t));
     if (sdp_constraints_matrix == NULL)
     {
         printf("Allocation ERROR: sdp_constraints_matrix\n");
@@ -938,8 +977,10 @@ double ** MEWCP_allocate_sdp_constraints_matrix(const unsigned int n, const unsi
 
     for (i=0; i < num_constraints ; ++i )
     {
-        sdp_constraints_matrix[i] = (double *) calloc(dim_vect_matrix, sizeof(double));
-        if (sdp_constraints_matrix[i] == NULL)
+        sdp_constraints_matrix[i].index = (int *) calloc(dim_vect_matrix, sizeof(int));
+        sdp_constraints_matrix[i].weight = (double *) calloc(dim_vect_matrix, sizeof(double));
+
+        if ( (sdp_constraints_matrix[i].index == NULL) || (sdp_constraints_matrix[i].weight == NULL))
         {
             printf("Allocation ERROR: sdp_constraints_matrix\n");
             exit (EXIT_FAILURE);
@@ -975,23 +1016,39 @@ unsigned int MEWCP_convert_coords_ij_to_vector_matrix(const unsigned int i, cons
     return i*(i-1)/2 +j -1;
 }
 
-double * MEWCP_allocate_vect_mat_branching_constraints(const unsigned int dim_matrix)
+constraint_t * MEWCP_allocate_vect_mat_branching_constraints(const unsigned int dim_matrix)
 {
-    double * vect_mat_branching_contraints;
+    constraint_t * vect_mat_branching_contraints;
 
-    vect_mat_branching_contraints = (double *) calloc(dim_matrix, sizeof(double));
+    vect_mat_branching_contraints = (constraint_t *) calloc(1, sizeof(constraint_t));
     if (vect_mat_branching_contraints  == NULL)
     {
         printf("*******  Allocation MEWCP_allocate_vect_mat_branching_constraints FAILED!\n");
         exit(EXIT_FAILURE);
     }
+    vect_mat_branching_contraints->index = (int *) calloc(dim_matrix,sizeof(int));
+    vect_mat_branching_contraints->weight = (double *) calloc(dim_matrix,sizeof(double));
+    if ( vect_mat_branching_contraints->index  == NULL)
+    {
+        printf("*******  Allocation MEWCP_allocate_vect_mat_branching_constraints FAILED!\n");
+        exit(EXIT_FAILURE);
+    }
+
+    if ( vect_mat_branching_contraints->weight  == NULL)
+    {
+        printf("*******  Allocation MEWCP_allocate_vect_mat_branching_constraints FAILED!\n");
+        exit(EXIT_FAILURE);
+    }
+
+
+
     return vect_mat_branching_contraints;
 }
 
-unsigned int * MEWCP_allocate_list_nodes_solution( const unsigned int m)
+int * MEWCP_allocate_list_nodes_solution( const unsigned int m)
 {
-    unsigned int * list_nodes_solution;
-    list_nodes_solution = (unsigned int *) calloc (m, sizeof(unsigned int));
+     int * list_nodes_solution;
+    list_nodes_solution = ( int *) calloc (m, sizeof(int));
     if (list_nodes_solution  == NULL)
     {
         printf("*******  Allocation MEWCP_allocate_list_nodes_solution FAILED!\n");
@@ -1072,6 +1129,12 @@ void MEWCP_clone_list_blocked_modes(list_blocked_nodes_t * list_to_be_cloned, li
 }
 
 
+void MEWCP_clone_list_nodes_solution( int * list_to_be_cloned,  int * list_cloned, const unsigned int num_nodes)
+{
+    /* I copy the list */
+    memcpy(list_cloned,list_to_be_cloned,num_nodes*sizeof( int));
+}
+
 void MEWCP_clone_vect_y(double * vect_y_to_be_cloned, double * vect_y_cloned, const unsigned int num_constraints)
 {
     memcpy(vect_y_cloned, vect_y_to_be_cloned, num_constraints*sizeof(double));
@@ -1105,7 +1168,7 @@ void MEWCP_dump_vect_y(DSDP  * dsdp, double * dst_vect_y, const unsigned int num
 }
 
 
-void MEWCP_compute_sdp_rounding(double * diag_X, unsigned int * list_nodes_rounded_solution, const unsigned int num_nodes, const unsigned int c)
+void MEWCP_compute_sdp_rounding(double * diag_X,  int * list_nodes_rounded_solution, const unsigned int num_nodes, const unsigned int c)
 {
 #if defined MEWCP_CONVERTER_DSDP_VERBOSE1
     printf("* MEWCP_compute_sdp_rounding *\n");
@@ -1200,14 +1263,30 @@ void MEWCP_print_list_blocked_nodes(list_blocked_nodes_t * list_blocked_modes)
     printf("\n");
 }
 
-void MEWCP_print_list_nodes_solution(unsigned int * list_nodes_solution, const unsigned int m)
+void MEWCP_print_list_nodes_solution( int * list_nodes_solution, const unsigned int m)
 {
     unsigned int i;
     printf("Nodes list solution: : ");
 
     for (i=0;i<m;++i)
     {
-        printf("%u ",list_nodes_solution[i]);
+        printf("%d ",list_nodes_solution[i]);
+    }
+    printf("\n");
+}
+
+
+void MEWCP_print_list_nodes_solution_cplex( int * list_nodes_solution, const unsigned int m)
+{
+	 unsigned int i;
+    printf("Nodes list solution (cplex): ");
+	
+	qsort (list_nodes_solution, m, sizeof(int), sort_compare);
+	
+	
+    for (i=0;i<m;++i)
+    {
+        printf("%d ",list_nodes_solution[i]+1);
     }
     printf("\n");
 }
@@ -1225,7 +1304,7 @@ void MEWCP_free_list_blocked_nodes(list_blocked_nodes_t * list_blocked_nodes)
     free (list_blocked_nodes->bool_list);
 }
 
-void MEWCP_free_sdp_constraints_matrix(double ** sdp_constraints_matrix, const unsigned int num_constraints )
+void MEWCP_free_sdp_constraints_matrix(constraint_t * sdp_constraints_matrix, const unsigned int num_constraints )
 {
 #if defined MEWCP_DSDP_DEBUG
     printf("* MEWCP_free_sdp_constraints_matrix *\n");
@@ -1234,7 +1313,8 @@ void MEWCP_free_sdp_constraints_matrix(double ** sdp_constraints_matrix, const u
     unsigned int i;
     for(i=0;i<num_constraints;++i) /* matrix are num_contraints +1 but we do not consider the branching constraint matrix */
     {
-        free(sdp_constraints_matrix[i]);
+        free(sdp_constraints_matrix[i].index);
+        free(sdp_constraints_matrix[i].weight);
     }
 }
 void MEWCP_free_bi(double * bi)
@@ -1264,7 +1344,7 @@ void MEWCP_free_vect_y(double * vect_y)
     free(vect_y);
 }
 
-void MEWCP_free_list_nodes_solution(unsigned int * list_nodes_solution)
+void MEWCP_free_list_nodes_solution( int * list_nodes_solution)
 {
 #if defined MEWCP_DSDP_DEBUG
     printf("* MEWCP_free_list_nodes_solution *\n");
@@ -1273,12 +1353,14 @@ void MEWCP_free_list_nodes_solution(unsigned int * list_nodes_solution)
     free(list_nodes_solution);
 }
 
-void MEWCP_free_vect_mat_branching_constraints(double * vect_mat_branching_contraints)
+void MEWCP_free_vect_mat_branching_constraints(constraint_t * vect_mat_branching_contraints)
 {
 #if defined MEWCP_DSDP_DEBUG
     printf("* MEWCP_free_vect_mat_branching_constraints *\n");
 #endif
 
+    free(vect_mat_branching_contraints->index);
+    free(vect_mat_branching_contraints->weight);
     free(vect_mat_branching_contraints);
 }
 
@@ -1321,7 +1403,8 @@ void MEWCP_free_list_branching(list_branching_t * list_branching)
         exit(EXIT_FAILURE);
     }
 
-    /* As the list is empty I simply free the list structure */
+	MEWCP_free_list_nodes_solution(list_branching->list_nodes_best_solution);
+	/* As the list is empty I simply free the list structure */
     free(list_branching);
 
 }
