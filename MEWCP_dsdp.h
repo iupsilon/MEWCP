@@ -75,7 +75,7 @@
 #define MEWCP_EPSILON 10E-4
 #define MEWCP_MIN_DOUBLE -10E7 /* Is the (double) -infinity */
 #define MEWCP_MAX_DOUBLE 10E12
-#define MEWCP_MAX_EXPLICIT_SOLUTIONS 500000
+#define MEWCP_MAX_EXPLICIT_SOLUTIONS 0
 
 /*
  * DSDP Data structures 
@@ -84,10 +84,12 @@
 typedef struct solution_bb_s
 {
     double z_opt;
+    double best_bound_left; /* if computational time exceeds */
     unsigned int number_explored_nodes;
     unsigned int node_best_primal;
     unsigned int depth_best_primal;
     unsigned int max_exploration_depth;
+    
     int * list_nodes_best_solution;
     
     /* informations at the root node */
@@ -231,7 +233,7 @@ solution_bb_t * MEWCP_branch_and_bound(open_node_t * open_root_node, constraint_
                             const unsigned int num_nodes,
                             const unsigned int num_partitions,
                             double best_primal_obj,
-                            int * list_node_best_solution);
+                            int * list_node_best_solution,double time_timit);
 
 
 void MEWCP_close_open_node(list_branching_t * list_branching, open_node_t * open_node);
@@ -283,6 +285,7 @@ void MEWCP_compute_sdp_rounding(double * diag_X,  int * list_nodes_rounded_solut
 double MEWCP_evaluate_list_nodes_solution( int * list_node_solution, matrix_weights_t * matrix_weights ,const unsigned int m);
 int sort_compare (const void * a, const void * b);
 void Take_Time(double * user_time, double * system_time);
+double get_cpu_time(void);  // Returns cpu time in seconds user+sys
 
 /*****  END UTILS ********/
 

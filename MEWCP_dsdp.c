@@ -29,7 +29,7 @@ solution_bb_t * MEWCP_branch_and_bound(open_node_t * open_root_node, constraint_
                                        const unsigned int num_nodes,
                                        const unsigned int num_partitions,
                                        double best_primal_obj,
-                                       int * list_node_best_solution)
+                                       int * list_node_best_solution, double time_limit)
 {
 
 #if defined MEWCP_CONVERTER_DSDP_VERBOSE1
@@ -145,6 +145,16 @@ solution_bb_t * MEWCP_branch_and_bound(open_node_t * open_root_node, constraint_
 
     while(MEWCP_is_list_branching_empty(list_branching) == false)
     {
+    	
+    	if ((get_cpu_time() - time_limit) > MEWCP_EPSILON)
+    	{
+    		//Time limit exceeded
+    		#if defined MEWCP_DSDP_VERBOSE1
+    		printf("\n**************\tTime limit reached!\t****************\n\n");
+    		#endif
+    		solution_bb->best_bound_left = open_root_node->DB;
+    		break;
+    	}
 
 
         branching_open_worst_bound = MEWCP_find_worst_bound_element(list_branching);
@@ -178,7 +188,7 @@ solution_bb_t * MEWCP_branch_and_bound(open_node_t * open_root_node, constraint_
                     active_combinatorial_bound = true;
 #if defined  MEWCP_DSDP_VERBOSE2
 
-                    printf("combinatorial ACTIVE\t DB_SDP= %.2lf\t DB_comb= %.lf\n", open_node_worst_bound->DB_SDP,open_node_worst_bound->DB_comb);
+                    printf("combinatorial ACTIVE\t DB_SDP= %.2lf\t DB_comb= %.2lf\n", open_node_worst_bound->DB_SDP,open_node_worst_bound->DB_comb);
 #endif
 
                 }
@@ -187,7 +197,7 @@ solution_bb_t * MEWCP_branch_and_bound(open_node_t * open_root_node, constraint_
                     active_combinatorial_bound = false;
 #if defined  MEWCP_DSDP_VERBOSE2
 
-                    printf("combinatorial NOT active\t  DB_SDP= %.2lf\t DB_comb= %.lf\n",open_node_worst_bound->DB_SDP,open_node_worst_bound->DB_comb);
+                    printf("combinatorial NOT active\t  DB_SDP= %.2lf\t DB_comb= %.2lf\n",open_node_worst_bound->DB_SDP,open_node_worst_bound->DB_comb);
 #endif
 
                 }
@@ -1369,6 +1379,24 @@ void Take_Time(double * user_time, double * system_time)
     *user_time = buff.tms_utime;
     *system_time /= 100;
     *user_time /= 100;
+    
+    
+}
+
+double get_cpu_time(void)
+{
+	double user_time;
+	double  system_time;
+	struct tms buff;
+    
+    times(&buff);
+    system_time = buff.tms_stime;
+    user_time = buff.tms_utime;
+    system_time /= 100;
+    user_time /= 100;
+    
+    return user_time + system_time; 
+	
 }
 
 open_node_t * MEWCP_allocate_open_node(void)
@@ -1962,7 +1990,7 @@ void MEWCP_free_list_branching(list_branching_t * list_branching)
     if (MEWCP_is_list_branching_empty(list_branching) == false)
     {
         printf("**\t ERROR! Cannot free list_branching because isn't empty! Check it out!\n");
-        exit(EXIT_FAILURE);
+        //exit(EXIT_FAILURE);
     }
 
     MEWCP_free_list_nodes_solution(list_branching->list_nodes_best_solution);

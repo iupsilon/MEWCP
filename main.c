@@ -70,6 +70,8 @@ int main (int argc, char * argv[])
     double t_system;
     double t_user_start;
     double t_system_start;
+    
+    double time_limit;
 
 
 
@@ -93,6 +95,9 @@ int main (int argc, char * argv[])
     }
 
 
+	/* Parsing time limit */
+	time_limit = 10;
+
     iterations = atoi(argv[1]);
     filename_in = argv[2];
     if (argc == 4)
@@ -104,6 +109,7 @@ int main (int argc, char * argv[])
 
     /* I take starting time */
     Take_Time(&t_user_start,&t_system_start);
+    
 
     MEWCP_load_AMPL_instance(filename_in,&matrix_weights);
 
@@ -155,7 +161,7 @@ int main (int argc, char * argv[])
     MEWCP_clone_vect_y(bi,open_node->vect_y,num_constraints);
 
 
-    solution_bb = MEWCP_branch_and_bound(open_node,constraints_matrix, &matrix_weights,bi,num_constraints,dim_matrix,num_nodes,num_partitions,tabu_result.solution.Z,tabu_result.solution.node_solution);
+    solution_bb = MEWCP_branch_and_bound(open_node,constraints_matrix, &matrix_weights,bi,num_constraints,dim_matrix,num_nodes,num_partitions,tabu_result.solution.Z,tabu_result.solution.node_solution,time_limit);
 
 
 
@@ -166,9 +172,10 @@ int main (int argc, char * argv[])
 #if defined MEWCP_DSDP_VERBOSE1
 
 
-    printf("%s Z_opt: %.2lf  r_best_PB: %.2lf  r_DB: %.2lf  r_gap: %.2lf %%  t_root: %.2lf  Best_n: %u  depth_best: %u   Exp_nodes: %u   max_depth: %u  Time: %.2lf\n",
+    printf("%s Z_opt: %.2lf  DB_left: %.2lf  r_best_PB: %.2lf  r_DB: %.2lf  r_gap: %.2lf %%  t_root: %.2lf  Best_n: %u  depth_best: %u   Exp_nodes: %u   max_depth: %u  Time: %.2lf\n",
            filename_in,
            solution_bb->z_opt,
+           solution_bb->best_bound_left,
            solution_bb->PB_root_bestK,
            solution_bb->DB_root,
            solution_bb->gap_root,
@@ -178,7 +185,6 @@ int main (int argc, char * argv[])
            solution_bb->number_explored_nodes,
            solution_bb->max_exploration_depth,
            (t_user-t_user_start) + ( t_system-t_system_start) );
-
 
 #endif
 
@@ -191,9 +197,10 @@ int main (int argc, char * argv[])
         }
 
 
-        fprintf(file_out ,"%s Z_opt: %.2lf\tr_best_PB: %.2lf\tr_DB: %.2lf\tr_gap: %.2lf %%\tt_root: %.2lf\t Best_n: %u\t depth_best: %u \t Exp_nodes: %u \t max_depth: %u \t Time: %.2lf\n",
+        fprintf(file_out ,"%s Z_opt: %.2lf\tDB_left: %.2lf\tr_best_PB: %.2lf\tr_DB: %.2lf\tr_gap: %.2lf %%\tt_root: %.2lf\t Best_n: %u\t depth_best: %u \t Exp_nodes: %u \t max_depth: %u \t Time: %.2lf\n",
                 filename_in,
                 solution_bb->z_opt,
+                solution_bb->best_bound_left,
                 solution_bb->PB_root_bestK,
                 solution_bb->DB_root,
                 solution_bb->gap_root,
