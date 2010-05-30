@@ -1,0 +1,2515 @@
+X: { 0 10 20 30 40 50 }
+Z*: -46.00
+z tabu:-46.00	best I: -1210683072
+			Number_solutions: 1000000
+(BB)  Bound Combinatory: (0) DB: 713.50 	 PB: 258.00 	 level: 0
+	*****(Comb Bound)  Node: 0	New best PB: 258.00
+(BB)  Bound SDP: (0) DB: 967.11 	 Rounded: 258.00 	 level: 0 	 Status: 1
+
+++ Current DB(0): 713.50 	 level: 0 	Best P(0): 258.00 	 open_nodes: 0	 explored: 0 	 gap: 176.550 %
+			Number_solutions: 400000
+(BB)  Bound Combinatory: (1) DB: 698.50 	 PB: 133.00 	 level: 1
+(BB)  Bound SDP: (1) DB: 910.48 	 Rounded: 133.00 	 level: 1 	 Status: 1
+			Number_solutions: 600000
+(BB)  Bound Combinatory: (2) DB: 697.50 	 PB: 251.00 	 level: 1
+(BB)  Bound SDP: (2) DB: 892.81 	 Rounded: 251.00 	 level: 1 	 Status: 1
+-- Close node: 0
+
+++ Current DB(1): 698.50 	 level: 1 	Best P(0): 258.00 	 open_nodes: 1	 explored: 1 	 gap: 170.736 %
+			Number_solutions: 160000
+(BB)  Bound Combinatory: (3) DB: 683.00 	 PB: 281.00 	 level: 2
+	*****(Comb Bound)  Node: 3	New best PB: 281.00
+(BB)  Bound SDP: (3) DB: 827.95 	 Rounded: 281.00 	 level: 2 	 Status: 1
+			Number_solutions: 240000
+(BB)  Bound Combinatory: (4) DB: 687.00 	 PB: 115.00 	 level: 2
+(BB)  Bound SDP: (4) DB: 813.27 	 Rounded: 115.00 	 level: 2 	 Status: 1
+-- Close node: 1
+
+++ Current DB(2): 697.50 	 level: 1 	Best P(3): 281.00 	 open_nodes: 2	 explored: 2 	 gap: 148.221 %
+			Number_solutions: 240000
+(BB)  Bound Combinatory: (5) DB: 697.00 	 PB: 318.00 	 level: 2
+	*****(Comb Bound)  Node: 5	New best PB: 318.00
+(BB)  Bound SDP: (5) DB: 829.53 	 Rounded: 318.00 	 level: 2 	 Status: 1
+			Number_solutions: 360000
+(BB)  Bound Combinatory: (6) DB: 691.00 	 PB: 28.00 	 level: 2
+(BB)  Bound SDP: (6) DB: 829.84 	 Rounded: 28.00 	 level: 2 	 Status: 1
+-- Close node: 2
+
+++ Current DB(5): 697.00 	 level: 2 	Best P(5): 318.00 	 open_nodes: 3	 explored: 3 	 gap: 119.182 %
+			Number_solutions: 120000
+(BB)  Bound Combinatory: (7) DB: 689.00 	 PB: 31.00 	 level: 3
+(BB)  Bound SDP: (7) DB: 739.77 	 Rounded: 31.00 	 level: 3 	 Status: 1
+			Number_solutions: 120000
+(BB)  Bound Combinatory: (8) DB: 686.50 	 PB: 24.00 	 level: 3
+(BB)  Bound SDP: (8) DB: 767.07 	 Rounded: 24.00 	 level: 3 	 Status: 1
+-- Close node: 5
+
+++ Current DB(6): 691.00 	 level: 2 	Best P(5): 318.00 	 open_nodes: 4	 explored: 4 	 gap: 117.296 %
+			Number_solutions: 180000
+(BB)  Bound Combinatory: (9) DB: 672.00 	 PB: 28.00 	 level: 3
+(BB)  Bound SDP: (9) DB: 768.79 	 Rounded: 28.00 	 level: 3 	 Status: 1
+			Number_solutions: 180000
+(BB)  Bound Combinatory: (10) DB: 675.50 	 PB: 248.00 	 level: 3
+(BB)  Bound SDP: (10) DB: 767.72 	 Rounded: 248.00 	 level: 3 	 Status: 1
+-- Close node: 6
+
+++ Current DB(7): 689.00 	 level: 3 	Best P(5): 318.00 	 open_nodes: 5	 explored: 5 	 gap: 116.667 %
+			Number_solutions: 72000
+(BB)  Bound Combinatory: (11) DB: 664.50 	 PB: 118.00 	 level: 4
+(BB)  Bound SDP: (11) DB: 678.19 	 Rounded: 118.00 	 level: 4 	 Status: 1
+			Number_solutions: 48000
+(BB)  Bound Combinatory: (12) DB: 685.00 	 PB: 252.00 	 level: 4
+(BB)  Bound SDP: (12) DB: 657.99 	 Rounded: 252.00 	 level: 4 	 Status: 1
+-- Close node: 7
+
+++ Current DB(4): 687.00 	 level: 2 	Best P(5): 318.00 	 open_nodes: 6	 explored: 6 	 gap: 116.038 %
+			Number_solutions: 120000
+(BB)  Bound Combinatory: (13) DB: 687.00 	 PB: 115.00 	 level: 3
+(BB)  Bound SDP: (13) DB: 762.60 	 Rounded: 115.00 	 level: 3 	 Status: 1
+			Number_solutions: 120000
+(BB)  Bound Combinatory: (14) DB: 655.50 	 PB: -144.00 	 level: 3
+(BB)  Bound SDP: (14) DB: 751.34 	 Rounded: -144.00 	 level: 3 	 Status: 1
+-- Close node: 4
+
+++ Current DB(13): 687.00 	 level: 3 	Best P(5): 318.00 	 open_nodes: 7	 explored: 7 	 gap: 116.038 %
+			Number_solutions: 84000
+(BB)  Bound Combinatory: (15) DB: 673.00 	 PB: 134.00 	 level: 4
+(BB)  Bound SDP: (15) DB: 693.04 	 Rounded: 134.00 	 level: 4 	 Status: 1
+			Number_solutions: 36000
+(BB)  Bound Combinatory: (16) DB: 685.00 	 PB: 277.00 	 level: 4
+(BB)  Bound SDP: (16) DB: 701.09 	 Rounded: 277.00 	 level: 4 	 Status: 1
+-- Close node: 13
+
+++ Current DB(8): 686.50 	 level: 3 	Best P(5): 318.00 	 open_nodes: 8	 explored: 8 	 gap: 115.881 %
+			Number_solutions: 72000
+(BB)  Bound Combinatory: (17) DB: 682.50 	 PB: 24.00 	 level: 4
+(BB)  Bound SDP: (17) DB: 702.65 	 Rounded: 24.00 	 level: 4 	 Status: 1
+			Number_solutions: 48000
+(BB)  Bound Combinatory: (18) DB: 657.00 	 PB: 311.00 	 level: 4
+(BB)  Bound SDP: (18) DB: 716.43 	 Rounded: 311.00 	 level: 4 	 Status: 1
+-- Close node: 8
+
+++ Current DB(16): 685.00 	 level: 4 	Best P(5): 318.00 	 open_nodes: 9	 explored: 9 	 gap: 115.409 %
+			Number_solutions: 10800
+(BB)  Bound Combinatory: (19) DB: 676.00 	 PB: 277.00 	 level: 5
+(BB)  Bound SDP: (19) DB: 618.15 	 Rounded: 277.00 	 level: 5 	 Status: 1
+			Number_solutions: 25200
+(BB)  Bound Combinatory: (20) DB: 653.00 	 PB: 148.00 	 level: 5
+(BB)  Bound SDP: (20) DB: 620.08 	 Rounded: 148.00 	 level: 5 	 Status: 1
+-- Close node: 16
+
+++ Current DB(3): 683.00 	 level: 2 	Best P(5): 318.00 	 open_nodes: 10	 explored: 10 	 gap: 114.780 %
+			Number_solutions: 80000
+(BB)  Bound Combinatory: (21) DB: 670.50 	 PB: 225.00 	 level: 3
+(BB)  Bound SDP: (21) DB: 754.48 	 Rounded: 225.00 	 level: 3 	 Status: 1
+			Number_solutions: 80000
+(BB)  Bound Combinatory: (22) DB: 678.00 	 PB: 281.00 	 level: 3
+(BB)  Bound SDP: (22) DB: 756.29 	 Rounded: 281.00 	 level: 3 	 Status: 1
+-- Close node: 3
+
+++ Current DB(17): 682.50 	 level: 4 	Best P(5): 318.00 	 open_nodes: 11	 explored: 11 	 gap: 114.623 %
+			Number_solutions: 36000
+(BB)  Bound Combinatory: (23) DB: 667.50 	 PB: 100.00 	 level: 5
+(BB)  Bound SDP: (23) DB: 659.26 	 Rounded: 100.00 	 level: 5 	 Status: 1
+			Number_solutions: 36000
+(BB)  Bound Combinatory: (24) DB: 636.50 	 PB: 242.00 	 level: 5
+(BB)  Bound SDP: (24) DB: 616.90 	 Rounded: 242.00 	 level: 5 	 Status: 1
+-- Close node: 17
+
+++ Current DB(22): 678.00 	 level: 3 	Best P(5): 318.00 	 open_nodes: 12	 explored: 12 	 gap: 113.208 %
+			Number_solutions: 32000
+(BB)  Bound Combinatory: (25) DB: 663.50 	 PB: 361.00 	 level: 4
+	*****(Comb Bound)  Node: 25	New best PB: 361.00
+(BB)  Bound SDP: (25) DB: 628.34 	 Rounded: 361.00 	 level: 4 	 Status: 1
+			Number_solutions: 48000
+(BB)  Bound Combinatory: (26) DB: 667.50 	 PB: 121.00 	 level: 4
+(BB)  Bound SDP: (26) DB: 684.54 	 Rounded: 121.00 	 level: 4 	 Status: 1
+-- Close node: 22
+
+++ Current DB(10): 675.50 	 level: 3 	Best P(17): 361.00 	 open_nodes: 13	 explored: 13 	 gap: 87.119 %
+			Number_solutions: 90000
+(BB)  Bound Combinatory: (27) DB: 664.50 	 PB: 147.00 	 level: 4
+(BB)  Bound SDP: (27) DB: 708.92 	 Rounded: 147.00 	 level: 4 	 Status: 1
+			Number_solutions: 90000
+(BB)  Bound Combinatory: (28) DB: 656.00 	 PB: 100.00 	 level: 4
+(BB)  Bound SDP: (28) DB: 704.96 	 Rounded: 100.00 	 level: 4 	 Status: 1
+-- Close node: 10
+
+++ Current DB(15): 673.00 	 level: 4 	Best P(17): 361.00 	 open_nodes: 14	 explored: 14 	 gap: 86.427 %
+			Number_solutions: 42000
+(BB)  Bound Combinatory: (29) DB: 657.50 	 PB: 160.00 	 level: 5
+(BB)  Bound SDP: (29) DB: 655.91 	 Rounded: 160.00 	 level: 5 	 Status: 1
+			Number_solutions: 42000
+(BB)  Bound Combinatory: (30) DB: 655.00 	 PB: 211.00 	 level: 5
+(BB)  Bound SDP: (30) DB: 648.43 	 Rounded: 211.00 	 level: 5 	 Status: 1
+-- Close node: 15
+
+++ Current DB(9): 672.00 	 level: 3 	Best P(17): 361.00 	 open_nodes: 15	 explored: 15 	 gap: 86.150 %
+			Number_solutions: 108000
+(BB)  Bound Combinatory: (31) DB: 669.50 	 PB: 118.00 	 level: 4
+(BB)  Bound SDP: (31) DB: 709.40 	 Rounded: 118.00 	 level: 4 	 Status: 1
+			Number_solutions: 72000
+(BB)  Bound Combinatory: (32) DB: 660.00 	 PB: 70.00 	 level: 4
+(BB)  Bound SDP: (32) DB: 718.47 	 Rounded: 70.00 	 level: 4 	 Status: 1
+-- Close node: 9
+
+++ Current DB(21): 670.50 	 level: 3 	Best P(17): 361.00 	 open_nodes: 16	 explored: 16 	 gap: 85.734 %
+			Number_solutions: 64000
+(BB)  Bound Combinatory: (33) DB: 654.50 	 PB: 225.00 	 level: 4
+(BB)  Bound SDP: (33) DB: 668.25 	 Rounded: 225.00 	 level: 4 	 Status: 1
+			Number_solutions: 16000
+(BB)  Bound Combinatory: (34) DB: 670.50 	 PB: 179.00 	 level: 4
+(BB)  Bound SDP: (34) DB: 632.58 	 Rounded: 179.00 	 level: 4 	 Status: 1
+-- Close node: 21
+
+++ Current DB(31): 669.50 	 level: 4 	Best P(17): 361.00 	 open_nodes: 17	 explored: 17 	 gap: 85.457 %
+			Number_solutions: 54000
+(BB)  Bound Combinatory: (35) DB: 661.50 	 PB: 135.00 	 level: 5
+(BB)  Bound SDP: (35) DB: 628.06 	 Rounded: 135.00 	 level: 5 	 Status: 1
+			Number_solutions: 54000
+(BB)  Bound Combinatory: (36) DB: 654.50 	 PB: 225.00 	 level: 5
+(BB)  Bound SDP: (36) DB: 636.70 	 Rounded: 225.00 	 level: 5 	 Status: 1
+-- Close node: 31
+
+++ Current DB(26): 667.50 	 level: 4 	Best P(17): 361.00 	 open_nodes: 18	 explored: 18 	 gap: 84.903 %
+			Number_solutions: 24000
+(BB)  Bound Combinatory: (37) DB: 666.00 	 PB: 201.00 	 level: 5
+(BB)  Bound SDP: (37) DB: 625.32 	 Rounded: 201.00 	 level: 5 	 Status: 1
+			Number_solutions: 24000
+(BB)  Bound Combinatory: (38) DB: 599.00 	 PB: 32.00 	 level: 5
+(BB)  Bound SDP: (38) DB: 594.56 	 Rounded: 32.00 	 level: 5 	 Status: 1
+-- Close node: 26
+
+++ Current DB(11): 664.50 	 level: 4 	Best P(17): 361.00 	 open_nodes: 19	 explored: 19 	 gap: 84.072 %
+			Number_solutions: 28800
+(BB)  Bound Combinatory: (39) DB: 656.00 	 PB: 12.00 	 level: 5
+(BB)  Bound SDP: (39) DB: 598.36 	 Rounded: 12.00 	 level: 5 	 Status: 1
+			Number_solutions: 43200
+(BB)  Bound Combinatory: (40) DB: 666.50 	 PB: 296.00 	 level: 5
+(BB)  Bound SDP: (40) DB: 624.48 	 Rounded: 296.00 	 level: 5 	 Status: 1
+-- Close node: 11
+
+++ Current DB(27): 664.50 	 level: 4 	Best P(17): 361.00 	 open_nodes: 20	 explored: 20 	 gap: 84.072 %
+			Number_solutions: 54000
+(BB)  Bound Combinatory: (41) DB: 649.50 	 PB: 178.00 	 level: 5
+(BB)  Bound SDP: (41) DB: 635.63 	 Rounded: 178.00 	 level: 5 	 Status: 1
+			Number_solutions: 36000
+(BB)  Bound Combinatory: (42) DB: 661.00 	 PB: 263.00 	 level: 5
+(BB)  Bound SDP: (42) DB: 628.45 	 Rounded: 263.00 	 level: 5 	 Status: 1
+-- Close node: 27
+
+++ Current DB(32): 660.00 	 level: 4 	Best P(17): 361.00 	 open_nodes: 21	 explored: 21 	 gap: 82.825 %
+			Number_solutions: 21600
+(BB)  Bound Combinatory: (43) DB: 644.50 	 PB: 196.00 	 level: 5
+(BB)  Bound SDP: (43) DB: 650.51 	 Rounded: 196.00 	 level: 5 	 Status: 1
+			Number_solutions: 50400
+(BB)  Bound Combinatory: (44) DB: 654.50 	 PB: -30.00 	 level: 5
+(BB)  Bound SDP: (44) DB: 658.09 	 Rounded: -30.00 	 level: 5 	 Status: 1
+-- Close node: 32
+
+++ Current DB(23): 659.26 	 level: 5 	Best P(17): 361.00 	 open_nodes: 22	 explored: 22 	 gap: 82.621 %
+			Number_solutions: 18000
+(BB)  Bound Combinatory: (45) DB: 656.50 	 PB: 249.00 	 level: 6
+(BB)  Bound SDP: (45) DB: 589.18 	 Rounded: 249.00 	 level: 6 	 Status: 1
+			Number_solutions: 18000
+(BB)  Bound Combinatory: (46) DB: 662.50 	 PB: 24.00 	 level: 6
+(BB)  Bound SDP: (46) DB: 580.24 	 Rounded: 24.00 	 level: 6 	 Status: 1
+-- Close node: 23
+
+++ Current DB(12): 657.99 	 level: 4 	Best P(17): 361.00 	 open_nodes: 23	 explored: 23 	 gap: 82.268 %
+			Number_solutions: 19200
+(BB)  Bound Combinatory: (47) DB: 681.50 	 PB: 252.00 	 level: 5
+(BB)  Bound SDP: (47) DB: 594.12 	 Rounded: 252.00 	 level: 5 	 Status: 1
+			Number_solutions: 28800
+(BB)  Bound Combinatory: (48) DB: 648.00 	 PB: 116.00 	 level: 5
+(BB)  Bound SDP: (48) DB: 588.37 	 Rounded: 116.00 	 level: 5 	 Status: 1
+-- Close node: 12
+
+++ Current DB(18): 657.00 	 level: 4 	Best P(17): 361.00 	 open_nodes: 24	 explored: 24 	 gap: 81.994 %
+			Number_solutions: 24000
+(BB)  Bound Combinatory: (49) DB: 649.00 	 PB: 45.00 	 level: 5
+(BB)  Bound SDP: (49) DB: 645.83 	 Rounded: 45.00 	 level: 5 	 Status: 1
+			Number_solutions: 24000
+(BB)  Bound Combinatory: (50) DB: 617.50 	 PB: 45.00 	 level: 5
+(BB)  Bound SDP: (50) DB: 640.26 	 Rounded: 45.00 	 level: 5 	 Status: 1
+-- Close node: 18
+
+++ Current DB(28): 656.00 	 level: 4 	Best P(17): 361.00 	 open_nodes: 25	 explored: 25 	 gap: 81.717 %
+			Number_solutions: 45000
+(BB)  Bound Combinatory: (51) DB: 653.00 	 PB: 151.00 	 level: 5
+(BB)  Bound SDP: (51) DB: 640.50 	 Rounded: 151.00 	 level: 5 	 Status: 1
+			Number_solutions: 45000
+(BB)  Bound Combinatory: (52) DB: 631.50 	 PB: -26.00 	 level: 5
+(BB)  Bound SDP: (52) DB: 634.18 	 Rounded: -26.00 	 level: 5 	 Status: 1
+-- Close node: 28
+
+++ Current DB(29): 655.91 	 level: 5 	Best P(17): 361.00 	 open_nodes: 26	 explored: 26 	 gap: 81.693 %
+			Number_solutions: 29400
+(BB)  Bound Combinatory: (53) DB: 648.50 	 PB: 160.00 	 level: 6
+(BB)  Bound SDP: (53) DB: 616.45 	 Rounded: 160.00 	 level: 6 	 Status: 1
+			Number_solutions: 12600
+(BB)  Bound Combinatory: (54) DB: 640.50 	 PB: 235.00 	 level: 6
+(BB)  Bound SDP: (54) DB: 584.92 	 Rounded: 235.00 	 level: 6 	 Status: 1
+-- Close node: 29
+
+++ Current DB(14): 655.50 	 level: 3 	Best P(17): 361.00 	 open_nodes: 27	 explored: 27 	 gap: 81.579 %
+			Number_solutions: 48000
+(BB)  Bound Combinatory: (55) DB: 642.00 	 PB: 146.00 	 level: 4
+(BB)  Bound SDP: (55) DB: 674.37 	 Rounded: 146.00 	 level: 4 	 Status: 1
+			Number_solutions: 72000
+(BB)  Bound Combinatory: (56) DB: 641.50 	 PB: 90.00 	 level: 4
+(BB)  Bound SDP: (56) DB: 689.92 	 Rounded: 90.00 	 level: 4 	 Status: 1
+-- Close node: 14
+
+++ Current DB(33): 654.50 	 level: 4 	Best P(17): 361.00 	 open_nodes: 28	 explored: 28 	 gap: 81.302 %
+			Number_solutions: 38400
+(BB)  Bound Combinatory: (57) DB: 640.00 	 PB: 225.00 	 level: 5
+(BB)  Bound SDP: (57) DB: 582.34 	 Rounded: 225.00 	 level: 5 	 Status: 1
+			Number_solutions: 25600
+(BB)  Bound Combinatory: (58) DB: 633.50 	 PB: 169.00 	 level: 5
+(BB)  Bound SDP: (58) DB: 591.26 	 Rounded: 169.00 	 level: 5 	 Status: 1
+-- Close node: 33
+
+++ Current DB(44): 654.50 	 level: 5 	Best P(17): 361.00 	 open_nodes: 29	 explored: 29 	 gap: 81.302 %
+			Number_solutions: 25200
+(BB)  Bound Combinatory: (59) DB: 652.50 	 PB: 12.00 	 level: 6
+(BB)  Bound SDP: (59) DB: 600.34 	 Rounded: 12.00 	 level: 6 	 Status: 1
+			Number_solutions: 25200
+(BB)  Bound Combinatory: (60) DB: 635.50 	 PB: -46.00 	 level: 6
+(BB)  Bound SDP: (60) DB: 582.19 	 Rounded: -46.00 	 level: 6 	 Status: 1
+-- Close node: 44
+
+++ Current DB(30): 648.43 	 level: 5 	Best P(17): 361.00 	 open_nodes: 30	 explored: 30 	 gap: 79.621 %
+			Number_solutions: 25200
+(BB)  Bound Combinatory: (61) DB: 647.50 	 PB: 274.00 	 level: 6
+(BB)  Bound SDP: (61) DB: 576.64 	 Rounded: 274.00 	 level: 6 	 Status: 1
+			Number_solutions: 16800
+(BB)  Bound Combinatory: (62) DB: 628.00 	 PB: 257.00 	 level: 6
+(BB)  Bound SDP: (62) DB: 561.24 	 Rounded: 257.00 	 level: 6 	 Status: 1
+-- Close node: 30
+
+++ Current DB(49): 645.83 	 level: 5 	Best P(17): 361.00 	 open_nodes: 31	 explored: 31 	 gap: 78.900 %
+			Number_solutions: 14400
+(BB)  Bound Combinatory: (63) DB: 629.00 	 PB: 345.00 	 level: 6
+(BB)  Bound SDP: (63) DB: 555.00 	 Rounded: 345.00 	 level: 6 	 Status: 1
+			Number_solutions: 9600
+(BB)  Bound Combinatory: (64) DB: 627.00 	 PB: 165.00 	 level: 6
+(BB)  Bound SDP: (64) DB: 569.64 	 Rounded: 165.00 	 level: 6 	 Status: 1
+-- Close node: 49
+
+++ Current DB(43): 644.50 	 level: 5 	Best P(17): 361.00 	 open_nodes: 32	 explored: 32 	 gap: 78.532 %
+			Number_solutions: 8640
+(BB)  Bound Combinatory: (65) DB: 636.50 	 PB: 196.00 	 level: 6
+(BB)  Bound SDP: (65) DB: 543.95 	 Rounded: 196.00 	 level: 6 	 Status: 1
+			Number_solutions: 12960
+(BB)  Bound Combinatory: (66) DB: 633.00 	 PB: 156.00 	 level: 6
+(BB)  Bound SDP: (66) DB: 563.95 	 Rounded: 156.00 	 level: 6 	 Status: 1
+-- Close node: 43
+
+++ Current DB(55): 642.00 	 level: 4 	Best P(17): 361.00 	 open_nodes: 33	 explored: 33 	 gap: 77.839 %
+			Number_solutions: 14400
+(BB)  Bound Combinatory: (67) DB: 632.00 	 PB: 82.00 	 level: 5
+(BB)  Bound SDP: (67) DB: 587.22 	 Rounded: 82.00 	 level: 5 	 Status: 1
+			Number_solutions: 33600
+(BB)  Bound Combinatory: (68) DB: 617.50 	 PB: 139.00 	 level: 5
+(BB)  Bound SDP: (68) DB: 622.37 	 Rounded: 139.00 	 level: 5 	 Status: 1
+-- Close node: 55
+
+++ Current DB(56): 641.50 	 level: 4 	Best P(17): 361.00 	 open_nodes: 34	 explored: 34 	 gap: 77.701 %
+			Number_solutions: 28800
+(BB)  Bound Combinatory: (69) DB: 630.00 	 PB: 146.00 	 level: 5
+(BB)  Bound SDP: (69) DB: 587.10 	 Rounded: 146.00 	 level: 5 	 Status: 1
+			Number_solutions: 43200
+(BB)  Bound Combinatory: (70) DB: 610.00 	 PB: 78.00 	 level: 5
+(BB)  Bound SDP: (70) DB: 626.52 	 Rounded: 78.00 	 level: 5 	 Status: 1
+-- Close node: 56
+
+++ Current DB(51): 640.50 	 level: 5 	Best P(17): 361.00 	 open_nodes: 35	 explored: 35 	 gap: 77.423 %
+			Number_solutions: 27000
+(BB)  Bound Combinatory: (71) DB: 642.50 	 PB: -86.00 	 level: 6
+(BB)  Bound SDP: (71) DB: 568.06 	 Rounded: -86.00 	 level: 6 	 Status: 1
+			Number_solutions: 18000
+(BB)  Bound Combinatory: (72) DB: 637.00 	 PB: 112.00 	 level: 6
+(BB)  Bound SDP: (72) DB: 569.94 	 Rounded: 112.00 	 level: 6 	 Status: 1
+-- Close node: 51
+
+++ Current DB(36): 636.70 	 level: 5 	Best P(17): 361.00 	 open_nodes: 36	 explored: 36 	 gap: 76.371 %
+			Number_solutions: 32400
+(BB)  Bound Combinatory: (73) DB: 634.00 	 PB: 233.00 	 level: 6
+(BB)  Bound SDP: (73) DB: 585.71 	 Rounded: 233.00 	 level: 6 	 Status: 1
+			Number_solutions: 21600
+(BB)  Bound Combinatory: (74) DB: 645.00 	 PB: 216.00 	 level: 6
+(BB)  Bound SDP: (74) DB: 570.92 	 Rounded: 216.00 	 level: 6 	 Status: 1
+-- Close node: 36
+
+++ Current DB(41): 635.63 	 level: 5 	Best P(17): 361.00 	 open_nodes: 37	 explored: 37 	 gap: 76.075 %
+			Number_solutions: 32400
+(BB)  Bound Combinatory: (75) DB: 648.00 	 PB: 178.00 	 level: 6
+(BB)  Bound SDP: (75) DB: 588.38 	 Rounded: 178.00 	 level: 6 	 Status: 1
+			Number_solutions: 21600
+(BB)  Bound Combinatory: (76) DB: 636.00 	 PB: 29.00 	 level: 6
+(BB)  Bound SDP: (76) DB: 572.95 	 Rounded: 29.00 	 level: 6 	 Status: 1
+-- Close node: 41
+
+++ Current DB(34): 632.58 	 level: 4 	Best P(17): 361.00 	 open_nodes: 38	 explored: 38 	 gap: 75.230 %
+			Number_solutions: 3200
+(BB)  Bound Combinatory: (77) DB: 646.00 	 PB: 179.00 	 level: 5
+(BB)  Bound SDP: (77) DB: 569.37 	 Rounded: 179.00 	 level: 5 	 Status: 1
+			Number_solutions: 12800
+(BB)  Bound Combinatory: (78) DB: 645.50 	 PB: 352.00 	 level: 5
+(BB)  Bound SDP: (78) DB: 548.66 	 Rounded: 352.00 	 level: 5 	 Status: 1
+-- Close node: 34
+
+++ Current DB(52): 631.50 	 level: 5 	Best P(17): 361.00 	 open_nodes: 39	 explored: 39 	 gap: 74.931 %
+			Number_solutions: 22500
+(BB)  Bound Combinatory: (79) DB: 619.00 	 PB: 27.00 	 level: 6
+(BB)  Bound SDP: (79) DB: 558.47 	 Rounded: 27.00 	 level: 6 	 Status: 1
+			Number_solutions: 22500
+(BB)  Bound Combinatory: (80) DB: 629.00 	 PB: -26.00 	 level: 6
+(BB)  Bound SDP: (80) DB: 573.02 	 Rounded: -26.00 	 level: 6 	 Status: 1
+-- Close node: 52
+
+++ Current DB(42): 628.45 	 level: 5 	Best P(17): 361.00 	 open_nodes: 40	 explored: 40 	 gap: 74.087 %
+			Number_solutions: 14400
+(BB)  Bound Combinatory: (81) DB: 651.50 	 PB: -76.00 	 level: 6
+(BB)  Bound SDP: (81) DB: 559.66 	 Rounded: -76.00 	 level: 6 	 Status: 1
+			Number_solutions: 21600
+(BB)  Bound Combinatory: (82) DB: 644.00 	 PB: 49.00 	 level: 6
+(BB)  Bound SDP: (82) DB: 558.54 	 Rounded: 49.00 	 level: 6 	 Status: 1
+-- Close node: 42
+
+++ Current DB(25): 628.34 	 level: 4 	Best P(17): 361.00 	 open_nodes: 41	 explored: 41 	 gap: 74.056 %
+			Number_solutions: 22400
+(BB)  Bound Combinatory: (83) DB: 639.00 	 PB: 189.00 	 level: 5
+(BB)  Bound SDP: (83) DB: 565.99 	 Rounded: 189.00 	 level: 5 	 Status: 1
+			Number_solutions: 9600
+(BB)  Bound Combinatory: (84) DB: 668.50 	 PB: 361.00 	 level: 5
+(BB)  Bound SDP: (84) DB: 582.08 	 Rounded: 361.00 	 level: 5 	 Status: 1
+-- Close node: 25
+
+++ Current DB(35): 628.06 	 level: 5 	Best P(17): 361.00 	 open_nodes: 42	 explored: 42 	 gap: 73.977 %
+			Number_solutions: 37800
+(BB)  Bound Combinatory: (85) DB: 633.00 	 PB: 102.00 	 level: 6
+(BB)  Bound SDP: (85) DB: 593.80 	 Rounded: 102.00 	 level: 6 	 Status: 1
+			Number_solutions: 16200
+(BB)  Bound Combinatory: (86) DB: 654.00 	 PB: 157.00 	 level: 6
+(BB)  Bound SDP: (86) DB: 556.57 	 Rounded: 157.00 	 level: 6 	 Status: 1
+-- Close node: 35
+
+++ Current DB(37): 625.32 	 level: 5 	Best P(17): 361.00 	 open_nodes: 43	 explored: 43 	 gap: 73.220 %
+			Number_solutions: 16800
+(BB)  Bound Combinatory: (87) DB: 641.00 	 PB: 285.00 	 level: 6
+(BB)  Bound SDP: (87) DB: 578.29 	 Rounded: 285.00 	 level: 6 	 Status: 1
+			Number_solutions: 7200
+(BB)  Bound Combinatory: (88) DB: 659.00 	 PB: 231.00 	 level: 6
+(BB)  Bound SDP: (88) DB: 553.23 	 Rounded: 231.00 	 level: 6 	 Status: 1
+-- Close node: 37
+
+++ Current DB(40): 624.48 	 level: 5 	Best P(17): 361.00 	 open_nodes: 44	 explored: 44 	 gap: 72.987 %
+			Number_solutions: 21600
+(BB)  Bound Combinatory: (89) DB: 661.00 	 PB: 374.00 	 level: 6
+	*****(Comb Bound)  Node: 89	New best PB: 374.00
+(BB)  Bound SDP: (89) DB: 566.77 	 Rounded: 374.00 	 level: 6 	 Status: 1
+			Number_solutions: 21600
+(BB)  Bound Combinatory: (90) DB: 643.50 	 PB: 50.00 	 level: 6
+(BB)  Bound SDP: (90) DB: 556.57 	 Rounded: 50.00 	 level: 6 	 Status: 1
+-- Close node: 40
+
+++ Current DB(20): 620.08 	 level: 5 	Best P(97): 374.00 	 open_nodes: 45	 explored: 45 	 gap: 65.796 %
+			Number_solutions: 15120
+(BB)  Bound Combinatory: (91) DB: 637.50 	 PB: 367.00 	 level: 6
+(BB)  Bound SDP: (91) DB: 577.23 	 Rounded: 367.00 	 level: 6 	 Status: 1
+			Number_solutions: 10080
+(BB)  Bound Combinatory: (92) DB: 625.00 	 PB: 206.00 	 level: 6
+(BB)  Bound SDP: (92) DB: 560.69 	 Rounded: 206.00 	 level: 6 	 Status: 1
+-- Close node: 20
+
+++ Current DB(19): 618.15 	 level: 5 	Best P(97): 374.00 	 open_nodes: 46	 explored: 46 	 gap: 65.280 %
+			Number_solutions: 4320
+(BB)  Bound Combinatory: (93) DB: 658.50 	 PB: 277.00 	 level: 6
+(BB)  Bound SDP: (93) DB: 557.54 	 Rounded: 277.00 	 level: 6 	 Status: 1
+			Number_solutions: 6480
+(BB)  Bound Combinatory: (94) DB: 667.00 	 PB: 307.00 	 level: 6
+(BB)  Bound SDP: (94) DB: 549.74 	 Rounded: 307.00 	 level: 6 	 Status: 1
+-- Close node: 19
+
+++ Current DB(50): 617.50 	 level: 5 	Best P(97): 374.00 	 open_nodes: 47	 explored: 47 	 gap: 65.107 %
+			Number_solutions: 12000
+(BB)  Bound Combinatory: (95) DB: 602.00 	 PB: 25.00 	 level: 6
+(BB)  Bound SDP: (95) DB: 546.34 	 Rounded: 25.00 	 level: 6 	 Status: 1
+			Number_solutions: 12000
+(BB)  Bound Combinatory: (96) DB: 616.00 	 PB: 45.00 	 level: 6
+(BB)  Bound SDP: (96) DB: 554.49 	 Rounded: 45.00 	 level: 6 	 Status: 1
+-- Close node: 50
+
+++ Current DB(68): 617.50 	 level: 5 	Best P(97): 374.00 	 open_nodes: 48	 explored: 48 	 gap: 65.107 %
+			Number_solutions: 16800
+(BB)  Bound Combinatory: (97) DB: 613.50 	 PB: 139.00 	 level: 6
+(BB)  Bound SDP: (97) DB: 566.75 	 Rounded: 139.00 	 level: 6 	 Status: 1
+			Number_solutions: 16800
+(BB)  Bound Combinatory: (98) DB: 604.00 	 PB: 178.00 	 level: 6
+(BB)  Bound SDP: (98) DB: 566.40 	 Rounded: 178.00 	 level: 6 	 Status: 1
+-- Close node: 68
+
+++ Current DB(24): 616.90 	 level: 5 	Best P(97): 374.00 	 open_nodes: 49	 explored: 49 	 gap: 64.948 %
+			Number_solutions: 18000
+(BB)  Bound Combinatory: (99) DB: 614.00 	 PB: 183.00 	 level: 6
+(BB)  Bound SDP: (99) DB: 548.72 	 Rounded: 183.00 	 level: 6 	 Status: 1
+			Number_solutions: 18000
+(BB)  Bound Combinatory: (100) DB: 637.50 	 PB: 242.00 	 level: 6
+(BB)  Bound SDP: (100) DB: 556.44 	 Rounded: 242.00 	 level: 6 	 Status: 1
+-- Close node: 24
+
+++ Current DB(53): 616.45 	 level: 6 	Best P(97): 374.00 	 open_nodes: 50	 explored: 50 	 gap: 64.826 %
+			Number_solutions: 8400
+(BB)  Bound Combinatory: (101) DB: 629.00 	 PB: 160.00 	 level: 7
+(BB)  Bound SDP: (101) DB: 532.61 	 Rounded: 160.00 	 level: 7 	 Status: 1
+			Number_solutions: 21000
+(BB)  Bound Combinatory: (102) DB: 623.00 	 PB: 213.00 	 level: 7
+(BB)  Bound SDP: (102) DB: 556.12 	 Rounded: 213.00 	 level: 7 	 Status: 1
+-- Close node: 53
+
+++ Current DB(70): 610.00 	 level: 5 	Best P(97): 374.00 	 open_nodes: 51	 explored: 51 	 gap: 63.102 %
+			Number_solutions: 17280
+(BB)  Bound Combinatory: (103) DB: 589.00 	 PB: 151.00 	 level: 6
+(BB)  Bound SDP: (103) DB: 561.48 	 Rounded: 151.00 	 level: 6 	 Status: 1
+			Number_solutions: 25920
+(BB)  Bound Combinatory: (104) DB: 607.00 	 PB: 121.00 	 level: 6
+(BB)  Bound SDP: (104) DB: 567.88 	 Rounded: 121.00 	 level: 6 	 Status: 1
+-- Close node: 70
+
+++ Current DB(59): 600.34 	 level: 6 	Best P(97): 374.00 	 open_nodes: 52	 explored: 52 	 gap: 60.518 %
+			Number_solutions: 18000
+(BB)  Bound Combinatory: (105) DB: 621.50 	 PB: 169.00 	 level: 7
+(BB)  Bound SDP: (105) DB: 546.25 	 Rounded: 169.00 	 level: 7 	 Status: 1
+			Number_solutions: 7200
+(BB)  Bound Combinatory: (106) DB: 628.50 	 PB: 78.00 	 level: 7
+(BB)  Bound SDP: (106) DB: 529.85 	 Rounded: 78.00 	 level: 7 	 Status: 1
+-- Close node: 59
+
+++ Current DB(39): 598.36 	 level: 5 	Best P(97): 374.00 	 open_nodes: 53	 explored: 53 	 gap: 59.988 %
+			Number_solutions: 14400
+(BB)  Bound Combinatory: (107) DB: 641.00 	 PB: 104.00 	 level: 6
+(BB)  Bound SDP: (107) DB: 543.20 	 Rounded: 104.00 	 level: 6 	 Status: 1
+			Number_solutions: 14400
+(BB)  Bound Combinatory: (108) DB: 644.00 	 PB: 54.00 	 level: 6
+(BB)  Bound SDP: (108) DB: 547.18 	 Rounded: 54.00 	 level: 6 	 Status: 1
+-- Close node: 39
+
+++ Current DB(38): 594.56 	 level: 5 	Best P(97): 374.00 	 open_nodes: 54	 explored: 54 	 gap: 58.973 %
+			Number_solutions: 12000
+(BB)  Bound Combinatory: (109) DB: 594.00 	 PB: 190.00 	 level: 6
+(BB)  Bound SDP: (109) DB: 528.30 	 Rounded: 190.00 	 level: 6 	 Status: 1
+			Number_solutions: 12000
+(BB)  Bound Combinatory: (110) DB: 589.50 	 PB: 69.00 	 level: 6
+(BB)  Bound SDP: (110) DB: 528.47 	 Rounded: 69.00 	 level: 6 	 Status: 1
+-- Close node: 38
+
+++ Current DB(47): 594.12 	 level: 5 	Best P(97): 374.00 	 open_nodes: 55	 explored: 55 	 gap: 58.856 %
+			Number_solutions: 9600
+(BB)  Bound Combinatory: (111) DB: 654.50 	 PB: 253.00 	 level: 6
+(BB)  Bound SDP: (111) DB: 513.72 	 Rounded: 253.00 	 level: 6 	 Status: 1
+			Number_solutions: 9600
+(BB)  Bound Combinatory: (112) DB: 670.50 	 PB: 252.00 	 level: 6
+(BB)  Bound SDP: (112) DB: 563.26 	 Rounded: 252.00 	 level: 6 	 Status: 1
+-- Close node: 47
+
+++ Current DB(85): 593.80 	 level: 6 	Best P(97): 374.00 	 open_nodes: 56	 explored: 56 	 gap: 58.770 %
+			Number_solutions: 10800
+(BB)  Bound Combinatory: (113) DB: 607.00 	 PB: 194.00 	 level: 7
+(BB)  Bound SDP: (113) DB: 546.09 	 Rounded: 194.00 	 level: 7 	 Status: 1
+			Number_solutions: 27000
+(BB)  Bound Combinatory: (114) DB: 627.50 	 PB: 124.00 	 level: 7
+(BB)  Bound SDP: (114) DB: 549.03 	 Rounded: 124.00 	 level: 7 	 Status: 1
+-- Close node: 85
+
+++ Current DB(58): 591.26 	 level: 5 	Best P(97): 374.00 	 open_nodes: 57	 explored: 57 	 gap: 58.091 %
+			Number_solutions: 12800
+(BB)  Bound Combinatory: (115) DB: 629.50 	 PB: 152.00 	 level: 6
+(BB)  Bound SDP: (115) DB: 531.48 	 Rounded: 152.00 	 level: 6 	 Status: 1
+			Number_solutions: 12800
+(BB)  Bound Combinatory: (116) DB: 584.50 	 PB: 32.00 	 level: 6
+(BB)  Bound SDP: (116) DB: 530.77 	 Rounded: 32.00 	 level: 6 	 Status: 1
+-- Close node: 58
+
+++ Current DB(45): 589.18 	 level: 6 	Best P(97): 374.00 	 open_nodes: 58	 explored: 58 	 gap: 57.533 %
+			Number_solutions: 9000
+(BB)  Bound Combinatory: (117) DB: 633.50 	 PB: 320.00 	 level: 7
+(BB)  Bound SDP: (117) DB: 524.81 	 Rounded: 320.00 	 level: 7 	 Status: 1
+			Number_solutions: 9000
+(BB)  Bound Combinatory: (118) DB: 626.00 	 PB: 243.00 	 level: 7
+(BB)  Bound SDP: (118) DB: 520.09 	 Rounded: 243.00 	 level: 7 	 Status: 1
+-- Close node: 45
+
+++ Current DB(75): 588.38 	 level: 6 	Best P(97): 374.00 	 open_nodes: 59	 explored: 59 	 gap: 57.322 %
+			Number_solutions: 21600
+(BB)  Bound Combinatory: (119) DB: 638.00 	 PB: -31.00 	 level: 7
+(BB)  Bound SDP: (119) DB: 561.98 	 Rounded: -31.00 	 level: 7 	 Status: 1
+			Number_solutions: 10800
+(BB)  Bound Combinatory: (120) DB: 625.50 	 PB: 151.00 	 level: 7
+(BB)  Bound SDP: (120) DB: 532.08 	 Rounded: 151.00 	 level: 7 	 Status: 1
+-- Close node: 75
+
+++ Current DB(48): 588.37 	 level: 5 	Best P(97): 374.00 	 open_nodes: 60	 explored: 60 	 gap: 57.317 %
+			Number_solutions: 17280
+(BB)  Bound Combinatory: (121) DB: 635.50 	 PB: 130.00 	 level: 6
+(BB)  Bound SDP: (121) DB: 536.53 	 Rounded: 130.00 	 level: 6 	 Status: 1
+			Number_solutions: 11520
+(BB)  Bound Combinatory: (122) DB: 638.50 	 PB: 426.00 	 level: 6
+	*****(Comb Bound)  Node: 122	New best PB: 426.00
+(BB)  Bound SDP: (122) DB: 551.51 	 Rounded: 426.00 	 level: 6 	 Status: 1
+-- Close node: 48
+
+++ Current DB(67): 587.22 	 level: 5 	Best P(102): 426.00 	 open_nodes: 61	 explored: 61 	 gap: 37.845 %
+			Number_solutions: 8640
+(BB)  Bound Combinatory: (123) DB: 611.50 	 PB: 153.00 	 level: 6
+(BB)  Bound SDP: (123) DB: 519.47 	 Rounded: 153.00 	 level: 6 	 Status: 1
+			Number_solutions: 5760
+(BB)  Bound Combinatory: (124) DB: 628.50 	 PB: 82.00 	 level: 6
+(BB)  Bound SDP: (124) DB: 505.29 	 Rounded: 82.00 	 level: 6 	 Status: 1
+-- Close node: 67
+
+++ Current DB(69): 587.10 	 level: 5 	Best P(102): 426.00 	 open_nodes: 62	 explored: 62 	 gap: 37.817 %
+			Number_solutions: 17280
+(BB)  Bound Combinatory: (125) DB: 611.00 	 PB: -20.00 	 level: 6
+(BB)  Bound SDP: (125) DB: 527.04 	 Rounded: -20.00 	 level: 6 	 Status: 1
+			Number_solutions: 11520
+(BB)  Bound Combinatory: (126) DB: 624.00 	 PB: 129.00 	 level: 6
+(BB)  Bound SDP: (126) DB: 497.08 	 Rounded: 129.00 	 level: 6 	 Status: 1
+-- Close node: 69
+
+++ Current DB(73): 585.71 	 level: 6 	Best P(102): 426.00 	 open_nodes: 63	 explored: 63 	 gap: 37.490 %
+			Number_solutions: 21600
+(BB)  Bound Combinatory: (127) DB: 620.50 	 PB: 201.00 	 level: 7
+(BB)  Bound SDP: (127) DB: 553.74 	 Rounded: 201.00 	 level: 7 	 Status: 1
+			Number_solutions: 10800
+(BB)  Bound Combinatory: (128) DB: 617.50 	 PB: 244.00 	 level: 7
+(BB)  Bound SDP: (128) DB: 548.00 	 Rounded: 244.00 	 level: 7 	 Status: 1
+-- Close node: 73
+
+++ Current DB(54): 584.92 	 level: 6 	Best P(102): 426.00 	 open_nodes: 64	 explored: 64 	 gap: 37.306 %
+			Number_solutions: 9000
+(BB)  Bound Combinatory: (129) DB: 637.50 	 PB: 159.00 	 level: 7
+(BB)  Bound SDP: (129) DB: 547.50 	 Rounded: 159.00 	 level: 7 	 Status: 1
+			Number_solutions: 3600
+(BB)  Bound Combinatory: (130) DB: 616.00 	 PB: 305.00 	 level: 7
+(BB)  Bound SDP: (130) DB: 539.33 	 Rounded: 305.00 	 level: 7 	 Status: 1
+-- Close node: 54
+
+++ Current DB(57): 582.34 	 level: 5 	Best P(102): 426.00 	 open_nodes: 65	 explored: 65 	 gap: 36.699 %
+			Number_solutions: 15360
+(BB)  Bound Combinatory: (131) DB: 636.50 	 PB: 127.00 	 level: 6
+(BB)  Bound SDP: (131) DB: 517.96 	 Rounded: 127.00 	 level: 6 	 Status: 1
+			Number_solutions: 23040
+(BB)  Bound Combinatory: (132) DB: 601.50 	 PB: 189.00 	 level: 6
+(BB)  Bound SDP: (132) DB: 534.74 	 Rounded: 189.00 	 level: 6 	 Status: 1
+-- Close node: 57
+
+++ Current DB(60): 582.19 	 level: 6 	Best P(102): 426.00 	 open_nodes: 66	 explored: 66 	 gap: 36.663 %
+			Number_solutions: 14400
+(BB)  Bound Combinatory: (133) DB: 600.50 	 PB: 176.00 	 level: 7
+(BB)  Bound SDP: (133) DB: 505.04 	 Rounded: 176.00 	 level: 7 	 Status: 1
+			Number_solutions: 10800
+(BB)  Bound Combinatory: (134) DB: 627.50 	 PB: -76.00 	 level: 7
+(BB)  Bound SDP: (134) DB: 519.34 	 Rounded: -76.00 	 level: 7 	 Status: 1
+-- Close node: 60
+
+++ Current DB(84): 582.08 	 level: 5 	Best P(102): 426.00 	 open_nodes: 67	 explored: 67 	 gap: 36.637 %
+			Number_solutions: 2880
+(BB)  Bound Combinatory: (135) DB: 641.00 	 PB: 368.00 	 level: 6
+(BB)  Bound SDP: (135) DB: 508.41 	 Rounded: 368.00 	 level: 6 	 Status: 1
+			Number_solutions: 6720
+(BB)  Bound Combinatory: (136) DB: 658.00 	 PB: 359.00 	 level: 6
+(BB)  Bound SDP: (136) DB: 539.92 	 Rounded: 359.00 	 level: 6 	 Status: 1
+-- Close node: 84
+
+++ Current DB(46): 580.24 	 level: 6 	Best P(102): 426.00 	 open_nodes: 68	 explored: 68 	 gap: 36.207 %
+			Number_solutions: 9000
+(BB)  Bound Combinatory: (137) DB: 641.00 	 PB: 79.00 	 level: 7
+(BB)  Bound SDP: (137) DB: 540.07 	 Rounded: 79.00 	 level: 7 	 Status: 1
+			Number_solutions: 9000
+(BB)  Bound Combinatory: (138) DB: 649.00 	 PB: 110.00 	 level: 7
+(BB)  Bound SDP: (138) DB: 532.57 	 Rounded: 110.00 	 level: 7 	 Status: 1
+-- Close node: 46
+
+++ Current DB(87): 578.29 	 level: 6 	Best P(102): 426.00 	 open_nodes: 69	 explored: 69 	 gap: 35.749 %
+			Number_solutions: 12000
+(BB)  Bound Combinatory: (139) DB: 633.50 	 PB: 201.00 	 level: 7
+(BB)  Bound SDP: (139) DB: 537.43 	 Rounded: 201.00 	 level: 7 	 Status: 1
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (140) DB: 618.00 	 PB: 244.00 	 level: 7
+(BB)  Bound SDP: (140) DB: 526.61 	 Rounded: 244.00 	 level: 7 	 Status: 1
+-- Close node: 87
+
+++ Current DB(91): 577.23 	 level: 6 	Best P(102): 426.00 	 open_nodes: 70	 explored: 70 	 gap: 35.500 %
+			Number_solutions: 6480
+(BB)  Bound Combinatory: (141) DB: 600.50 	 PB: 299.00 	 level: 7
+(BB)  Bound SDP: (141) DB: 526.20 	 Rounded: 299.00 	 level: 7 	 Status: 1
+			Number_solutions: 8640
+(BB)  Bound Combinatory: (142) DB: 606.00 	 PB: 52.00 	 level: 7
+(BB)  Bound SDP: (142) DB: 538.21 	 Rounded: 52.00 	 level: 7 	 Status: 1
+-- Close node: 91
+
+++ Current DB(61): 576.64 	 level: 6 	Best P(102): 426.00 	 open_nodes: 71	 explored: 71 	 gap: 35.361 %
+			Number_solutions: 18000
+(BB)  Bound Combinatory: (143) DB: 636.00 	 PB: 274.00 	 level: 7
+(BB)  Bound SDP: (143) DB: 563.15 	 Rounded: 274.00 	 level: 7 	 Status: 1
+			Number_solutions: 7200
+(BB)  Bound Combinatory: (144) DB: 620.00 	 PB: 235.00 	 level: 7
+(BB)  Bound SDP: (144) DB: 513.54 	 Rounded: 235.00 	 level: 7 	 Status: 1
+-- Close node: 61
+
+++ Current DB(80): 573.02 	 level: 6 	Best P(102): 426.00 	 open_nodes: 72	 explored: 72 	 gap: 34.513 %
+			Number_solutions: 11250
+(BB)  Bound Combinatory: (145) DB: 599.00 	 PB: 86.00 	 level: 7
+(BB)  Bound SDP: (145) DB: 512.27 	 Rounded: 86.00 	 level: 7 	 Status: 1
+			Number_solutions: 11250
+(BB)  Bound Combinatory: (146) DB: 616.00 	 PB: 127.00 	 level: 7
+(BB)  Bound SDP: (146) DB: 515.40 	 Rounded: 127.00 	 level: 7 	 Status: 1
+-- Close node: 80
+
+++ Current DB(76): 572.95 	 level: 6 	Best P(102): 426.00 	 open_nodes: 73	 explored: 73 	 gap: 34.494 %
+			Number_solutions: 10800
+(BB)  Bound Combinatory: (147) DB: 594.50 	 PB: 141.00 	 level: 7
+(BB)  Bound SDP: (147) DB: 514.48 	 Rounded: 141.00 	 level: 7 	 Status: 1
+			Number_solutions: 10800
+(BB)  Bound Combinatory: (148) DB: 618.50 	 PB: 94.00 	 level: 7
+(BB)  Bound SDP: (148) DB: 526.05 	 Rounded: 94.00 	 level: 7 	 Status: 1
+-- Close node: 76
+
+++ Current DB(74): 570.92 	 level: 6 	Best P(102): 426.00 	 open_nodes: 74	 explored: 74 	 gap: 34.019 %
+			Number_solutions: 7200
+(BB)  Bound Combinatory: (149) DB: 613.50 	 PB: 159.00 	 level: 7
+(BB)  Bound SDP: (149) DB: 514.77 	 Rounded: 159.00 	 level: 7 	 Status: 1
+			Number_solutions: 14400
+(BB)  Bound Combinatory: (150) DB: 614.00 	 PB: 251.00 	 level: 7
+(BB)  Bound SDP: (150) DB: 532.37 	 Rounded: 251.00 	 level: 7 	 Status: 1
+-- Close node: 74
+
+++ Current DB(72): 569.94 	 level: 6 	Best P(102): 426.00 	 open_nodes: 75	 explored: 75 	 gap: 33.789 %
+			Number_solutions: 9000
+(BB)  Bound Combinatory: (151) DB: 618.00 	 PB: 259.00 	 level: 7
+(BB)  Bound SDP: (151) DB: 513.00 	 Rounded: 259.00 	 level: 7 	 Status: 1
+			Number_solutions: 9000
+(BB)  Bound Combinatory: (152) DB: 613.50 	 PB: 93.00 	 level: 7
+(BB)  Bound SDP: (152) DB: 533.15 	 Rounded: 93.00 	 level: 7 	 Status: 1
+-- Close node: 72
+
+++ Current DB(64): 569.64 	 level: 6 	Best P(102): 426.00 	 open_nodes: 76	 explored: 76 	 gap: 33.717 %
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (153) DB: 600.00 	 PB: 21.00 	 level: 7
+(BB)  Bound SDP: (153) DB: 497.66 	 Rounded: 21.00 	 level: 7 	 Status: 1
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (154) DB: 618.50 	 PB: 213.00 	 level: 7
+(BB)  Bound SDP: (154) DB: 501.84 	 Rounded: 213.00 	 level: 7 	 Status: 1
+-- Close node: 64
+
+++ Current DB(77): 569.37 	 level: 5 	Best P(102): 426.00 	 open_nodes: 77	 explored: 77 	 gap: 33.654 %
+			Number_solutions: 960
+(BB)  Bound Combinatory: (155) DB: 617.50 	 PB: 378.00 	 level: 6
+(BB)  Bound SDP: (155) DB: 487.28 	 Rounded: 378.00 	 level: 6 	 Status: 1
+			Number_solutions: 2240
+(BB)  Bound Combinatory: (156) DB: 645.50 	 PB: 295.00 	 level: 6
+(BB)  Bound SDP: (156) DB: 539.39 	 Rounded: 295.00 	 level: 6 	 Status: 1
+-- Close node: 77
+
+++ Current DB(71): 568.06 	 level: 6 	Best P(102): 426.00 	 open_nodes: 78	 explored: 78 	 gap: 33.347 %
+			Number_solutions: 18000
+(BB)  Bound Combinatory: (157) DB: 621.00 	 PB: -86.00 	 level: 7
+(BB)  Bound SDP: (157) DB: 527.09 	 Rounded: -86.00 	 level: 7 	 Status: 1
+			Number_solutions: 9000
+(BB)  Bound Combinatory: (158) DB: 623.50 	 PB: 236.00 	 level: 7
+(BB)  Bound SDP: (158) DB: 533.04 	 Rounded: 236.00 	 level: 7 	 Status: 1
+-- Close node: 71
+
+++ Current DB(104): 567.88 	 level: 6 	Best P(102): 426.00 	 open_nodes: 79	 explored: 79 	 gap: 33.305 %
+			Number_solutions: 8640
+(BB)  Bound Combinatory: (159) DB: 588.50 	 PB: 296.00 	 level: 7
+(BB)  Bound SDP: (159) DB: 513.01 	 Rounded: 296.00 	 level: 7 	 Status: 1
+			Number_solutions: 17280
+(BB)  Bound Combinatory: (160) DB: 601.00 	 PB: 213.00 	 level: 7
+(BB)  Bound SDP: (160) DB: 529.10 	 Rounded: 213.00 	 level: 7 	 Status: 1
+-- Close node: 104
+
+++ Current DB(89): 566.77 	 level: 6 	Best P(102): 426.00 	 open_nodes: 80	 explored: 80 	 gap: 33.044 %
+			Number_solutions: 7200
+(BB)  Bound Combinatory: (161) DB: 654.00 	 PB: 296.00 	 level: 7
+(BB)  Bound SDP: (161) DB: 517.62 	 Rounded: 296.00 	 level: 7 	 Status: 1
+			Number_solutions: 14400
+(BB)  Bound Combinatory: (162) DB: 640.00 	 PB: 154.00 	 level: 7
+(BB)  Bound SDP: (162) DB: 527.47 	 Rounded: 154.00 	 level: 7 	 Status: 1
+-- Close node: 89
+
+++ Current DB(97): 566.75 	 level: 6 	Best P(102): 426.00 	 open_nodes: 81	 explored: 81 	 gap: 33.040 %
+			Number_solutions: 9600
+(BB)  Bound Combinatory: (163) DB: 566.50 	 PB: 76.00 	 level: 7
+(BB)  Bound SDP: (163) DB: 502.57 	 Rounded: 76.00 	 level: 7 	 Status: 1
+			Number_solutions: 7200
+(BB)  Bound Combinatory: (164) DB: 613.50 	 PB: 139.00 	 level: 7
+(BB)  Bound SDP: (164) DB: 498.83 	 Rounded: 139.00 	 level: 7 	 Status: 1
+-- Close node: 97
+
+++ Current DB(98): 566.40 	 level: 6 	Best P(102): 426.00 	 open_nodes: 82	 explored: 82 	 gap: 32.958 %
+			Number_solutions: 12000
+(BB)  Bound Combinatory: (165) DB: 585.50 	 PB: 293.00 	 level: 7
+(BB)  Bound SDP: (165) DB: 510.18 	 Rounded: 293.00 	 level: 7 	 Status: 1
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (166) DB: 594.50 	 PB: -14.00 	 level: 7
+(BB)  Bound SDP: (166) DB: 490.46 	 Rounded: -14.00 	 level: 7 	 Status: 1
+-- Close node: 98
+
+++ Current DB(83): 565.99 	 level: 5 	Best P(102): 426.00 	 open_nodes: 83	 explored: 83 	 gap: 32.862 %
+			Number_solutions: 8960
+(BB)  Bound Combinatory: (167) DB: 619.50 	 PB: 281.00 	 level: 6
+(BB)  Bound SDP: (167) DB: 502.81 	 Rounded: 281.00 	 level: 6 	 Status: 1
+			Number_solutions: 13440
+(BB)  Bound Combinatory: (168) DB: 619.50 	 PB: 211.00 	 level: 6
+(BB)  Bound SDP: (168) DB: 524.25 	 Rounded: 211.00 	 level: 6 	 Status: 1
+-- Close node: 83
+
+++ Current DB(66): 563.95 	 level: 6 	Best P(102): 426.00 	 open_nodes: 84	 explored: 84 	 gap: 32.384 %
+			Number_solutions: 6480
+(BB)  Bound Combinatory: (169) DB: 621.50 	 PB: 231.00 	 level: 7
+(BB)  Bound SDP: (169) DB: 483.81 	 Rounded: 231.00 	 level: 7 	 Status: 1
+			Number_solutions: 6480
+(BB)  Bound Combinatory: (170) DB: 622.00 	 PB: 247.00 	 level: 7
+(BB)  Bound SDP: (170) DB: 504.36 	 Rounded: 247.00 	 level: 7 	 Status: 1
+-- Close node: 66
+
+++ Current DB(112): 563.26 	 level: 6 	Best P(102): 426.00 	 open_nodes: 85	 explored: 85 	 gap: 32.222 %
+			Number_solutions: 6400
+(BB)  Bound Combinatory: (171) DB: 648.50 	 PB: 249.00 	 level: 7
+(BB)  Bound SDP: (171) DB: 500.87 	 Rounded: 249.00 	 level: 7 	 Status: 1
+			Number_solutions: 3200
+(BB)  Bound Combinatory: (172) DB: 639.50 	 PB: 52.00 	 level: 7
+(BB)  Bound SDP: (172) DB: 508.65 	 Rounded: 52.00 	 level: 7 	 Status: 1
+-- Close node: 112
+
+++ Current DB(143): 563.15 	 level: 7 	Best P(102): 426.00 	 open_nodes: 86	 explored: 86 	 gap: 32.195 %
+			Number_solutions: 9000
+(BB)  Bound Combinatory: (173) DB: 626.00 	 PB: 211.00 	 level: 8
+(BB)  Bound SDP: (173) DB: 488.55 	 Rounded: 211.00 	 level: 8 	 Status: 1
+			Number_solutions: 9000
+(BB)  Bound Combinatory: (174) DB: 579.00 	 PB: 189.00 	 level: 8
+(BB)  Bound SDP: (174) DB: 501.91 	 Rounded: 189.00 	 level: 8 	 Status: 1
+-- Close node: 143
+
+++ Current DB(119): 561.98 	 level: 7 	Best P(102): 426.00 	 open_nodes: 87	 explored: 87 	 gap: 31.921 %
+			Number_solutions: 14400
+(BB)  Bound Combinatory: (175) DB: 607.00 	 PB: -17.00 	 level: 8
+(BB)  Bound SDP: (175) DB: 502.17 	 Rounded: -17.00 	 level: 8 	 Status: 1
+			Number_solutions: 7200
+(BB)  Bound Combinatory: (176) DB: 611.00 	 PB: 179.00 	 level: 8
+(BB)  Bound SDP: (176) DB: 490.99 	 Rounded: 179.00 	 level: 8 	 Status: 1
+-- Close node: 119
+
+++ Current DB(103): 561.48 	 level: 6 	Best P(102): 426.00 	 open_nodes: 88	 explored: 88 	 gap: 31.803 %
+			Number_solutions: 8640
+(BB)  Bound Combinatory: (177) DB: 579.00 	 PB: 78.00 	 level: 7
+(BB)  Bound SDP: (177) DB: 502.78 	 Rounded: 78.00 	 level: 7 	 Status: 1
+			Number_solutions: 8640
+(BB)  Bound Combinatory: (178) DB: 570.00 	 PB: 273.00 	 level: 7
+(BB)  Bound SDP: (178) DB: 513.34 	 Rounded: 273.00 	 level: 7 	 Status: 1
+-- Close node: 103
+
+++ Current DB(62): 561.24 	 level: 6 	Best P(102): 426.00 	 open_nodes: 89	 explored: 89 	 gap: 31.747 %
+			Number_solutions: 9600
+(BB)  Bound Combinatory: (179) DB: 625.00 	 PB: 130.00 	 level: 7
+(BB)  Bound SDP: (179) DB: 525.82 	 Rounded: 130.00 	 level: 7 	 Status: 1
+			Number_solutions: 7200
+(BB)  Bound Combinatory: (180) DB: 613.00 	 PB: 134.00 	 level: 7
+(BB)  Bound SDP: (180) DB: 508.02 	 Rounded: 134.00 	 level: 7 	 Status: 1
+-- Close node: 62
+
+++ Current DB(92): 560.69 	 level: 6 	Best P(102): 426.00 	 open_nodes: 90	 explored: 90 	 gap: 31.618 %
+			Number_solutions: 4320
+(BB)  Bound Combinatory: (181) DB: 603.50 	 PB: 378.00 	 level: 7
+(BB)  Bound SDP: (181) DB: 499.35 	 Rounded: 378.00 	 level: 7 	 Status: 1
+			Number_solutions: 5760
+(BB)  Bound Combinatory: (182) DB: 607.00 	 PB: 186.00 	 level: 7
+(BB)  Bound SDP: (182) DB: 516.39 	 Rounded: 186.00 	 level: 7 	 Status: 1
+-- Close node: 92
+
+++ Current DB(81): 559.66 	 level: 6 	Best P(102): 426.00 	 open_nodes: 91	 explored: 91 	 gap: 31.374 %
+			Number_solutions: 9600
+(BB)  Bound Combinatory: (183) DB: 637.00 	 PB: -87.00 	 level: 7
+(BB)  Bound SDP: (183) DB: 503.70 	 Rounded: -87.00 	 level: 7 	 Status: 1
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (184) DB: 615.50 	 PB: 134.00 	 level: 7
+(BB)  Bound SDP: (184) DB: 495.98 	 Rounded: 134.00 	 level: 7 	 Status: 1
+-- Close node: 81
+
+++ Current DB(82): 558.54 	 level: 6 	Best P(102): 426.00 	 open_nodes: 92	 explored: 92 	 gap: 31.113 %
+			Number_solutions: 14400
+(BB)  Bound Combinatory: (185) DB: 625.00 	 PB: 94.00 	 level: 7
+(BB)  Bound SDP: (185) DB: 510.90 	 Rounded: 94.00 	 level: 7 	 Status: 1
+			Number_solutions: 7200
+(BB)  Bound Combinatory: (186) DB: 611.50 	 PB: 266.00 	 level: 7
+(BB)  Bound SDP: (186) DB: 508.55 	 Rounded: 266.00 	 level: 7 	 Status: 1
+-- Close node: 82
+
+++ Current DB(79): 558.47 	 level: 6 	Best P(102): 426.00 	 open_nodes: 93	 explored: 93 	 gap: 31.096 %
+			Number_solutions: 15000
+(BB)  Bound Combinatory: (187) DB: 608.00 	 PB: 127.00 	 level: 7
+(BB)  Bound SDP: (187) DB: 514.57 	 Rounded: 127.00 	 level: 7 	 Status: 1
+			Number_solutions: 7500
+(BB)  Bound Combinatory: (188) DB: 585.00 	 PB: 78.00 	 level: 7
+(BB)  Bound SDP: (188) DB: 501.91 	 Rounded: 78.00 	 level: 7 	 Status: 1
+-- Close node: 79
+
+++ Current DB(93): 557.54 	 level: 6 	Best P(102): 426.00 	 open_nodes: 94	 explored: 94 	 gap: 30.877 %
+			Number_solutions: 2160
+(BB)  Bound Combinatory: (189) DB: 633.00 	 PB: 458.00 	 level: 7
+	*****(Comb Bound)  Node: 189	New best PB: 458.00
+(BB)  Bound SDP: (189) DB: 521.80 	 Rounded: 458.00 	 level: 7 	 Status: 1
+			Number_solutions: 2160
+(BB)  Bound Combinatory: (190) DB: 643.00 	 PB: 177.00 	 level: 7
+(BB)  Bound SDP: (190) DB: 485.71 	 Rounded: 177.00 	 level: 7 	 Status: 1
+-- Close node: 93
+
+++ Current DB(86): 556.57 	 level: 6 	Best P(167): 458.00 	 open_nodes: 95	 explored: 95 	 gap: 21.523 %
+			Number_solutions: 8100
+(BB)  Bound Combinatory: (191) DB: 619.00 	 PB: 141.00 	 level: 7
+(BB)  Bound SDP: (191) DB: 516.12 	 Rounded: 141.00 	 level: 7 	 Status: 1
+			Number_solutions: 8100
+(BB)  Bound Combinatory: (192) DB: 608.50 	 PB: 167.00 	 level: 7
+(BB)  Bound SDP: (192) DB: 523.94 	 Rounded: 167.00 	 level: 7 	 Status: 1
+-- Close node: 86
+
+++ Current DB(90): 556.57 	 level: 6 	Best P(167): 458.00 	 open_nodes: 96	 explored: 96 	 gap: 21.522 %
+			Number_solutions: 10800
+(BB)  Bound Combinatory: (193) DB: 639.00 	 PB: 71.00 	 level: 7
+(BB)  Bound SDP: (193) DB: 500.61 	 Rounded: 71.00 	 level: 7 	 Status: 1
+			Number_solutions: 10800
+(BB)  Bound Combinatory: (194) DB: 598.50 	 PB: 76.00 	 level: 7
+(BB)  Bound SDP: (194) DB: 493.31 	 Rounded: 76.00 	 level: 7 	 Status: 1
+-- Close node: 90
+
+++ Current DB(100): 556.44 	 level: 6 	Best P(167): 458.00 	 open_nodes: 97	 explored: 97 	 gap: 21.492 %
+			Number_solutions: 9000
+(BB)  Bound Combinatory: (195) DB: 636.50 	 PB: 242.00 	 level: 7
+(BB)  Bound SDP: (195) DB: 497.98 	 Rounded: 242.00 	 level: 7 	 Status: 1
+			Number_solutions: 9000
+(BB)  Bound Combinatory: (196) DB: 595.50 	 PB: 177.00 	 level: 7
+(BB)  Bound SDP: (196) DB: 504.42 	 Rounded: 177.00 	 level: 7 	 Status: 1
+-- Close node: 100
+
+++ Current DB(102): 556.12 	 level: 7 	Best P(167): 458.00 	 open_nodes: 98	 explored: 98 	 gap: 21.424 %
+			Number_solutions: 15000
+(BB)  Bound Combinatory: (197) DB: 616.50 	 PB: 285.00 	 level: 8
+(BB)  Bound SDP: (197) DB: 523.25 	 Rounded: 285.00 	 level: 8 	 Status: 1
+			Number_solutions: 6000
+(BB)  Bound Combinatory: (198) DB: 590.00 	 PB: 262.00 	 level: 8
+(BB)  Bound SDP: (198) DB: 492.87 	 Rounded: 262.00 	 level: 8 	 Status: 1
+-- Close node: 102
+
+++ Current DB(63): 555.00 	 level: 6 	Best P(167): 458.00 	 open_nodes: 99	 explored: 99 	 gap: 21.179 %
+			Number_solutions: 9600
+(BB)  Bound Combinatory: (199) DB: 603.00 	 PB: 41.00 	 level: 7
+(BB)  Bound SDP: (199) DB: 499.24 	 Rounded: 41.00 	 level: 7 	 Status: 1
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (200) DB: 612.50 	 PB: 138.00 	 level: 7
+(BB)  Bound SDP: (200) DB: 497.92 	 Rounded: 138.00 	 level: 7 	 Status: 1
+-- Close node: 63
+
+++ Current DB(96): 554.49 	 level: 6 	Best P(167): 458.00 	 open_nodes: 100	 explored: 100 	 gap: 21.068 %
+			Number_solutions: 8000
+(BB)  Bound Combinatory: (201) DB: 586.00 	 PB: 222.00 	 level: 7
+(BB)  Bound SDP: (201) DB: 486.00 	 Rounded: 222.00 	 level: 7 	 Status: 1
+			Number_solutions: 4000
+(BB)  Bound Combinatory: (202) DB: 601.00 	 PB: 76.00 	 level: 7
+(BB)  Bound SDP: (202) DB: 489.47 	 Rounded: 76.00 	 level: 7 	 Status: 1
+-- Close node: 96
+
+++ Current DB(127): 553.74 	 level: 7 	Best P(167): 458.00 	 open_nodes: 101	 explored: 101 	 gap: 20.905 %
+			Number_solutions: 7200
+(BB)  Bound Combinatory: (203) DB: 612.00 	 PB: 304.00 	 level: 8
+(BB)  Bound SDP: (203) DB: 512.94 	 Rounded: 304.00 	 level: 8 	 Status: 1
+			Number_solutions: 14400
+(BB)  Bound Combinatory: (204) DB: 609.50 	 PB: 133.00 	 level: 8
+(BB)  Bound SDP: (204) DB: 508.64 	 Rounded: 133.00 	 level: 8 	 Status: 1
+-- Close node: 127
+
+++ Current DB(88): 553.23 	 level: 6 	Best P(167): 458.00 	 open_nodes: 102	 explored: 102 	 gap: 20.793 %
+			Number_solutions: 3600
+(BB)  Bound Combinatory: (205) DB: 635.00 	 PB: 174.00 	 level: 7
+(BB)  Bound SDP: (205) DB: 490.78 	 Rounded: 174.00 	 level: 7 	 Status: 1
+			Number_solutions: 3600
+(BB)  Bound Combinatory: (206) DB: 607.50 	 PB: 236.00 	 level: 7
+(BB)  Bound SDP: (206) DB: 483.99 	 Rounded: 236.00 	 level: 7 	 Status: 1
+-- Close node: 88
+
+++ Current DB(122): 551.51 	 level: 6 	Best P(167): 458.00 	 open_nodes: 103	 explored: 103 	 gap: 20.417 %
+			Number_solutions: 1920
+(BB)  Bound Combinatory: (207) DB: 629.00 	 PB: 386.00 	 level: 7
+(BB)  Bound SDP: (207) DB: 499.66 	 Rounded: 386.00 	 level: 7 	 Status: 1
+			Number_solutions: 9600
+(BB)  Bound Combinatory: (208) DB: 611.50 	 PB: 7.00 	 level: 7
+(BB)  Bound SDP: (208) DB: 498.39 	 Rounded: 7.00 	 level: 7 	 Status: 1
+-- Close node: 122
+
+++ Current DB(94): 549.74 	 level: 6 	Best P(167): 458.00 	 open_nodes: 104	 explored: 104 	 gap: 20.030 %
+			Number_solutions: 3240
+(BB)  Bound Combinatory: (209) DB: 628.50 	 PB: 151.00 	 level: 7
+(BB)  Bound SDP: (209) DB: 512.41 	 Rounded: 151.00 	 level: 7 	 Status: 1
+			Number_solutions: 3240
+(BB)  Bound Combinatory: (210) DB: 646.50 	 PB: 200.00 	 level: 7
+(BB)  Bound SDP: (210) DB: 495.86 	 Rounded: 200.00 	 level: 7 	 Status: 1
+-- Close node: 94
+
+++ Current DB(114): 549.03 	 level: 7 	Best P(167): 458.00 	 open_nodes: 105	 explored: 105 	 gap: 19.875 %
+			Number_solutions: 18000
+(BB)  Bound Combinatory: (211) DB: 614.00 	 PB: 171.00 	 level: 8
+(BB)  Bound SDP: (211) DB: 512.11 	 Rounded: 171.00 	 level: 8 	 Status: 1
+			Number_solutions: 9000
+(BB)  Bound Combinatory: (212) DB: 600.00 	 PB: 139.00 	 level: 8
+(BB)  Bound SDP: (212) DB: 509.48 	 Rounded: 139.00 	 level: 8 	 Status: 1
+-- Close node: 114
+
+++ Current DB(99): 548.72 	 level: 6 	Best P(167): 458.00 	 open_nodes: 106	 explored: 106 	 gap: 19.808 %
+			Number_solutions: 6000
+(BB)  Bound Combinatory: (213) DB: 593.00 	 PB: 191.00 	 level: 7
+(BB)  Bound SDP: (213) DB: 502.45 	 Rounded: 191.00 	 level: 7 	 Status: 1
+			Number_solutions: 12000
+(BB)  Bound Combinatory: (214) DB: 605.50 	 PB: 189.00 	 level: 7
+(BB)  Bound SDP: (214) DB: 499.43 	 Rounded: 189.00 	 level: 7 	 Status: 1
+-- Close node: 99
+
+++ Current DB(78): 548.66 	 level: 5 	Best P(167): 458.00 	 open_nodes: 107	 explored: 107 	 gap: 19.796 %
+			Number_solutions: 5120
+(BB)  Bound Combinatory: (215) DB: 627.50 	 PB: 352.00 	 level: 6
+(BB)  Bound SDP: (215) DB: 517.08 	 Rounded: 352.00 	 level: 6 	 Status: 1
+			Number_solutions: 7680
+(BB)  Bound Combinatory: (216) DB: 590.00 	 PB: 190.00 	 level: 6
+(BB)  Bound SDP: (216) DB: 469.65 	 Rounded: 190.00 	 level: 6 	 Status: 1
+-- Close node: 78
+
+++ Current DB(128): 548.00 	 level: 7 	Best P(167): 458.00 	 open_nodes: 108	 explored: 108 	 gap: 19.650 %
+			Number_solutions: 9000
+(BB)  Bound Combinatory: (217) DB: 575.00 	 PB: 38.00 	 level: 8
+(BB)  Bound SDP: (217) DB: 477.42 	 Rounded: 38.00 	 level: 8 	 Status: 1
+			Number_solutions: 1800
+(BB)  Bound Combinatory: (218) DB: 615.00 	 PB: 336.00 	 level: 8
+(BB)  Bound SDP: (218) DB: 514.95 	 Rounded: 336.00 	 level: 8 	 Status: 1
+-- Close node: 128
+
+++ Current DB(129): 547.50 	 level: 7 	Best P(167): 458.00 	 open_nodes: 109	 explored: 109 	 gap: 19.541 %
+			Number_solutions: 4500
+(BB)  Bound Combinatory: (219) DB: 624.00 	 PB: 196.00 	 level: 8
+(BB)  Bound SDP: (219) DB: 498.64 	 Rounded: 196.00 	 level: 8 	 Status: 1
+			Number_solutions: 4500
+(BB)  Bound Combinatory: (220) DB: 591.00 	 PB: 221.00 	 level: 8
+(BB)  Bound SDP: (220) DB: 516.62 	 Rounded: 221.00 	 level: 8 	 Status: 1
+-- Close node: 129
+
+++ Current DB(108): 547.18 	 level: 6 	Best P(167): 458.00 	 open_nodes: 110	 explored: 110 	 gap: 19.472 %
+			Number_solutions: 9600
+(BB)  Bound Combinatory: (221) DB: 614.00 	 PB: -4.00 	 level: 7
+(BB)  Bound SDP: (221) DB: 484.78 	 Rounded: -4.00 	 level: 7 	 Status: 1
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (222) DB: 609.00 	 PB: 21.00 	 level: 7
+(BB)  Bound SDP: (222) DB: 506.90 	 Rounded: 21.00 	 level: 7 	 Status: 1
+-- Close node: 108
+
+++ Current DB(95): 546.34 	 level: 6 	Best P(167): 458.00 	 open_nodes: 111	 explored: 111 	 gap: 19.288 %
+			Number_solutions: 8000
+(BB)  Bound Combinatory: (223) DB: 576.00 	 PB: 228.00 	 level: 7
+(BB)  Bound SDP: (223) DB: 479.98 	 Rounded: 228.00 	 level: 7 	 Status: 1
+			Number_solutions: 4000
+(BB)  Bound Combinatory: (224) DB: 599.50 	 PB: 66.00 	 level: 7
+(BB)  Bound SDP: (224) DB: 507.25 	 Rounded: 66.00 	 level: 7 	 Status: 1
+-- Close node: 95
+
+++ Current DB(105): 546.25 	 level: 7 	Best P(167): 458.00 	 open_nodes: 112	 explored: 112 	 gap: 19.268 %
+			Number_solutions: 9000
+(BB)  Bound Combinatory: (225) DB: 612.00 	 PB: 216.00 	 level: 8
+(BB)  Bound SDP: (225) DB: 471.07 	 Rounded: 216.00 	 level: 8 	 Status: 1
+			Number_solutions: 9000
+(BB)  Bound Combinatory: (226) DB: 601.00 	 PB: 13.00 	 level: 8
+(BB)  Bound SDP: (226) DB: 489.91 	 Rounded: 13.00 	 level: 8 	 Status: 1
+-- Close node: 105
+
+++ Current DB(113): 546.09 	 level: 7 	Best P(167): 458.00 	 open_nodes: 113	 explored: 113 	 gap: 19.234 %
+			Number_solutions: 7200
+(BB)  Bound Combinatory: (227) DB: 586.50 	 PB: 187.00 	 level: 8
+(BB)  Bound SDP: (227) DB: 514.50 	 Rounded: 187.00 	 level: 8 	 Status: 1
+			Number_solutions: 3600
+(BB)  Bound Combinatory: (228) DB: 597.50 	 PB: 270.00 	 level: 8
+(BB)  Bound SDP: (228) DB: 499.58 	 Rounded: 270.00 	 level: 8 	 Status: 1
+-- Close node: 113
+
+++ Current DB(65): 543.95 	 level: 6 	Best P(167): 458.00 	 open_nodes: 114	 explored: 114 	 gap: 18.766 %
+			Number_solutions: 4320
+(BB)  Bound Combinatory: (229) DB: 620.00 	 PB: 359.00 	 level: 7
+(BB)  Bound SDP: (229) DB: 473.42 	 Rounded: 359.00 	 level: 7 	 Status: 1
+			Number_solutions: 4320
+(BB)  Bound Combinatory: (230) DB: 607.00 	 PB: 293.00 	 level: 7
+(BB)  Bound SDP: (230) DB: 494.06 	 Rounded: 293.00 	 level: 7 	 Status: 1
+-- Close node: 65
+
+++ Current DB(107): 543.20 	 level: 6 	Best P(167): 458.00 	 open_nodes: 115	 explored: 115 	 gap: 18.603 %
+			Number_solutions: 9600
+(BB)  Bound Combinatory: (231) DB: 623.50 	 PB: 104.00 	 level: 7
+(BB)  Bound SDP: (231) DB: 483.43 	 Rounded: 104.00 	 level: 7 	 Status: 1
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (232) DB: 597.00 	 PB: 63.00 	 level: 7
+(BB)  Bound SDP: (232) DB: 467.38 	 Rounded: 63.00 	 level: 7 	 Status: 1
+-- Close node: 107
+
+++ Current DB(137): 540.07 	 level: 7 	Best P(167): 458.00 	 open_nodes: 116	 explored: 116 	 gap: 17.920 %
+			Number_solutions: 4500
+(BB)  Bound Combinatory: (233) DB: 623.00 	 PB: 79.00 	 level: 8
+(BB)  Bound SDP: (233) DB: 487.64 	 Rounded: 79.00 	 level: 8 	 Status: 1
+			Number_solutions: 4500
+(BB)  Bound Combinatory: (234) DB: 619.50 	 PB: 124.00 	 level: 8
+(BB)  Bound SDP: (234) DB: 416.73 	 Rounded: 124.00 	 level: 8 	 Status: 5
+-- Close node: 234
+-- Close node: 137
+
+++ Current DB(136): 539.92 	 level: 6 	Best P(167): 458.00 	 open_nodes: 116	 explored: 118 	 gap: 17.887 %
+			Number_solutions: 960
+(BB)  Bound Combinatory: (235) DB: 635.50 	 PB: 363.00 	 level: 7
+(BB)  Bound SDP: (235) DB: 497.85 	 Rounded: 363.00 	 level: 7 	 Status: 1
+			Number_solutions: 5760
+(BB)  Bound Combinatory: (236) DB: 624.50 	 PB: 182.00 	 level: 7
+(BB)  Bound SDP: (236) DB: 483.66 	 Rounded: 182.00 	 level: 7 	 Status: 1
+-- Close node: 136
+
+++ Current DB(156): 539.39 	 level: 6 	Best P(167): 458.00 	 open_nodes: 117	 explored: 119 	 gap: 17.772 %
+			Number_solutions: 320
+(BB)  Bound Combinatory: (237) DB: 629.00 	 PB: 457.00 	 level: 7
+(BB)  Bound SDP: (237) DB: 536.68 	 Rounded: 457.00 	 level: 7 	 Status: 1
+			Number_solutions: 1920
+(BB)  Bound Combinatory: (238) DB: 599.50 	 PB: 334.00 	 level: 7
+(BB)  Bound SDP: (238) DB: 412.28 	 Rounded: 334.00 	 level: 7 	 Status: 5
+-- Close node: 238
+-- Close node: 156
+
+++ Current DB(130): 539.33 	 level: 7 	Best P(167): 458.00 	 open_nodes: 117	 explored: 121 	 gap: 17.759 %
+			Number_solutions: 1800
+(BB)  Bound Combinatory: (239) DB: 588.50 	 PB: 280.00 	 level: 8
+(BB)  Bound SDP: (239) DB: 477.43 	 Rounded: 280.00 	 level: 8 	 Status: 1
+			Number_solutions: 1800
+(BB)  Bound Combinatory: (240) DB: 583.50 	 PB: 316.00 	 level: 8
+(BB)  Bound SDP: (240) DB: 495.32 	 Rounded: 316.00 	 level: 8 	 Status: 1
+-- Close node: 130
+
+++ Current DB(142): 538.21 	 level: 7 	Best P(167): 458.00 	 open_nodes: 118	 explored: 122 	 gap: 17.513 %
+			Number_solutions: 2880
+(BB)  Bound Combinatory: (241) DB: 574.00 	 PB: 226.00 	 level: 8
+(BB)  Bound SDP: (241) DB: 472.11 	 Rounded: 226.00 	 level: 8 	 Status: 1
+			Number_solutions: 5760
+(BB)  Bound Combinatory: (242) DB: 596.50 	 PB: 41.00 	 level: 8
+(BB)  Bound SDP: (242) DB: 501.40 	 Rounded: 41.00 	 level: 8 	 Status: 1
+-- Close node: 142
+
+++ Current DB(139): 537.43 	 level: 7 	Best P(167): 458.00 	 open_nodes: 119	 explored: 123 	 gap: 17.342 %
+			Number_solutions: 8000
+(BB)  Bound Combinatory: (243) DB: 628.00 	 PB: 207.00 	 level: 8
+(BB)  Bound SDP: (243) DB: 482.08 	 Rounded: 207.00 	 level: 8 	 Status: 1
+			Number_solutions: 4000
+(BB)  Bound Combinatory: (244) DB: 593.50 	 PB: 223.00 	 level: 8
+(BB)  Bound SDP: (244) DB: 481.62 	 Rounded: 223.00 	 level: 8 	 Status: 1
+-- Close node: 139
+
+++ Current DB(237): 536.68 	 level: 7 	Best P(167): 458.00 	 open_nodes: 120	 explored: 124 	 gap: 17.179 %
+			Number_solutions: 80
+(BB)  Bound Combinatory: (245) DB: 620.00 	 PB: 457.00 	 level: 8
+(BB)  Bound SDP: (245) DB: 531.99 	 Rounded: 457.00 	 level: 8 	 Status: 1
+			Number_solutions: 240
+(BB)  Bound Combinatory: (246) DB: 597.00 	 PB: 322.00 	 level: 8
+(BB)  Bound SDP: (246) DB: 495.00 	 Rounded: 322.00 	 level: 8 	 Status: 1
+-- Close node: 237
+
+++ Current DB(121): 536.53 	 level: 6 	Best P(167): 458.00 	 open_nodes: 121	 explored: 125 	 gap: 17.147 %
+			Number_solutions: 8640
+(BB)  Bound Combinatory: (247) DB: 630.50 	 PB: 268.00 	 level: 7
+(BB)  Bound SDP: (247) DB: 494.01 	 Rounded: 268.00 	 level: 7 	 Status: 1
+			Number_solutions: 8640
+(BB)  Bound Combinatory: (248) DB: 615.50 	 PB: 180.00 	 level: 7
+(BB)  Bound SDP: (248) DB: 492.97 	 Rounded: 180.00 	 level: 7 	 Status: 1
+-- Close node: 121
+
+++ Current DB(132): 534.74 	 level: 6 	Best P(167): 458.00 	 open_nodes: 122	 explored: 126 	 gap: 16.755 %
+			Number_solutions: 14400
+(BB)  Bound Combinatory: (249) DB: 580.00 	 PB: 130.00 	 level: 7
+(BB)  Bound SDP: (249) DB: 477.55 	 Rounded: 130.00 	 level: 7 	 Status: 1
+			Number_solutions: 8640
+(BB)  Bound Combinatory: (250) DB: 595.50 	 PB: 32.00 	 level: 7
+(BB)  Bound SDP: (250) DB: 485.41 	 Rounded: 32.00 	 level: 7 	 Status: 1
+-- Close node: 132
+
+++ Current DB(152): 533.15 	 level: 7 	Best P(167): 458.00 	 open_nodes: 123	 explored: 127 	 gap: 16.408 %
+			Number_solutions: 4500
+(BB)  Bound Combinatory: (251) DB: 594.00 	 PB: 67.00 	 level: 8
+(BB)  Bound SDP: (251) DB: 495.21 	 Rounded: 67.00 	 level: 8 	 Status: 1
+			Number_solutions: 4500
+(BB)  Bound Combinatory: (252) DB: 587.50 	 PB: 139.00 	 level: 8
+(BB)  Bound SDP: (252) DB: 472.55 	 Rounded: 139.00 	 level: 8 	 Status: 1
+-- Close node: 152
+
+++ Current DB(158): 533.04 	 level: 7 	Best P(167): 458.00 	 open_nodes: 124	 explored: 128 	 gap: 16.384 %
+			Number_solutions: 6000
+(BB)  Bound Combinatory: (253) DB: 619.00 	 PB: 351.00 	 level: 8
+(BB)  Bound SDP: (253) DB: 498.69 	 Rounded: 351.00 	 level: 8 	 Status: 1
+			Number_solutions: 3000
+(BB)  Bound Combinatory: (254) DB: 579.00 	 PB: 182.00 	 level: 8
+(BB)  Bound SDP: (254) DB: 477.25 	 Rounded: 182.00 	 level: 8 	 Status: 1
+-- Close node: 158
+
+++ Current DB(101): 532.61 	 level: 7 	Best P(167): 458.00 	 open_nodes: 125	 explored: 129 	 gap: 16.290 %
+			Number_solutions: 6000
+(BB)  Bound Combinatory: (255) DB: 621.00 	 PB: 160.00 	 level: 8
+(BB)  Bound SDP: (255) DB: 483.60 	 Rounded: 160.00 	 level: 8 	 Status: 1
+			Number_solutions: 2400
+(BB)  Bound Combinatory: (256) DB: 619.50 	 PB: 268.00 	 level: 8
+(BB)  Bound SDP: (256) DB: 494.65 	 Rounded: 268.00 	 level: 8 	 Status: 1
+-- Close node: 101
+
+++ Current DB(138): 532.57 	 level: 7 	Best P(167): 458.00 	 open_nodes: 126	 explored: 130 	 gap: 16.281 %
+			Number_solutions: 4500
+(BB)  Bound Combinatory: (257) DB: 633.00 	 PB: 110.00 	 level: 8
+(BB)  Bound SDP: (257) DB: 474.06 	 Rounded: 110.00 	 level: 8 	 Status: 1
+			Number_solutions: 4500
+(BB)  Bound Combinatory: (258) DB: 608.50 	 PB: 268.00 	 level: 8
+(BB)  Bound SDP: (258) DB: 450.52 	 Rounded: 268.00 	 level: 8 	 Status: 5
+-- Close node: 258
+-- Close node: 138
+
+++ Current DB(150): 532.37 	 level: 7 	Best P(167): 458.00 	 open_nodes: 126	 explored: 132 	 gap: 16.239 %
+			Number_solutions: 9600
+(BB)  Bound Combinatory: (259) DB: 604.50 	 PB: 241.00 	 level: 8
+(BB)  Bound SDP: (259) DB: 488.19 	 Rounded: 241.00 	 level: 8 	 Status: 1
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (260) DB: 609.00 	 PB: 145.00 	 level: 8
+(BB)  Bound SDP: (260) DB: 497.29 	 Rounded: 145.00 	 level: 8 	 Status: 1
+-- Close node: 150
+
+++ Current DB(120): 532.08 	 level: 7 	Best P(167): 458.00 	 open_nodes: 127	 explored: 133 	 gap: 16.175 %
+			Number_solutions: 7200
+(BB)  Bound Combinatory: (261) DB: 605.00 	 PB: -59.00 	 level: 8
+(BB)  Bound SDP: (261) DB: 470.99 	 Rounded: -59.00 	 level: 8 	 Status: 1
+			Number_solutions: 3600
+(BB)  Bound Combinatory: (262) DB: 609.50 	 PB: 278.00 	 level: 8
+(BB)  Bound SDP: (262) DB: 473.69 	 Rounded: 278.00 	 level: 8 	 Status: 1
+-- Close node: 120
+
+++ Current DB(245): 531.99 	 level: 8 	Best P(167): 458.00 	 open_nodes: 128	 explored: 134 	 gap: 16.156 %
+-- Close node: 245
+
+++ Current DB(115): 531.48 	 level: 6 	Best P(167): 458.00 	 open_nodes: 127	 explored: 135 	 gap: 16.043 %
+			Number_solutions: 8000
+(BB)  Bound Combinatory: (263) DB: 619.00 	 PB: 85.00 	 level: 7
+(BB)  Bound SDP: (263) DB: 494.29 	 Rounded: 85.00 	 level: 7 	 Status: 1
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (264) DB: 622.50 	 PB: 267.00 	 level: 7
+(BB)  Bound SDP: (264) DB: 476.97 	 Rounded: 267.00 	 level: 7 	 Status: 1
+-- Close node: 115
+
+++ Current DB(116): 530.77 	 level: 6 	Best P(167): 458.00 	 open_nodes: 128	 explored: 136 	 gap: 15.888 %
+			Number_solutions: 8000
+(BB)  Bound Combinatory: (265) DB: 580.00 	 PB: 102.00 	 level: 7
+(BB)  Bound SDP: (265) DB: 482.18 	 Rounded: 102.00 	 level: 7 	 Status: 1
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (266) DB: 575.00 	 PB: 206.00 	 level: 7
+(BB)  Bound SDP: (266) DB: 477.59 	 Rounded: 206.00 	 level: 7 	 Status: 1
+-- Close node: 116
+
+++ Current DB(106): 529.85 	 level: 7 	Best P(167): 458.00 	 open_nodes: 129	 explored: 137 	 gap: 15.688 %
+			Number_solutions: 3600
+(BB)  Bound Combinatory: (267) DB: 601.50 	 PB: 138.00 	 level: 8
+(BB)  Bound SDP: (267) DB: 459.68 	 Rounded: 138.00 	 level: 8 	 Status: 1
+			Number_solutions: 3600
+(BB)  Bound Combinatory: (268) DB: 595.50 	 PB: 166.00 	 level: 8
+(BB)  Bound SDP: (268) DB: 466.50 	 Rounded: 166.00 	 level: 8 	 Status: 1
+-- Close node: 106
+
+++ Current DB(160): 529.10 	 level: 7 	Best P(167): 458.00 	 open_nodes: 130	 explored: 138 	 gap: 15.525 %
+			Number_solutions: 8640
+(BB)  Bound Combinatory: (269) DB: 585.50 	 PB: 213.00 	 level: 8
+(BB)  Bound SDP: (269) DB: 462.73 	 Rounded: 213.00 	 level: 8 	 Status: 1
+			Number_solutions: 8640
+(BB)  Bound Combinatory: (270) DB: 579.00 	 PB: 255.00 	 level: 8
+(BB)  Bound SDP: (270) DB: 495.09 	 Rounded: 255.00 	 level: 8 	 Status: 1
+-- Close node: 160
+
+++ Current DB(110): 528.47 	 level: 6 	Best P(167): 458.00 	 open_nodes: 131	 explored: 139 	 gap: 15.385 %
+			Number_solutions: 8000
+(BB)  Bound Combinatory: (271) DB: 579.50 	 PB: 136.00 	 level: 7
+(BB)  Bound SDP: (271) DB: 477.95 	 Rounded: 136.00 	 level: 7 	 Status: 1
+			Number_solutions: 4000
+(BB)  Bound Combinatory: (272) DB: 555.50 	 PB: 218.00 	 level: 7
+(BB)  Bound SDP: (272) DB: 491.99 	 Rounded: 218.00 	 level: 7 	 Status: 1
+-- Close node: 110
+
+++ Current DB(109): 528.30 	 level: 6 	Best P(167): 458.00 	 open_nodes: 132	 explored: 140 	 gap: 15.350 %
+			Number_solutions: 8000
+(BB)  Bound Combinatory: (273) DB: 581.50 	 PB: 190.00 	 level: 7
+(BB)  Bound SDP: (273) DB: 451.08 	 Rounded: 190.00 	 level: 7 	 Status: 5
+			Number_solutions: 4000
+(BB)  Bound Combinatory: (274) DB: 575.00 	 PB: 173.00 	 level: 7
+(BB)  Bound SDP: (274) DB: 488.04 	 Rounded: 173.00 	 level: 7 	 Status: 1
+-- Close node: 273
+-- Close node: 109
+
+++ Current DB(162): 527.47 	 level: 7 	Best P(167): 458.00 	 open_nodes: 132	 explored: 142 	 gap: 15.169 %
+			Number_solutions: 9600
+(BB)  Bound Combinatory: (275) DB: 625.00 	 PB: 154.00 	 level: 8
+(BB)  Bound SDP: (275) DB: 505.40 	 Rounded: 154.00 	 level: 8 	 Status: 1
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (276) DB: 593.50 	 PB: 219.00 	 level: 8
+(BB)  Bound SDP: (276) DB: 459.73 	 Rounded: 219.00 	 level: 8 	 Status: 1
+-- Close node: 162
+
+++ Current DB(157): 527.09 	 level: 7 	Best P(167): 458.00 	 open_nodes: 133	 explored: 143 	 gap: 15.086 %
+			Number_solutions: 9000
+(BB)  Bound Combinatory: (277) DB: 583.00 	 PB: -17.00 	 level: 8
+(BB)  Bound SDP: (277) DB: 499.43 	 Rounded: -17.00 	 level: 8 	 Status: 1
+			Number_solutions: 9000
+(BB)  Bound Combinatory: (278) DB: 608.50 	 PB: 247.00 	 level: 8
+(BB)  Bound SDP: (278) DB: 483.06 	 Rounded: 247.00 	 level: 8 	 Status: 1
+-- Close node: 157
+
+++ Current DB(125): 527.04 	 level: 6 	Best P(167): 458.00 	 open_nodes: 134	 explored: 144 	 gap: 15.075 %
+			Number_solutions: 11520
+(BB)  Bound Combinatory: (279) DB: 582.00 	 PB: 81.00 	 level: 7
+(BB)  Bound SDP: (279) DB: 483.81 	 Rounded: 81.00 	 level: 7 	 Status: 1
+			Number_solutions: 5760
+(BB)  Bound Combinatory: (280) DB: 590.50 	 PB: 69.00 	 level: 7
+(BB)  Bound SDP: (280) DB: 367.21 	 Rounded: 69.00 	 level: 7 	 Status: 5
+-- Close node: 280
+-- Close node: 125
+
+++ Current DB(140): 526.61 	 level: 7 	Best P(167): 458.00 	 open_nodes: 134	 explored: 146 	 gap: 14.981 %
+			Number_solutions: 3200
+(BB)  Bound Combinatory: (281) DB: 621.00 	 PB: 244.00 	 level: 8
+(BB)  Bound SDP: (281) DB: 501.88 	 Rounded: 244.00 	 level: 8 	 Status: 1
+			Number_solutions: 1600
+(BB)  Bound Combinatory: (282) DB: 567.50 	 PB: 245.00 	 level: 8
+(BB)  Bound SDP: (282) DB: 464.81 	 Rounded: 245.00 	 level: 8 	 Status: 1
+-- Close node: 140
+
+++ Current DB(141): 526.20 	 level: 7 	Best P(167): 458.00 	 open_nodes: 135	 explored: 147 	 gap: 14.890 %
+			Number_solutions: 3240
+(BB)  Bound Combinatory: (283) DB: 587.50 	 PB: 299.00 	 level: 8
+(BB)  Bound SDP: (283) DB: 478.06 	 Rounded: 299.00 	 level: 8 	 Status: 1
+			Number_solutions: 3240
+(BB)  Bound Combinatory: (284) DB: 587.00 	 PB: 235.00 	 level: 8
+(BB)  Bound SDP: (284) DB: 456.82 	 Rounded: 235.00 	 level: 8 	 Status: 5
+-- Close node: 284
+-- Close node: 141
+
+++ Current DB(148): 526.05 	 level: 7 	Best P(167): 458.00 	 open_nodes: 135	 explored: 149 	 gap: 14.858 %
+			Number_solutions: 5400
+(BB)  Bound Combinatory: (285) DB: 580.50 	 PB: 144.00 	 level: 8
+(BB)  Bound SDP: (285) DB: 475.41 	 Rounded: 144.00 	 level: 8 	 Status: 1
+			Number_solutions: 5400
+(BB)  Bound Combinatory: (286) DB: 599.50 	 PB: 94.00 	 level: 8
+(BB)  Bound SDP: (286) DB: 477.29 	 Rounded: 94.00 	 level: 8 	 Status: 1
+-- Close node: 148
+
+++ Current DB(179): 525.82 	 level: 7 	Best P(167): 458.00 	 open_nodes: 136	 explored: 150 	 gap: 14.808 %
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (287) DB: 612.50 	 PB: 130.00 	 level: 8
+(BB)  Bound SDP: (287) DB: 485.62 	 Rounded: 130.00 	 level: 8 	 Status: 1
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (288) DB: 605.00 	 PB: 15.00 	 level: 8
+(BB)  Bound SDP: (288) DB: 463.47 	 Rounded: 15.00 	 level: 8 	 Status: 1
+-- Close node: 179
+
+++ Current DB(117): 524.81 	 level: 7 	Best P(167): 458.00 	 open_nodes: 137	 explored: 151 	 gap: 14.588 %
+			Number_solutions: 4500
+(BB)  Bound Combinatory: (289) DB: 617.00 	 PB: 203.00 	 level: 8
+(BB)  Bound SDP: (289) DB: 470.10 	 Rounded: 203.00 	 level: 8 	 Status: 1
+			Number_solutions: 4500
+(BB)  Bound Combinatory: (290) DB: 620.00 	 PB: 147.00 	 level: 8
+(BB)  Bound SDP: (290) DB: 469.64 	 Rounded: 147.00 	 level: 8 	 Status: 1
+-- Close node: 117
+
+++ Current DB(168): 524.25 	 level: 6 	Best P(167): 458.00 	 open_nodes: 138	 explored: 152 	 gap: 14.465 %
+			Number_solutions: 9600
+(BB)  Bound Combinatory: (291) DB: 601.00 	 PB: 211.00 	 level: 7
+(BB)  Bound SDP: (291) DB: 469.39 	 Rounded: 211.00 	 level: 7 	 Status: 1
+			Number_solutions: 3840
+(BB)  Bound Combinatory: (292) DB: 604.00 	 PB: 224.00 	 level: 7
+(BB)  Bound SDP: (292) DB: 476.33 	 Rounded: 224.00 	 level: 7 	 Status: 1
+-- Close node: 168
+
+++ Current DB(192): 523.94 	 level: 7 	Best P(167): 458.00 	 open_nodes: 139	 explored: 153 	 gap: 14.396 %
+			Number_solutions: 1350
+(BB)  Bound Combinatory: (293) DB: 559.00 	 PB: 347.00 	 level: 8
+(BB)  Bound SDP: (293) DB: 479.18 	 Rounded: 347.00 	 level: 8 	 Status: 1
+			Number_solutions: 6750
+(BB)  Bound Combinatory: (294) DB: 588.50 	 PB: 170.00 	 level: 8
+(BB)  Bound SDP: (294) DB: 464.27 	 Rounded: 170.00 	 level: 8 	 Status: 1
+-- Close node: 192
+
+++ Current DB(197): 523.25 	 level: 8 	Best P(167): 458.00 	 open_nodes: 140	 explored: 154 	 gap: 14.247 %
+			Number_solutions: 12000
+(BB)  Bound Combinatory: (295) DB: 608.50 	 PB: 270.00 	 level: 9
+(BB)  Bound SDP: (295) DB: 492.84 	 Rounded: 270.00 	 level: 9 	 Status: 1
+			Number_solutions: 3000
+(BB)  Bound Combinatory: (296) DB: 582.50 	 PB: 242.00 	 level: 9
+(BB)  Bound SDP: (296) DB: 481.57 	 Rounded: 242.00 	 level: 9 	 Status: 1
+-- Close node: 197
+
+++ Current DB(189): 521.80 	 level: 7 	Best P(167): 458.00 	 open_nodes: 141	 explored: 155 	 gap: 13.931 %
+			Number_solutions: 432
+(BB)  Bound Combinatory: (297) DB: 606.50 	 PB: 483.00 	 level: 8
+	*****(Comb Bound)  Node: 297	New best PB: 483.00
+(BB)  Bound SDP: (297) DB: 485.03 	 Rounded: 483.00 	 level: 8 	 Status: 1
+			Number_solutions: 1728
+(BB)  Bound Combinatory: (298) DB: 622.00 	 PB: 487.00 	 level: 8
+	*****(Comb Bound)  Node: 298	New best PB: 487.00
+(BB)  Bound SDP: (298) DB: 495.52 	 Rounded: 487.00 	 level: 8 	 Status: 1
+-- Close node: 189
+
+++ Current DB(118): 520.09 	 level: 7 	Best P(336): 487.00 	 open_nodes: 142	 explored: 156 	 gap: 6.796 %
+			Number_solutions: 4500
+(BB)  Bound Combinatory: (299) DB: 619.00 	 PB: 243.00 	 level: 8
+(BB)  Bound SDP: (299) DB: 434.96 	 Rounded: 243.00 	 level: 8 	 Status: 5
+			Number_solutions: 4500
+(BB)  Bound Combinatory: (300) DB: 604.50 	 PB: 36.00 	 level: 8
+(BB)  Bound SDP: (300) DB: 300.64 	 Rounded: 36.00 	 level: 8 	 Status: 5
+-- Close node: 299
+-- Close node: 300
+-- Close node: 118
+
+++ Current DB(123): 519.47 	 level: 6 	Best P(336): 487.00 	 open_nodes: 141	 explored: 159 	 gap: 6.668 %
+			Number_solutions: 5760
+(BB)  Bound Combinatory: (301) DB: 590.50 	 PB: 146.00 	 level: 7
+(BB)  Bound SDP: (301) DB: 283.14 	 Rounded: 146.00 	 level: 7 	 Status: 5
+			Number_solutions: 2880
+(BB)  Bound Combinatory: (302) DB: 611.00 	 PB: 153.00 	 level: 7
+(BB)  Bound SDP: (302) DB: 479.25 	 Rounded: 153.00 	 level: 7 	 Status: 5
+-- Close node: 301
+-- Close node: 302
+-- Close node: 123
+
+++ Current DB(134): 519.34 	 level: 7 	Best P(336): 487.00 	 open_nodes: 140	 explored: 162 	 gap: 6.640 %
+			Number_solutions: 5400
+(BB)  Bound Combinatory: (303) DB: 587.50 	 PB: 83.00 	 level: 8
+(BB)  Bound SDP: (303) DB: 255.93 	 Rounded: 83.00 	 level: 8 	 Status: 5
+			Number_solutions: 5400
+(BB)  Bound Combinatory: (304) DB: 597.50 	 PB: 53.00 	 level: 8
+(BB)  Bound SDP: (304) DB: 275.31 	 Rounded: 53.00 	 level: 8 	 Status: 5
+-- Close node: 303
+-- Close node: 304
+-- Close node: 134
+
+++ Current DB(131): 517.96 	 level: 6 	Best P(336): 487.00 	 open_nodes: 139	 explored: 165 	 gap: 6.357 %
+			Number_solutions: 11520
+(BB)  Bound Combinatory: (305) DB: 629.00 	 PB: 127.00 	 level: 7
+(BB)  Bound SDP: (305) DB: 439.17 	 Rounded: 127.00 	 level: 7 	 Status: 5
+			Number_solutions: 3840
+(BB)  Bound Combinatory: (306) DB: 604.50 	 PB: 301.00 	 level: 7
+(BB)  Bound SDP: (306) DB: 420.50 	 Rounded: 301.00 	 level: 7 	 Status: 5
+-- Close node: 305
+-- Close node: 306
+-- Close node: 131
+
+++ Current DB(161): 517.62 	 level: 7 	Best P(336): 487.00 	 open_nodes: 138	 explored: 168 	 gap: 6.287 %
+			Number_solutions: 6000
+(BB)  Bound Combinatory: (307) DB: 646.00 	 PB: 231.00 	 level: 8
+(BB)  Bound SDP: (307) DB: 428.96 	 Rounded: 231.00 	 level: 8 	 Status: 5
+			Number_solutions: 1200
+(BB)  Bound Combinatory: (308) DB: 634.50 	 PB: 374.00 	 level: 8
+(BB)  Bound SDP: (308) DB: 237.23 	 Rounded: 374.00 	 level: 8 	 Status: 5
+-- Close node: 307
+-- Close node: 308
+-- Close node: 161
+
+++ Current DB(215): 517.08 	 level: 6 	Best P(336): 487.00 	 open_nodes: 137	 explored: 171 	 gap: 6.176 %
+			Number_solutions: 2560
+(BB)  Bound Combinatory: (309) DB: 614.50 	 PB: 352.00 	 level: 7
+(BB)  Bound SDP: (309) DB: 272.19 	 Rounded: 352.00 	 level: 7 	 Status: 5
+			Number_solutions: 2560
+(BB)  Bound Combinatory: (310) DB: 590.50 	 PB: 333.00 	 level: 7
+(BB)  Bound SDP: (310) DB: 262.19 	 Rounded: 333.00 	 level: 7 	 Status: 5
+-- Close node: 309
+-- Close node: 310
+-- Close node: 215
+
+++ Current DB(220): 516.62 	 level: 8 	Best P(336): 487.00 	 open_nodes: 136	 explored: 174 	 gap: 6.083 %
+			Number_solutions: 3600
+(BB)  Bound Combinatory: (311) DB: 580.50 	 PB: 255.00 	 level: 9
+(BB)  Bound SDP: (311) DB: 436.92 	 Rounded: 255.00 	 level: 9 	 Status: 5
+			Number_solutions: 900
+(BB)  Bound Combinatory: (312) DB: 563.50 	 PB: 381.00 	 level: 9
+(BB)  Bound SDP: (312) DB: 437.02 	 Rounded: 381.00 	 level: 9 	 Status: 5
+-- Close node: 311
+-- Close node: 312
+-- Close node: 220
+
+++ Current DB(182): 516.39 	 level: 7 	Best P(336): 487.00 	 open_nodes: 135	 explored: 177 	 gap: 6.036 %
+			Number_solutions: 2880
+(BB)  Bound Combinatory: (313) DB: 590.00 	 PB: 283.00 	 level: 8
+(BB)  Bound SDP: (313) DB: 486.61 	 Rounded: 283.00 	 level: 8 	 Status: 5
+			Number_solutions: 2880
+(BB)  Bound Combinatory: (314) DB: 585.00 	 PB: 33.00 	 level: 8
+(BB)  Bound SDP: (314) DB: 293.92 	 Rounded: 33.00 	 level: 8 	 Status: 5
+-- Close node: 313
+-- Close node: 314
+-- Close node: 182
+
+++ Current DB(191): 516.12 	 level: 7 	Best P(336): 487.00 	 open_nodes: 134	 explored: 180 	 gap: 5.979 %
+			Number_solutions: 4050
+(BB)  Bound Combinatory: (315) DB: 582.00 	 PB: 41.00 	 level: 8
+(BB)  Bound SDP: (315) DB: 275.41 	 Rounded: 41.00 	 level: 8 	 Status: 5
+			Number_solutions: 4050
+(BB)  Bound Combinatory: (316) DB: 611.00 	 PB: 218.00 	 level: 8
+(BB)  Bound SDP: (316) DB: 293.32 	 Rounded: 218.00 	 level: 8 	 Status: 5
+-- Close node: 315
+-- Close node: 316
+-- Close node: 191
+
+++ Current DB(146): 515.40 	 level: 7 	Best P(336): 487.00 	 open_nodes: 133	 explored: 183 	 gap: 5.831 %
+			Number_solutions: 5625
+(BB)  Bound Combinatory: (317) DB: 589.50 	 PB: 100.00 	 level: 8
+(BB)  Bound SDP: (317) DB: 266.46 	 Rounded: 100.00 	 level: 8 	 Status: 5
+			Number_solutions: 5625
+(BB)  Bound Combinatory: (318) DB: 602.00 	 PB: 87.00 	 level: 8
+(BB)  Bound SDP: (318) DB: 280.73 	 Rounded: 87.00 	 level: 8 	 Status: 5
+-- Close node: 317
+-- Close node: 318
+-- Close node: 146
+
+++ Current DB(218): 514.95 	 level: 8 	Best P(336): 487.00 	 open_nodes: 132	 explored: 186 	 gap: 5.740 %
+			Number_solutions: 300
+(BB)  Bound Combinatory: (319) DB: 553.50 	 PB: 478.00 	 level: 9
+(BB)  Bound SDP: (319) DB: 336.47 	 Rounded: 478.00 	 level: 9 	 Status: 5
+			Number_solutions: 1500
+(BB)  Bound Combinatory: (320) DB: 611.50 	 PB: 336.00 	 level: 9
+(BB)  Bound SDP: (320) DB: 513.99 	 Rounded: 336.00 	 level: 9 	 Status: 1
+-- Close node: 319
+-- Close node: 218
+
+++ Current DB(149): 514.77 	 level: 7 	Best P(336): 487.00 	 open_nodes: 132	 explored: 188 	 gap: 5.703 %
+			Number_solutions: 6000
+(BB)  Bound Combinatory: (321) DB: 597.50 	 PB: 230.00 	 level: 8
+(BB)  Bound SDP: (321) DB: 460.70 	 Rounded: 230.00 	 level: 8 	 Status: 5
+			Number_solutions: 1200
+(BB)  Bound Combinatory: (322) DB: 589.50 	 PB: 338.00 	 level: 8
+(BB)  Bound SDP: (322) DB: 477.53 	 Rounded: 338.00 	 level: 8 	 Status: 5
+-- Close node: 321
+-- Close node: 322
+-- Close node: 149
+
+++ Current DB(187): 514.57 	 level: 7 	Best P(336): 487.00 	 open_nodes: 131	 explored: 191 	 gap: 5.660 %
+			Number_solutions: 7500
+(BB)  Bound Combinatory: (323) DB: 572.00 	 PB: 161.00 	 level: 8
+(BB)  Bound SDP: (323) DB: 263.53 	 Rounded: 161.00 	 level: 8 	 Status: 5
+			Number_solutions: 7500
+(BB)  Bound Combinatory: (324) DB: 608.00 	 PB: 127.00 	 level: 8
+(BB)  Bound SDP: (324) DB: 444.55 	 Rounded: 127.00 	 level: 8 	 Status: 5
+-- Close node: 323
+-- Close node: 324
+-- Close node: 187
+
+++ Current DB(227): 514.50 	 level: 8 	Best P(336): 487.00 	 open_nodes: 130	 explored: 194 	 gap: 5.647 %
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (325) DB: 577.00 	 PB: 66.00 	 level: 9
+(BB)  Bound SDP: (325) DB: 235.59 	 Rounded: 66.00 	 level: 9 	 Status: 5
+			Number_solutions: 2400
+(BB)  Bound Combinatory: (326) DB: 550.00 	 PB: 187.00 	 level: 9
+(BB)  Bound SDP: (326) DB: 221.73 	 Rounded: 187.00 	 level: 9 	 Status: 5
+-- Close node: 325
+-- Close node: 326
+-- Close node: 227
+
+++ Current DB(147): 514.48 	 level: 7 	Best P(336): 487.00 	 open_nodes: 129	 explored: 197 	 gap: 5.642 %
+			Number_solutions: 9000
+(BB)  Bound Combinatory: (327) DB: 565.50 	 PB: -46.00 	 level: 8
+(BB)  Bound SDP: (327) DB: 493.11 	 Rounded: -46.00 	 level: 8 	 Status: 1
+			Number_solutions: 1800
+(BB)  Bound Combinatory: (328) DB: 555.00 	 PB: 141.00 	 level: 8
+(BB)  Bound SDP: (328) DB: 245.06 	 Rounded: 141.00 	 level: 8 	 Status: 5
+-- Close node: 328
+-- Close node: 147
+
+++ Current DB(320): 513.99 	 level: 9 	Best P(336): 487.00 	 open_nodes: 129	 explored: 199 	 gap: 5.542 %
+-- Close node: 320
+
+++ Current DB(111): 513.72 	 level: 6 	Best P(336): 487.00 	 open_nodes: 128	 explored: 200 	 gap: 5.487 %
+			Number_solutions: 3200
+(BB)  Bound Combinatory: (329) DB: 624.00 	 PB: 221.00 	 level: 7
+(BB)  Bound SDP: (329) DB: 496.33 	 Rounded: 221.00 	 level: 7 	 Status: 1
+			Number_solutions: 6400
+(BB)  Bound Combinatory: (330) DB: 654.50 	 PB: 253.00 	 level: 7
+(BB)  Bound SDP: (330) DB: 279.95 	 Rounded: 253.00 	 level: 7 	 Status: 5
+-- Close node: 330
+-- Close node: 111
+
+++ Current DB(144): 513.54 	 level: 7 	Best P(336): 487.00 	 open_nodes: 128	 explored: 202 	 gap: 5.450 %
+			Number_solutions: 2400
+(BB)  Bound Combinatory: (331) DB: 613.50 	 PB: 220.00 	 level: 8
+(BB)  Bound SDP: (331) DB: 243.18 	 Rounded: 220.00 	 level: 8 	 Status: 5
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (332) DB: 581.50 	 PB: 169.00 	 level: 8
+(BB)  Bound SDP: (332) DB: 272.90 	 Rounded: 169.00 	 level: 8 	 Status: 5
+-- Close node: 331
+-- Close node: 332
+-- Close node: 144
+
+++ Current DB(178): 513.34 	 level: 7 	Best P(336): 487.00 	 open_nodes: 127	 explored: 205 	 gap: 5.410 %
+			Number_solutions: 5760
+(BB)  Bound Combinatory: (333) DB: 570.00 	 PB: 273.00 	 level: 8
+(BB)  Bound SDP: (333) DB: 428.11 	 Rounded: 273.00 	 level: 8 	 Status: 5
+			Number_solutions: 2880
+(BB)  Bound Combinatory: (334) DB: 515.50 	 PB: 164.00 	 level: 8
+(BB)  Bound SDP: (334) DB: 252.05 	 Rounded: 164.00 	 level: 8 	 Status: 5
+-- Close node: 333
+-- Close node: 334
+-- Close node: 178
+
+++ Current DB(159): 513.01 	 level: 7 	Best P(336): 487.00 	 open_nodes: 126	 explored: 208 	 gap: 5.340 %
+			Number_solutions: 5760
+(BB)  Bound Combinatory: (335) DB: 584.50 	 PB: 296.00 	 level: 8
+(BB)  Bound SDP: (335) DB: 403.70 	 Rounded: 296.00 	 level: 8 	 Status: 5
+			Number_solutions: 2880
+(BB)  Bound Combinatory: (336) DB: 548.50 	 PB: 312.00 	 level: 8
+(BB)  Bound SDP: (336) DB: 344.45 	 Rounded: 312.00 	 level: 8 	 Status: 5
+-- Close node: 335
+-- Close node: 336
+-- Close node: 159
+
+++ Current DB(151): 513.00 	 level: 7 	Best P(336): 487.00 	 open_nodes: 125	 explored: 211 	 gap: 5.339 %
+			Number_solutions: 6000
+(BB)  Bound Combinatory: (337) DB: 580.00 	 PB: 107.00 	 level: 8
+(BB)  Bound SDP: (337) DB: 438.50 	 Rounded: 107.00 	 level: 8 	 Status: 5
+			Number_solutions: 3000
+(BB)  Bound Combinatory: (338) DB: 600.50 	 PB: 335.00 	 level: 8
+(BB)  Bound SDP: (338) DB: 253.45 	 Rounded: 335.00 	 level: 8 	 Status: 5
+-- Close node: 337
+-- Close node: 338
+-- Close node: 151
+
+++ Current DB(203): 512.94 	 level: 8 	Best P(336): 487.00 	 open_nodes: 124	 explored: 214 	 gap: 5.327 %
+			Number_solutions: 6000
+(BB)  Bound Combinatory: (339) DB: 604.50 	 PB: 229.00 	 level: 9
+(BB)  Bound SDP: (339) DB: 271.74 	 Rounded: 229.00 	 level: 9 	 Status: 5
+			Number_solutions: 1200
+(BB)  Bound Combinatory: (340) DB: 593.50 	 PB: 411.00 	 level: 9
+(BB)  Bound SDP: (340) DB: 413.30 	 Rounded: 411.00 	 level: 9 	 Status: 5
+-- Close node: 339
+-- Close node: 340
+-- Close node: 203
+
+++ Current DB(209): 512.41 	 level: 7 	Best P(336): 487.00 	 open_nodes: 123	 explored: 217 	 gap: 5.217 %
+			Number_solutions: 1620
+(BB)  Bound Combinatory: (341) DB: 625.50 	 PB: 274.00 	 level: 8
+(BB)  Bound SDP: (341) DB: 450.07 	 Rounded: 274.00 	 level: 8 	 Status: 5
+			Number_solutions: 1620
+(BB)  Bound Combinatory: (342) DB: 605.00 	 PB: 405.00 	 level: 8
+(BB)  Bound SDP: (342) DB: 432.76 	 Rounded: 405.00 	 level: 8 	 Status: 5
+-- Close node: 341
+-- Close node: 342
+-- Close node: 209
+
+++ Current DB(145): 512.27 	 level: 7 	Best P(336): 487.00 	 open_nodes: 122	 explored: 220 	 gap: 5.188 %
+			Number_solutions: 7500
+(BB)  Bound Combinatory: (343) DB: 577.00 	 PB: 245.00 	 level: 8
+(BB)  Bound SDP: (343) DB: 490.09 	 Rounded: 245.00 	 level: 8 	 Status: 1
+			Number_solutions: 3750
+(BB)  Bound Combinatory: (344) DB: 584.50 	 PB: 67.00 	 level: 8
+(BB)  Bound SDP: (344) DB: 260.04 	 Rounded: 67.00 	 level: 8 	 Status: 5
+-- Close node: 344
+-- Close node: 145
+
+++ Current DB(211): 512.11 	 level: 8 	Best P(336): 487.00 	 open_nodes: 122	 explored: 222 	 gap: 5.156 %
+			Number_solutions: 12000
+(BB)  Bound Combinatory: (345) DB: 602.00 	 PB: 171.00 	 level: 9
+(BB)  Bound SDP: (345) DB: 289.36 	 Rounded: 171.00 	 level: 9 	 Status: 5
+			Number_solutions: 6000
+(BB)  Bound Combinatory: (346) DB: 570.00 	 PB: 268.00 	 level: 9
+(BB)  Bound SDP: (346) DB: 258.65 	 Rounded: 268.00 	 level: 9 	 Status: 5
+-- Close node: 345
+-- Close node: 346
+-- Close node: 211
+
+++ Current DB(185): 510.90 	 level: 7 	Best P(336): 487.00 	 open_nodes: 121	 explored: 225 	 gap: 4.907 %
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (347) DB: 618.00 	 PB: 212.00 	 level: 8
+(BB)  Bound SDP: (347) DB: 269.67 	 Rounded: 212.00 	 level: 8 	 Status: 5
+			Number_solutions: 9600
+(BB)  Bound Combinatory: (348) DB: 598.00 	 PB: 94.00 	 level: 8
+(BB)  Bound SDP: (348) DB: 288.72 	 Rounded: 94.00 	 level: 8 	 Status: 5
+-- Close node: 347
+-- Close node: 348
+-- Close node: 185
+
+++ Current DB(165): 510.18 	 level: 7 	Best P(336): 487.00 	 open_nodes: 120	 explored: 228 	 gap: 4.759 %
+			Number_solutions: 6000
+(BB)  Bound Combinatory: (349) DB: 560.00 	 PB: 115.00 	 level: 8
+(BB)  Bound SDP: (349) DB: 268.09 	 Rounded: 115.00 	 level: 8 	 Status: 5
+			Number_solutions: 6000
+(BB)  Bound Combinatory: (350) DB: 569.00 	 PB: 212.00 	 level: 8
+(BB)  Bound SDP: (350) DB: 435.62 	 Rounded: 212.00 	 level: 8 	 Status: 5
+-- Close node: 349
+-- Close node: 350
+-- Close node: 165
+
+++ Current DB(212): 509.48 	 level: 8 	Best P(336): 487.00 	 open_nodes: 119	 explored: 231 	 gap: 4.617 %
+			Number_solutions: 6000
+(BB)  Bound Combinatory: (351) DB: 590.00 	 PB: 137.00 	 level: 9
+(BB)  Bound SDP: (351) DB: 488.25 	 Rounded: 137.00 	 level: 9 	 Status: 1
+			Number_solutions: 3000
+(BB)  Bound Combinatory: (352) DB: 560.00 	 PB: 111.00 	 level: 9
+(BB)  Bound SDP: (352) DB: 225.79 	 Rounded: 111.00 	 level: 9 	 Status: 5
+-- Close node: 352
+-- Close node: 212
+
+++ Current DB(172): 508.65 	 level: 7 	Best P(336): 487.00 	 open_nodes: 119	 explored: 233 	 gap: 4.447 %
+			Number_solutions: 1280
+(BB)  Bound Combinatory: (353) DB: 590.50 	 PB: 207.00 	 level: 8
+(BB)  Bound SDP: (353) DB: 425.29 	 Rounded: 207.00 	 level: 8 	 Status: 5
+			Number_solutions: 1920
+(BB)  Bound Combinatory: (354) DB: 625.50 	 PB: 206.00 	 level: 8
+(BB)  Bound SDP: (354) DB: 289.81 	 Rounded: 206.00 	 level: 8 	 Status: 5
+-- Close node: 353
+-- Close node: 354
+-- Close node: 172
+
+++ Current DB(204): 508.64 	 level: 8 	Best P(336): 487.00 	 open_nodes: 118	 explored: 236 	 gap: 4.443 %
+			Number_solutions: 9600
+(BB)  Bound Combinatory: (355) DB: 589.00 	 PB: 216.00 	 level: 9
+(BB)  Bound SDP: (355) DB: 302.09 	 Rounded: 216.00 	 level: 9 	 Status: 5
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (356) DB: 595.00 	 PB: 186.00 	 level: 9
+(BB)  Bound SDP: (356) DB: 247.73 	 Rounded: 186.00 	 level: 9 	 Status: 5
+-- Close node: 355
+-- Close node: 356
+-- Close node: 204
+
+++ Current DB(186): 508.55 	 level: 7 	Best P(336): 487.00 	 open_nodes: 117	 explored: 239 	 gap: 4.424 %
+			Number_solutions: 2400
+(BB)  Bound Combinatory: (357) DB: 610.00 	 PB: 266.00 	 level: 8
+(BB)  Bound SDP: (357) DB: 256.24 	 Rounded: 266.00 	 level: 8 	 Status: 5
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (358) DB: 590.00 	 PB: 117.00 	 level: 8
+(BB)  Bound SDP: (358) DB: 256.34 	 Rounded: 117.00 	 level: 8 	 Status: 5
+-- Close node: 357
+-- Close node: 358
+-- Close node: 186
+
+++ Current DB(135): 508.41 	 level: 6 	Best P(336): 487.00 	 open_nodes: 116	 explored: 242 	 gap: 4.397 %
+			Number_solutions: 1152
+(BB)  Bound Combinatory: (359) DB: 629.50 	 PB: 368.00 	 level: 7
+(BB)  Bound SDP: (359) DB: 318.01 	 Rounded: 368.00 	 level: 7 	 Status: 5
+			Number_solutions: 1728
+(BB)  Bound Combinatory: (360) DB: 596.00 	 PB: 383.00 	 level: 7
+(BB)  Bound SDP: (360) DB: 283.88 	 Rounded: 383.00 	 level: 7 	 Status: 5
+-- Close node: 359
+-- Close node: 360
+-- Close node: 135
+
+++ Current DB(180): 508.02 	 level: 7 	Best P(336): 487.00 	 open_nodes: 115	 explored: 245 	 gap: 4.316 %
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (361) DB: 591.50 	 PB: 182.00 	 level: 8
+(BB)  Bound SDP: (361) DB: 490.52 	 Rounded: 182.00 	 level: 8 	 Status: 1
+			Number_solutions: 2400
+(BB)  Bound Combinatory: (362) DB: 582.00 	 PB: 119.00 	 level: 8
+(BB)  Bound SDP: (362) DB: 218.68 	 Rounded: 119.00 	 level: 8 	 Status: 5
+-- Close node: 362
+-- Close node: 180
+
+++ Current DB(224): 507.25 	 level: 7 	Best P(336): 487.00 	 open_nodes: 115	 explored: 247 	 gap: 4.158 %
+			Number_solutions: 1600
+(BB)  Bound Combinatory: (363) DB: 550.00 	 PB: 59.00 	 level: 8
+(BB)  Bound SDP: (363) DB: 419.62 	 Rounded: 59.00 	 level: 8 	 Status: 5
+			Number_solutions: 2400
+(BB)  Bound Combinatory: (364) DB: 579.00 	 PB: 66.00 	 level: 8
+(BB)  Bound SDP: (364) DB: 437.31 	 Rounded: 66.00 	 level: 8 	 Status: 5
+-- Close node: 363
+-- Close node: 364
+-- Close node: 224
+
+++ Current DB(222): 506.90 	 level: 7 	Best P(336): 487.00 	 open_nodes: 114	 explored: 250 	 gap: 4.086 %
+			Number_solutions: 1600
+(BB)  Bound Combinatory: (365) DB: 574.50 	 PB: 230.00 	 level: 8
+(BB)  Bound SDP: (365) DB: 423.68 	 Rounded: 230.00 	 level: 8 	 Status: 5
+			Number_solutions: 3200
+(BB)  Bound Combinatory: (366) DB: 593.00 	 PB: 158.00 	 level: 8
+(BB)  Bound SDP: (366) DB: 266.38 	 Rounded: 158.00 	 level: 8 	 Status: 5
+-- Close node: 365
+-- Close node: 366
+-- Close node: 222
+
+++ Current DB(275): 505.40 	 level: 8 	Best P(336): 487.00 	 open_nodes: 113	 explored: 253 	 gap: 3.779 %
+			Number_solutions: 8000
+(BB)  Bound Combinatory: (367) DB: 616.00 	 PB: -27.00 	 level: 9
+(BB)  Bound SDP: (367) DB: 264.95 	 Rounded: -27.00 	 level: 9 	 Status: 5
+			Number_solutions: 1600
+(BB)  Bound Combinatory: (368) DB: 606.50 	 PB: 320.00 	 level: 9
+(BB)  Bound SDP: (368) DB: 267.96 	 Rounded: 320.00 	 level: 9 	 Status: 5
+-- Close node: 367
+-- Close node: 368
+-- Close node: 275
+
+++ Current DB(124): 505.29 	 level: 6 	Best P(336): 487.00 	 open_nodes: 112	 explored: 256 	 gap: 3.756 %
+			Number_solutions: 2880
+(BB)  Bound Combinatory: (369) DB: 596.00 	 PB: 118.00 	 level: 7
+(BB)  Bound SDP: (369) DB: 278.01 	 Rounded: 118.00 	 level: 7 	 Status: 5
+			Number_solutions: 2880
+(BB)  Bound Combinatory: (370) DB: 614.50 	 PB: 307.00 	 level: 7
+(BB)  Bound SDP: (370) DB: 284.66 	 Rounded: 307.00 	 level: 7 	 Status: 5
+-- Close node: 369
+-- Close node: 370
+-- Close node: 124
+
+++ Current DB(133): 505.04 	 level: 7 	Best P(336): 487.00 	 open_nodes: 111	 explored: 259 	 gap: 3.703 %
+			Number_solutions: 7200
+(BB)  Bound Combinatory: (371) DB: 600.50 	 PB: 176.00 	 level: 8
+(BB)  Bound SDP: (371) DB: 231.15 	 Rounded: 176.00 	 level: 8 	 Status: 5
+			Number_solutions: 7200
+(BB)  Bound Combinatory: (372) DB: 546.50 	 PB: -49.00 	 level: 8
+(BB)  Bound SDP: (372) DB: 265.62 	 Rounded: -49.00 	 level: 8 	 Status: 5
+-- Close node: 371
+-- Close node: 372
+-- Close node: 133
+
+++ Current DB(196): 504.42 	 level: 7 	Best P(336): 487.00 	 open_nodes: 110	 explored: 262 	 gap: 3.577 %
+			Number_solutions: 6000
+(BB)  Bound Combinatory: (373) DB: 586.00 	 PB: 204.00 	 level: 8
+(BB)  Bound SDP: (373) DB: 273.48 	 Rounded: 204.00 	 level: 8 	 Status: 5
+			Number_solutions: 3000
+(BB)  Bound Combinatory: (374) DB: 575.00 	 PB: 264.00 	 level: 8
+(BB)  Bound SDP: (374) DB: 235.44 	 Rounded: 264.00 	 level: 8 	 Status: 5
+-- Close node: 373
+-- Close node: 374
+-- Close node: 196
+
+++ Current DB(170): 504.36 	 level: 7 	Best P(336): 487.00 	 open_nodes: 109	 explored: 265 	 gap: 3.565 %
+			Number_solutions: 4320
+(BB)  Bound Combinatory: (375) DB: 608.50 	 PB: 195.00 	 level: 8
+(BB)  Bound SDP: (375) DB: 444.07 	 Rounded: 195.00 	 level: 8 	 Status: 5
+			Number_solutions: 2160
+(BB)  Bound Combinatory: (376) DB: 576.00 	 PB: 457.00 	 level: 8
+(BB)  Bound SDP: (376) DB: 408.53 	 Rounded: 457.00 	 level: 8 	 Status: 5
+-- Close node: 375
+-- Close node: 376
+-- Close node: 170
+
+++ Current DB(183): 503.70 	 level: 7 	Best P(336): 487.00 	 open_nodes: 108	 explored: 268 	 gap: 3.428 %
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (377) DB: 611.00 	 PB: 61.00 	 level: 8
+(BB)  Bound SDP: (377) DB: 277.45 	 Rounded: 61.00 	 level: 8 	 Status: 5
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (378) DB: 615.00 	 PB: 259.00 	 level: 8
+(BB)  Bound SDP: (378) DB: 298.94 	 Rounded: 259.00 	 level: 8 	 Status: 5
+-- Close node: 377
+-- Close node: 378
+-- Close node: 183
+
+++ Current DB(167): 502.81 	 level: 6 	Best P(336): 487.00 	 open_nodes: 107	 explored: 271 	 gap: 3.246 %
+			Number_solutions: 6400
+(BB)  Bound Combinatory: (379) DB: 606.00 	 PB: 308.00 	 level: 7
+(BB)  Bound SDP: (379) DB: 287.24 	 Rounded: 308.00 	 level: 7 	 Status: 5
+			Number_solutions: 2560
+(BB)  Bound Combinatory: (380) DB: 604.50 	 PB: 325.00 	 level: 7
+(BB)  Bound SDP: (380) DB: 269.56 	 Rounded: 325.00 	 level: 7 	 Status: 5
+-- Close node: 379
+-- Close node: 380
+-- Close node: 167
+
+++ Current DB(177): 502.78 	 level: 7 	Best P(336): 487.00 	 open_nodes: 106	 explored: 274 	 gap: 3.240 %
+			Number_solutions: 5760
+(BB)  Bound Combinatory: (381) DB: 563.00 	 PB: 99.00 	 level: 8
+(BB)  Bound SDP: (381) DB: 264.38 	 Rounded: 99.00 	 level: 8 	 Status: 5
+			Number_solutions: 2880
+(BB)  Bound Combinatory: (382) DB: 571.50 	 PB: 151.00 	 level: 8
+(BB)  Bound SDP: (382) DB: 237.80 	 Rounded: 151.00 	 level: 8 	 Status: 5
+-- Close node: 381
+-- Close node: 382
+-- Close node: 177
+
+++ Current DB(163): 502.57 	 level: 7 	Best P(336): 487.00 	 open_nodes: 105	 explored: 277 	 gap: 3.197 %
+			Number_solutions: 6400
+(BB)  Bound Combinatory: (383) DB: 566.50 	 PB: 76.00 	 level: 8
+(BB)  Bound SDP: (383) DB: 442.11 	 Rounded: 76.00 	 level: 8 	 Status: 5
+			Number_solutions: 3200
+(BB)  Bound Combinatory: (384) DB: 454.00 	 PB: 44.00 	 level: 8
+-- Close node: 383
+-- Close node: 384
+-- Close node: 163
+
+++ Current DB(213): 502.45 	 level: 7 	Best P(336): 487.00 	 open_nodes: 104	 explored: 280 	 gap: 3.173 %
+			Number_solutions: 4000
+(BB)  Bound Combinatory: (385) DB: 579.50 	 PB: 191.00 	 level: 8
+(BB)  Bound SDP: (385) DB: 284.52 	 Rounded: 191.00 	 level: 8 	 Status: 5
+			Number_solutions: 2000
+(BB)  Bound Combinatory: (386) DB: 561.00 	 PB: 163.00 	 level: 8
+(BB)  Bound SDP: (386) DB: 257.45 	 Rounded: 163.00 	 level: 8 	 Status: 5
+-- Close node: 385
+-- Close node: 386
+-- Close node: 213
+
+++ Current DB(175): 502.17 	 level: 8 	Best P(336): 487.00 	 open_nodes: 103	 explored: 283 	 gap: 3.115 %
+			Number_solutions: 7200
+(BB)  Bound Combinatory: (387) DB: 587.50 	 PB: -58.00 	 level: 9
+(BB)  Bound SDP: (387) DB: 255.83 	 Rounded: -58.00 	 level: 9 	 Status: 5
+			Number_solutions: 7200
+(BB)  Bound Combinatory: (388) DB: 592.00 	 PB: -60.00 	 level: 9
+(BB)  Bound SDP: (388) DB: 265.55 	 Rounded: -60.00 	 level: 9 	 Status: 5
+-- Close node: 387
+-- Close node: 388
+-- Close node: 175
+
+++ Current DB(174): 501.91 	 level: 8 	Best P(336): 487.00 	 open_nodes: 102	 explored: 286 	 gap: 3.062 %
+			Number_solutions: 4500
+(BB)  Bound Combinatory: (389) DB: 569.50 	 PB: 333.00 	 level: 9
+(BB)  Bound SDP: (389) DB: 263.87 	 Rounded: 333.00 	 level: 9 	 Status: 5
+			Number_solutions: 4500
+(BB)  Bound Combinatory: (390) DB: 553.00 	 PB: 133.00 	 level: 9
+(BB)  Bound SDP: (390) DB: 262.32 	 Rounded: 133.00 	 level: 9 	 Status: 5
+-- Close node: 389
+-- Close node: 390
+-- Close node: 174
+
+++ Current DB(188): 501.91 	 level: 7 	Best P(336): 487.00 	 open_nodes: 101	 explored: 289 	 gap: 3.061 %
+			Number_solutions: 3750
+(BB)  Bound Combinatory: (391) DB: 530.50 	 PB: 222.00 	 level: 8
+(BB)  Bound SDP: (391) DB: 237.34 	 Rounded: 222.00 	 level: 8 	 Status: 5
+			Number_solutions: 3750
+(BB)  Bound Combinatory: (392) DB: 562.50 	 PB: 235.00 	 level: 8
+(BB)  Bound SDP: (392) DB: 234.33 	 Rounded: 235.00 	 level: 8 	 Status: 5
+-- Close node: 391
+-- Close node: 392
+-- Close node: 188
+
+++ Current DB(281): 501.88 	 level: 8 	Best P(336): 487.00 	 open_nodes: 100	 explored: 292 	 gap: 3.056 %
+			Number_solutions: 1280
+(BB)  Bound Combinatory: (393) DB: 614.50 	 PB: 321.00 	 level: 9
+(BB)  Bound SDP: (393) DB: 260.36 	 Rounded: 321.00 	 level: 9 	 Status: 5
+			Number_solutions: 1920
+(BB)  Bound Combinatory: (394) DB: 594.00 	 PB: 244.00 	 level: 9
+(BB)  Bound SDP: (394) DB: 265.95 	 Rounded: 244.00 	 level: 9 	 Status: 5
+-- Close node: 393
+-- Close node: 394
+-- Close node: 281
+
+++ Current DB(154): 501.84 	 level: 7 	Best P(336): 487.00 	 open_nodes: 99	 explored: 295 	 gap: 3.048 %
+			Number_solutions: 2880
+(BB)  Bound Combinatory: (395) DB: 614.50 	 PB: 213.00 	 level: 8
+(BB)  Bound SDP: (395) DB: 293.86 	 Rounded: 213.00 	 level: 8 	 Status: 5
+			Number_solutions: 1920
+(BB)  Bound Combinatory: (396) DB: 602.50 	 PB: 312.00 	 level: 8
+(BB)  Bound SDP: (396) DB: 284.73 	 Rounded: 312.00 	 level: 8 	 Status: 5
+-- Close node: 395
+-- Close node: 396
+-- Close node: 154
+
+++ Current DB(242): 501.40 	 level: 8 	Best P(336): 487.00 	 open_nodes: 98	 explored: 298 	 gap: 2.956 %
+			Number_solutions: 1920
+(BB)  Bound Combinatory: (397) DB: 569.50 	 PB: 162.00 	 level: 9
+(BB)  Bound SDP: (397) DB: 246.29 	 Rounded: 162.00 	 level: 9 	 Status: 5
+			Number_solutions: 3840
+(BB)  Bound Combinatory: (398) DB: 600.00 	 PB: 16.00 	 level: 9
+(BB)  Bound SDP: (398) DB: 273.41 	 Rounded: 16.00 	 level: 9 	 Status: 5
+-- Close node: 397
+-- Close node: 398
+-- Close node: 242
+
+++ Current DB(171): 500.87 	 level: 7 	Best P(336): 487.00 	 open_nodes: 97	 explored: 301 	 gap: 2.848 %
+			Number_solutions: 1280
+(BB)  Bound Combinatory: (399) DB: 627.00 	 PB: 287.00 	 level: 8
+(BB)  Bound SDP: (399) DB: 288.01 	 Rounded: 287.00 	 level: 8 	 Status: 5
+			Number_solutions: 5120
+(BB)  Bound Combinatory: (400) DB: 606.00 	 PB: 210.00 	 level: 8
+(BB)  Bound SDP: (400) DB: 456.88 	 Rounded: 210.00 	 level: 8 	 Status: 5
+-- Close node: 399
+-- Close node: 400
+-- Close node: 171
+
+++ Current DB(193): 500.61 	 level: 7 	Best P(336): 487.00 	 open_nodes: 96	 explored: 304 	 gap: 2.796 %
+			Number_solutions: 9000
+(BB)  Bound Combinatory: (401) DB: 628.50 	 PB: 42.00 	 level: 8
+(BB)  Bound SDP: (401) DB: 291.88 	 Rounded: 42.00 	 level: 8 	 Status: 5
+			Number_solutions: 1800
+(BB)  Bound Combinatory: (402) DB: 595.50 	 PB: 234.00 	 level: 8
+(BB)  Bound SDP: (402) DB: 241.78 	 Rounded: 234.00 	 level: 8 	 Status: 5
+-- Close node: 401
+-- Close node: 402
+-- Close node: 193
+
+++ Current DB(207): 499.66 	 level: 7 	Best P(336): 487.00 	 open_nodes: 95	 explored: 307 	 gap: 2.600 %
+			Number_solutions: 1600
+(BB)  Bound Combinatory: (403) DB: 619.50 	 PB: 426.00 	 level: 8
+(BB)  Bound SDP: (403) DB: 427.27 	 Rounded: 426.00 	 level: 8 	 Status: 5
+			Number_solutions: 320
+(BB)  Bound Combinatory: (404) DB: 570.00 	 PB: 291.00 	 level: 8
+(BB)  Bound SDP: (404) DB: 253.80 	 Rounded: 291.00 	 level: 8 	 Status: 5
+-- Close node: 403
+-- Close node: 404
+-- Close node: 207
+
+++ Current DB(228): 499.58 	 level: 8 	Best P(336): 487.00 	 open_nodes: 94	 explored: 310 	 gap: 2.583 %
+			Number_solutions: 600
+(BB)  Bound Combinatory: (405) DB: 561.50 	 PB: 400.00 	 level: 9
+(BB)  Bound SDP: (405) DB: 251.47 	 Rounded: 400.00 	 level: 9 	 Status: 5
+			Number_solutions: 3000
+(BB)  Bound Combinatory: (406) DB: 581.00 	 PB: 270.00 	 level: 9
+(BB)  Bound SDP: (406) DB: 230.34 	 Rounded: 270.00 	 level: 9 	 Status: 5
+-- Close node: 405
+-- Close node: 406
+-- Close node: 228
+
+++ Current DB(214): 499.43 	 level: 7 	Best P(336): 487.00 	 open_nodes: 93	 explored: 313 	 gap: 2.552 %
+			Number_solutions: 6000
+(BB)  Bound Combinatory: (407) DB: 591.00 	 PB: 134.00 	 level: 8
+(BB)  Bound SDP: (407) DB: 263.50 	 Rounded: 134.00 	 level: 8 	 Status: 5
+			Number_solutions: 6000
+(BB)  Bound Combinatory: (408) DB: 594.00 	 PB: 268.00 	 level: 8
+(BB)  Bound SDP: (408) DB: 446.24 	 Rounded: 268.00 	 level: 8 	 Status: 5
+-- Close node: 407
+-- Close node: 408
+-- Close node: 214
+
+++ Current DB(277): 499.43 	 level: 8 	Best P(336): 487.00 	 open_nodes: 92	 explored: 316 	 gap: 2.552 %
+			Number_solutions: 6000
+(BB)  Bound Combinatory: (409) DB: 568.00 	 PB: 42.00 	 level: 9
+(BB)  Bound SDP: (409) DB: 261.30 	 Rounded: 42.00 	 level: 9 	 Status: 5
+			Number_solutions: 3000
+(BB)  Bound Combinatory: (410) DB: 557.50 	 PB: 284.00 	 level: 9
+(BB)  Bound SDP: (410) DB: 248.81 	 Rounded: 284.00 	 level: 9 	 Status: 5
+-- Close node: 409
+-- Close node: 410
+-- Close node: 277
+
+++ Current DB(181): 499.35 	 level: 7 	Best P(336): 487.00 	 open_nodes: 91	 explored: 319 	 gap: 2.536 %
+			Number_solutions: 1440
+(BB)  Bound Combinatory: (411) DB: 587.00 	 PB: 370.00 	 level: 8
+(BB)  Bound SDP: (411) DB: 255.70 	 Rounded: 370.00 	 level: 8 	 Status: 5
+			Number_solutions: 2880
+(BB)  Bound Combinatory: (412) DB: 570.50 	 PB: 376.00 	 level: 8
+(BB)  Bound SDP: (412) DB: 297.22 	 Rounded: 376.00 	 level: 8 	 Status: 5
+-- Close node: 411
+-- Close node: 412
+-- Close node: 181
+
+++ Current DB(199): 499.24 	 level: 7 	Best P(336): 487.00 	 open_nodes: 90	 explored: 322 	 gap: 2.513 %
+			Number_solutions: 6400
+(BB)  Bound Combinatory: (413) DB: 602.00 	 PB: 199.00 	 level: 8
+(BB)  Bound SDP: (413) DB: 450.45 	 Rounded: 199.00 	 level: 8 	 Status: 5
+			Number_solutions: 3200
+(BB)  Bound Combinatory: (414) DB: 582.00 	 PB: 242.00 	 level: 8
+(BB)  Bound SDP: (414) DB: 241.16 	 Rounded: 242.00 	 level: 8 	 Status: 5
+-- Close node: 413
+-- Close node: 414
+-- Close node: 199
+
+++ Current DB(164): 498.83 	 level: 7 	Best P(336): 487.00 	 open_nodes: 89	 explored: 325 	 gap: 2.430 %
+			Number_solutions: 3600
+(BB)  Bound Combinatory: (415) DB: 608.00 	 PB: 139.00 	 level: 8
+(BB)  Bound SDP: (415) DB: 291.92 	 Rounded: 139.00 	 level: 8 	 Status: 5
+			Number_solutions: 3600
+(BB)  Bound Combinatory: (416) DB: 570.00 	 PB: 104.00 	 level: 8
+(BB)  Bound SDP: (416) DB: 279.43 	 Rounded: 104.00 	 level: 8 	 Status: 5
+-- Close node: 415
+-- Close node: 416
+-- Close node: 164
+
+++ Current DB(253): 498.69 	 level: 8 	Best P(336): 487.00 	 open_nodes: 88	 explored: 328 	 gap: 2.400 %
+			Number_solutions: 3000
+(BB)  Bound Combinatory: (417) DB: 569.50 	 PB: 153.00 	 level: 9
+(BB)  Bound SDP: (417) DB: 243.02 	 Rounded: 153.00 	 level: 9 	 Status: 5
+			Number_solutions: 3000
+(BB)  Bound Combinatory: (418) DB: 589.00 	 PB: 351.00 	 level: 9
+(BB)  Bound SDP: (418) DB: 219.60 	 Rounded: 351.00 	 level: 9 	 Status: 5
+-- Close node: 417
+-- Close node: 418
+-- Close node: 253
+
+++ Current DB(219): 498.64 	 level: 8 	Best P(336): 487.00 	 open_nodes: 87	 explored: 331 	 gap: 2.389 %
+			Number_solutions: 1800
+(BB)  Bound Combinatory: (419) DB: 583.00 	 PB: 303.00 	 level: 9
+(BB)  Bound SDP: (419) DB: 274.36 	 Rounded: 303.00 	 level: 9 	 Status: 5
+			Number_solutions: 2700
+(BB)  Bound Combinatory: (420) DB: 607.50 	 PB: 161.00 	 level: 9
+(BB)  Bound SDP: (420) DB: 295.81 	 Rounded: 161.00 	 level: 9 	 Status: 5
+-- Close node: 419
+-- Close node: 420
+-- Close node: 219
+
+++ Current DB(208): 498.39 	 level: 7 	Best P(336): 487.00 	 open_nodes: 86	 explored: 334 	 gap: 2.339 %
+			Number_solutions: 6400
+(BB)  Bound Combinatory: (421) DB: 576.00 	 PB: -63.00 	 level: 8
+(BB)  Bound SDP: (421) DB: 268.50 	 Rounded: -63.00 	 level: 8 	 Status: 5
+			Number_solutions: 3200
+(BB)  Bound Combinatory: (422) DB: 594.50 	 PB: 159.00 	 level: 8
+(BB)  Bound SDP: (422) DB: 264.43 	 Rounded: 159.00 	 level: 8 	 Status: 5
+-- Close node: 421
+-- Close node: 422
+-- Close node: 208
+
+++ Current DB(195): 497.98 	 level: 7 	Best P(336): 487.00 	 open_nodes: 85	 explored: 337 	 gap: 2.254 %
+			Number_solutions: 3000
+(BB)  Bound Combinatory: (423) DB: 587.50 	 PB: 77.00 	 level: 8
+(BB)  Bound SDP: (423) DB: 221.64 	 Rounded: 77.00 	 level: 8 	 Status: 5
+			Number_solutions: 6000
+(BB)  Bound Combinatory: (424) DB: 613.50 	 PB: 204.00 	 level: 8
+(BB)  Bound SDP: (424) DB: 289.35 	 Rounded: 204.00 	 level: 8 	 Status: 5
+-- Close node: 423
+-- Close node: 424
+-- Close node: 195
+
+++ Current DB(200): 497.92 	 level: 7 	Best P(336): 487.00 	 open_nodes: 84	 explored: 340 	 gap: 2.242 %
+			Number_solutions: 2400
+(BB)  Bound Combinatory: (425) DB: 588.50 	 PB: 75.00 	 level: 8
+(BB)  Bound SDP: (425) DB: 240.52 	 Rounded: 75.00 	 level: 8 	 Status: 5
+			Number_solutions: 2400
+(BB)  Bound Combinatory: (426) DB: 609.00 	 PB: 183.00 	 level: 8
+(BB)  Bound SDP: (426) DB: 280.57 	 Rounded: 183.00 	 level: 8 	 Status: 5
+-- Close node: 425
+-- Close node: 426
+-- Close node: 200
+
+++ Current DB(235): 497.85 	 level: 7 	Best P(336): 487.00 	 open_nodes: 83	 explored: 343 	 gap: 2.227 %
+			Number_solutions: 192
+(BB)  Bound Combinatory: (427) DB: 615.50 	 PB: 478.00 	 level: 8
+(BB)  Bound SDP: (427) DB: 486.54 	 Rounded: 478.00 	 level: 8 	 Status: 5
+			Number_solutions: 768
+(BB)  Bound Combinatory: (428) DB: 614.00 	 PB: 363.00 	 level: 8
+(BB)  Bound SDP: (428) DB: 478.80 	 Rounded: 363.00 	 level: 8 	 Status: 5
+-- Close node: 427
+-- Close node: 428
+-- Close node: 235
+
+++ Current DB(153): 497.66 	 level: 7 	Best P(336): 487.00 	 open_nodes: 82	 explored: 346 	 gap: 2.188 %
+			Number_solutions: 2880
+(BB)  Bound Combinatory: (429) DB: 589.00 	 PB: 54.00 	 level: 8
+(BB)  Bound SDP: (429) DB: 267.87 	 Rounded: 54.00 	 level: 8 	 Status: 5
+			Number_solutions: 1920
+(BB)  Bound Combinatory: (430) DB: 557.50 	 PB: 197.00 	 level: 8
+(BB)  Bound SDP: (430) DB: 262.22 	 Rounded: 197.00 	 level: 8 	 Status: 5
+-- Close node: 429
+-- Close node: 430
+-- Close node: 153
+
+++ Current DB(260): 497.29 	 level: 8 	Best P(336): 487.00 	 open_nodes: 81	 explored: 349 	 gap: 2.113 %
+			Number_solutions: 2400
+(BB)  Bound Combinatory: (431) DB: 584.00 	 PB: 276.00 	 level: 9
+(BB)  Bound SDP: (431) DB: 287.75 	 Rounded: 276.00 	 level: 9 	 Status: 5
+			Number_solutions: 2400
+(BB)  Bound Combinatory: (432) DB: 555.50 	 PB: 120.00 	 level: 9
+(BB)  Bound SDP: (432) DB: 267.39 	 Rounded: 120.00 	 level: 9 	 Status: 5
+-- Close node: 431
+-- Close node: 432
+-- Close node: 260
+
+++ Current DB(126): 497.08 	 level: 6 	Best P(336): 487.00 	 open_nodes: 80	 explored: 352 	 gap: 2.069 %
+			Number_solutions: 5760
+(BB)  Bound Combinatory: (433) DB: 580.50 	 PB: 204.00 	 level: 7
+(BB)  Bound SDP: (433) DB: 225.00 	 Rounded: 204.00 	 level: 7 	 Status: 5
+			Number_solutions: 5760
+(BB)  Bound Combinatory: (434) DB: 617.00 	 PB: 77.00 	 level: 7
+(BB)  Bound SDP: (434) DB: 271.36 	 Rounded: 77.00 	 level: 7 	 Status: 5
+-- Close node: 433
+-- Close node: 434
+-- Close node: 126
+
+++ Current DB(329): 496.33 	 level: 7 	Best P(336): 487.00 	 open_nodes: 79	 explored: 355 	 gap: 1.916 %
+			Number_solutions: 1280
+(BB)  Bound Combinatory: (435) DB: 591.50 	 PB: 173.00 	 level: 8
+(BB)  Bound SDP: (435) DB: 262.51 	 Rounded: 173.00 	 level: 8 	 Status: 5
+			Number_solutions: 1920
+(BB)  Bound Combinatory: (436) DB: 606.50 	 PB: 395.00 	 level: 8
+(BB)  Bound SDP: (436) DB: 442.84 	 Rounded: 395.00 	 level: 8 	 Status: 5
+-- Close node: 435
+-- Close node: 436
+-- Close node: 329
+
+++ Current DB(184): 495.98 	 level: 7 	Best P(336): 487.00 	 open_nodes: 78	 explored: 358 	 gap: 1.845 %
+			Number_solutions: 2400
+(BB)  Bound Combinatory: (437) DB: 599.50 	 PB: 113.00 	 level: 8
+(BB)  Bound SDP: (437) DB: 266.12 	 Rounded: 113.00 	 level: 8 	 Status: 5
+			Number_solutions: 2400
+(BB)  Bound Combinatory: (438) DB: 598.50 	 PB: 124.00 	 level: 8
+(BB)  Bound SDP: (438) DB: 279.80 	 Rounded: 124.00 	 level: 8 	 Status: 5
+-- Close node: 437
+-- Close node: 438
+-- Close node: 184
+
+++ Current DB(210): 495.86 	 level: 7 	Best P(336): 487.00 	 open_nodes: 77	 explored: 361 	 gap: 1.820 %
+			Number_solutions: 1620
+(BB)  Bound Combinatory: (439) DB: 619.50 	 PB: 216.00 	 level: 8
+(BB)  Bound SDP: (439) DB: 284.65 	 Rounded: 216.00 	 level: 8 	 Status: 5
+			Number_solutions: 1620
+(BB)  Bound Combinatory: (440) DB: 633.50 	 PB: 160.00 	 level: 8
+(BB)  Bound SDP: (440) DB: 302.07 	 Rounded: 160.00 	 level: 8 	 Status: 5
+-- Close node: 439
+-- Close node: 440
+-- Close node: 210
+
+++ Current DB(298): 495.52 	 level: 8 	Best P(336): 487.00 	 open_nodes: 76	 explored: 364 	 gap: 1.750 %
+			Number_solutions: 864
+(BB)  Bound Combinatory: (441) DB: 570.00 	 PB: 180.00 	 level: 9
+(BB)  Bound SDP: (441) DB: 243.49 	 Rounded: 180.00 	 level: 9 	 Status: 5
+			Number_solutions: 864
+(BB)  Bound Combinatory: (442) DB: 619.00 	 PB: 487.00 	 level: 9
+(BB)  Bound SDP: (442) DB: 489.37 	 Rounded: 487.00 	 level: 9 	 Status: 1
+-- Close node: 441
+-- Close node: 298
+
+++ Current DB(240): 495.32 	 level: 8 	Best P(336): 487.00 	 open_nodes: 76	 explored: 366 	 gap: 1.709 %
+			Number_solutions: 720
+(BB)  Bound Combinatory: (443) DB: 566.50 	 PB: 249.00 	 level: 9
+(BB)  Bound SDP: (443) DB: 298.60 	 Rounded: 249.00 	 level: 9 	 Status: 5
+			Number_solutions: 1080
+(BB)  Bound Combinatory: (444) DB: 581.00 	 PB: 233.00 	 level: 9
+(BB)  Bound SDP: (444) DB: 272.41 	 Rounded: 233.00 	 level: 9 	 Status: 5
+-- Close node: 443
+-- Close node: 444
+-- Close node: 240
+
+++ Current DB(251): 495.21 	 level: 8 	Best P(336): 487.00 	 open_nodes: 75	 explored: 369 	 gap: 1.687 %
+			Number_solutions: 1800
+(BB)  Bound Combinatory: (445) DB: 566.50 	 PB: 67.00 	 level: 9
+(BB)  Bound SDP: (445) DB: 266.44 	 Rounded: 67.00 	 level: 9 	 Status: 5
+			Number_solutions: 2700
+(BB)  Bound Combinatory: (446) DB: 539.50 	 PB: 49.00 	 level: 9
+(BB)  Bound SDP: (446) DB: 272.76 	 Rounded: 49.00 	 level: 9 	 Status: 5
+-- Close node: 445
+-- Close node: 446
+-- Close node: 251
+
+++ Current DB(270): 495.09 	 level: 8 	Best P(336): 487.00 	 open_nodes: 74	 explored: 372 	 gap: 1.662 %
+			Number_solutions: 5760
+(BB)  Bound Combinatory: (447) DB: 579.00 	 PB: 255.00 	 level: 9
+(BB)  Bound SDP: (447) DB: 274.23 	 Rounded: 255.00 	 level: 9 	 Status: 5
+			Number_solutions: 2880
+(BB)  Bound Combinatory: (448) DB: 523.50 	 PB: 139.00 	 level: 9
+(BB)  Bound SDP: (448) DB: 220.60 	 Rounded: 139.00 	 level: 9 	 Status: 5
+-- Close node: 447
+-- Close node: 448
+-- Close node: 270
+
+++ Current DB(246): 495.00 	 level: 8 	Best P(336): 487.00 	 open_nodes: 73	 explored: 375 	 gap: 1.642 %
+-- Close node: 246
+
+++ Current DB(256): 494.65 	 level: 8 	Best P(336): 487.00 	 open_nodes: 72	 explored: 376 	 gap: 1.572 %
+			Number_solutions: 2000
+(BB)  Bound Combinatory: (449) DB: 561.50 	 PB: 113.00 	 level: 9
+(BB)  Bound SDP: (449) DB: 434.07 	 Rounded: 113.00 	 level: 9 	 Status: 5
+			Number_solutions: 400
+(BB)  Bound Combinatory: (450) DB: 599.50 	 PB: 408.00 	 level: 9
+(BB)  Bound SDP: (450) DB: 286.97 	 Rounded: 408.00 	 level: 9 	 Status: 5
+-- Close node: 449
+-- Close node: 450
+-- Close node: 256
+
+++ Current DB(263): 494.29 	 level: 7 	Best P(336): 487.00 	 open_nodes: 71	 explored: 379 	 gap: 1.497 %
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (451) DB: 586.00 	 PB: 230.00 	 level: 8
+(BB)  Bound SDP: (451) DB: 285.10 	 Rounded: 230.00 	 level: 8 	 Status: 5
+			Number_solutions: 3200
+(BB)  Bound Combinatory: (452) DB: 619.00 	 PB: 85.00 	 level: 8
+(BB)  Bound SDP: (452) DB: 276.04 	 Rounded: 85.00 	 level: 8 	 Status: 5
+-- Close node: 451
+-- Close node: 452
+-- Close node: 263
+
+++ Current DB(230): 494.06 	 level: 7 	Best P(336): 487.00 	 open_nodes: 70	 explored: 382 	 gap: 1.449 %
+			Number_solutions: 2160
+(BB)  Bound Combinatory: (453) DB: 587.50 	 PB: 277.00 	 level: 8
+(BB)  Bound SDP: (453) DB: 275.22 	 Rounded: 277.00 	 level: 8 	 Status: 5
+			Number_solutions: 2160
+(BB)  Bound Combinatory: (454) DB: 571.00 	 PB: -7.00 	 level: 8
+(BB)  Bound SDP: (454) DB: 241.62 	 Rounded: -7.00 	 level: 8 	 Status: 5
+-- Close node: 453
+-- Close node: 454
+-- Close node: 230
+
+++ Current DB(247): 494.01 	 level: 7 	Best P(336): 487.00 	 open_nodes: 69	 explored: 385 	 gap: 1.440 %
+			Number_solutions: 2880
+(BB)  Bound Combinatory: (455) DB: 608.00 	 PB: 244.00 	 level: 8
+(BB)  Bound SDP: (455) DB: 272.53 	 Rounded: 244.00 	 level: 8 	 Status: 5
+			Number_solutions: 5760
+(BB)  Bound Combinatory: (456) DB: 616.00 	 PB: 212.00 	 level: 8
+(BB)  Bound SDP: (456) DB: 300.29 	 Rounded: 212.00 	 level: 8 	 Status: 5
+-- Close node: 455
+-- Close node: 456
+-- Close node: 247
+
+++ Current DB(194): 493.31 	 level: 7 	Best P(336): 487.00 	 open_nodes: 68	 explored: 388 	 gap: 1.295 %
+			Number_solutions: 7200
+(BB)  Bound Combinatory: (457) DB: 577.50 	 PB: 170.00 	 level: 8
+(BB)  Bound SDP: (457) DB: 336.46 	 Rounded: 170.00 	 level: 8 	 Status: 5
+			Number_solutions: 3600
+(BB)  Bound Combinatory: (458) DB: 556.00 	 PB: 84.00 	 level: 8
+(BB)  Bound SDP: (458) DB: 242.13 	 Rounded: 84.00 	 level: 8 	 Status: 5
+-- Close node: 457
+-- Close node: 458
+-- Close node: 194
+
+++ Current DB(327): 493.11 	 level: 8 	Best P(336): 487.00 	 open_nodes: 67	 explored: 391 	 gap: 1.254 %
+			Number_solutions: 6000
+(BB)  Bound Combinatory: (459) DB: 530.00 	 PB: 131.00 	 level: 9
+(BB)  Bound SDP: (459) DB: 242.99 	 Rounded: 131.00 	 level: 9 	 Status: 5
+			Number_solutions: 3000
+(BB)  Bound Combinatory: (460) DB: 550.50 	 PB: 245.00 	 level: 9
+(BB)  Bound SDP: (460) DB: 217.63 	 Rounded: 245.00 	 level: 9 	 Status: 5
+-- Close node: 459
+-- Close node: 460
+-- Close node: 327
+
+++ Current DB(248): 492.97 	 level: 7 	Best P(336): 487.00 	 open_nodes: 66	 explored: 394 	 gap: 1.226 %
+			Number_solutions: 2880
+(BB)  Bound Combinatory: (461) DB: 588.50 	 PB: 180.00 	 level: 8
+(BB)  Bound SDP: (461) DB: 284.62 	 Rounded: 180.00 	 level: 8 	 Status: 5
+			Number_solutions: 5760
+(BB)  Bound Combinatory: (462) DB: 603.00 	 PB: 151.00 	 level: 8
+(BB)  Bound SDP: (462) DB: 276.08 	 Rounded: 151.00 	 level: 8 	 Status: 5
+-- Close node: 461
+-- Close node: 462
+-- Close node: 248
+
+++ Current DB(198): 492.87 	 level: 8 	Best P(336): 487.00 	 open_nodes: 65	 explored: 397 	 gap: 1.205 %
+			Number_solutions: 3000
+(BB)  Bound Combinatory: (463) DB: 560.50 	 PB: 312.00 	 level: 9
+(BB)  Bound SDP: (463) DB: 239.54 	 Rounded: 312.00 	 level: 9 	 Status: 5
+			Number_solutions: 3000
+(BB)  Bound Combinatory: (464) DB: 567.50 	 PB: 103.00 	 level: 9
+(BB)  Bound SDP: (464) DB: 263.35 	 Rounded: 103.00 	 level: 9 	 Status: 5
+-- Close node: 463
+-- Close node: 464
+-- Close node: 198
+
+++ Current DB(295): 492.84 	 level: 9 	Best P(336): 487.00 	 open_nodes: 64	 explored: 400 	 gap: 1.200 %
+			Number_solutions: 6000
+(BB)  Bound Combinatory: (465) DB: 602.50 	 PB: 270.00 	 level: 10
+(BB)  Bound SDP: (465) DB: 278.08 	 Rounded: 270.00 	 level: 10 	 Status: 5
+			Number_solutions: 6000
+(BB)  Bound Combinatory: (466) DB: 567.50 	 PB: 215.00 	 level: 10
+(BB)  Bound SDP: (466) DB: 260.64 	 Rounded: 215.00 	 level: 10 	 Status: 5
+-- Close node: 465
+-- Close node: 466
+-- Close node: 295
+
+++ Current DB(272): 491.99 	 level: 7 	Best P(336): 487.00 	 open_nodes: 63	 explored: 403 	 gap: 1.024 %
+			Number_solutions: 1600
+(BB)  Bound Combinatory: (467) DB: 546.00 	 PB: 226.00 	 level: 8
+(BB)  Bound SDP: (467) DB: 264.03 	 Rounded: 226.00 	 level: 8 	 Status: 5
+			Number_solutions: 2400
+(BB)  Bound Combinatory: (468) DB: 516.50 	 PB: 111.00 	 level: 8
+(BB)  Bound SDP: (468) DB: 281.36 	 Rounded: 111.00 	 level: 8 	 Status: 5
+-- Close node: 467
+-- Close node: 468
+-- Close node: 272
+
+++ Current DB(176): 490.99 	 level: 8 	Best P(336): 487.00 	 open_nodes: 62	 explored: 406 	 gap: 0.818 %
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (469) DB: 585.50 	 PB: 227.00 	 level: 9
+(BB)  Bound SDP: (469) DB: 252.22 	 Rounded: 227.00 	 level: 9 	 Status: 5
+			Number_solutions: 2400
+(BB)  Bound Combinatory: (470) DB: 592.50 	 PB: 305.00 	 level: 9
+(BB)  Bound SDP: (470) DB: 222.49 	 Rounded: 305.00 	 level: 9 	 Status: 5
+-- Close node: 469
+-- Close node: 470
+-- Close node: 176
+
+++ Current DB(205): 490.78 	 level: 7 	Best P(336): 487.00 	 open_nodes: 61	 explored: 409 	 gap: 0.775 %
+			Number_solutions: 2160
+(BB)  Bound Combinatory: (471) DB: 612.50 	 PB: 344.00 	 level: 8
+(BB)  Bound SDP: (471) DB: 288.38 	 Rounded: 344.00 	 level: 8 	 Status: 5
+			Number_solutions: 1440
+(BB)  Bound Combinatory: (472) DB: 548.50 	 PB: 100.00 	 level: 8
+(BB)  Bound SDP: (472) DB: 208.97 	 Rounded: 100.00 	 level: 8 	 Status: 5
+-- Close node: 471
+-- Close node: 472
+-- Close node: 205
+
+++ Current DB(361): 490.52 	 level: 8 	Best P(336): 487.00 	 open_nodes: 60	 explored: 412 	 gap: 0.722 %
+			Number_solutions: 1920
+(BB)  Bound Combinatory: (473) DB: 542.50 	 PB: 115.00 	 level: 9
+(BB)  Bound SDP: (473) DB: 278.34 	 Rounded: 115.00 	 level: 9 	 Status: 5
+			Number_solutions: 2880
+(BB)  Bound Combinatory: (474) DB: 591.50 	 PB: 182.00 	 level: 9
+(BB)  Bound SDP: (474) DB: 283.93 	 Rounded: 182.00 	 level: 9 	 Status: 5
+-- Close node: 473
+-- Close node: 474
+-- Close node: 361
+
+++ Current DB(166): 490.46 	 level: 7 	Best P(336): 487.00 	 open_nodes: 59	 explored: 415 	 gap: 0.710 %
+			Number_solutions: 2400
+(BB)  Bound Combinatory: (475) DB: 578.00 	 PB: 70.00 	 level: 8
+(BB)  Bound SDP: (475) DB: 296.42 	 Rounded: 70.00 	 level: 8 	 Status: 5
+			Number_solutions: 2400
+(BB)  Bound Combinatory: (476) DB: 551.00 	 PB: 296.00 	 level: 8
+(BB)  Bound SDP: (476) DB: 264.22 	 Rounded: 296.00 	 level: 8 	 Status: 5
+-- Close node: 475
+-- Close node: 476
+-- Close node: 166
+
+++ Current DB(343): 490.09 	 level: 8 	Best P(336): 487.00 	 open_nodes: 58	 explored: 418 	 gap: 0.634 %
+			Number_solutions: 1500
+(BB)  Bound Combinatory: (477) DB: 552.50 	 PB: 286.00 	 level: 9
+(BB)  Bound SDP: (477) DB: 223.85 	 Rounded: 286.00 	 level: 9 	 Status: 5
+			Number_solutions: 6000
+(BB)  Bound Combinatory: (478) DB: 564.50 	 PB: 166.00 	 level: 9
+(BB)  Bound SDP: (478) DB: 295.27 	 Rounded: 166.00 	 level: 9 	 Status: 5
+-- Close node: 477
+-- Close node: 478
+-- Close node: 343
+
+++ Current DB(226): 489.91 	 level: 8 	Best P(336): 487.00 	 open_nodes: 57	 explored: 421 	 gap: 0.598 %
+			Number_solutions: 4500
+(BB)  Bound Combinatory: (479) DB: 598.00 	 PB: -64.00 	 level: 9
+(BB)  Bound SDP: (479) DB: 259.06 	 Rounded: -64.00 	 level: 9 	 Status: 5
+			Number_solutions: 4500
+(BB)  Bound Combinatory: (480) DB: 557.50 	 PB: 211.00 	 level: 9
+(BB)  Bound SDP: (480) DB: 238.35 	 Rounded: 211.00 	 level: 9 	 Status: 5
+-- Close node: 479
+-- Close node: 480
+-- Close node: 226
+
+++ Current DB(202): 489.47 	 level: 7 	Best P(336): 487.00 	 open_nodes: 56	 explored: 424 	 gap: 0.506 %
+			Number_solutions: 1600
+(BB)  Bound Combinatory: (481) DB: 567.00 	 PB: 190.00 	 level: 8
+(BB)  Bound SDP: (481) DB: 270.63 	 Rounded: 190.00 	 level: 8 	 Status: 5
+			Number_solutions: 2400
+(BB)  Bound Combinatory: (482) DB: 541.50 	 PB: 68.00 	 level: 8
+(BB)  Bound SDP: (482) DB: 255.75 	 Rounded: 68.00 	 level: 8 	 Status: 5
+-- Close node: 481
+-- Close node: 482
+-- Close node: 202
+
+++ Current DB(442): 489.37 	 level: 9 	Best P(336): 487.00 	 open_nodes: 55	 explored: 427 	 gap: 0.487 %
+			Number_solutions: 432
+(BB)  Bound Combinatory: (483) DB: 518.00 	 PB: 397.00 	 level: 10
+(BB)  Bound SDP: (483) DB: 196.80 	 Rounded: 397.00 	 level: 10 	 Status: 5
+			Number_solutions: 432
+(BB)  Bound Combinatory: (484) DB: 613.00 	 PB: 487.00 	 level: 10
+(BB)  Bound SDP: (484) DB: 487.89 	 Rounded: 487.00 	 level: 10 	 Status: 1
+-- Close node: 483
+-- Close node: 442
+
+++ Current DB(173): 488.55 	 level: 8 	Best P(336): 487.00 	 open_nodes: 55	 explored: 429 	 gap: 0.318 %
+			Number_solutions: 4500
+(BB)  Bound Combinatory: (485) DB: 570.50 	 PB: 132.00 	 level: 9
+(BB)  Bound SDP: (485) DB: 254.85 	 Rounded: 132.00 	 level: 9 	 Status: 5
+			Number_solutions: 4500
+(BB)  Bound Combinatory: (486) DB: 617.50 	 PB: 158.00 	 level: 9
+(BB)  Bound SDP: (486) DB: 268.08 	 Rounded: 158.00 	 level: 9 	 Status: 5
+-- Close node: 485
+-- Close node: 486
+-- Close node: 173
+
+++ Current DB(351): 488.25 	 level: 9 	Best P(336): 487.00 	 open_nodes: 54	 explored: 432 	 gap: 0.257 %
+			Number_solutions: 3000
+(BB)  Bound Combinatory: (487) DB: 550.50 	 PB: 213.00 	 level: 10
+(BB)  Bound SDP: (487) DB: 243.95 	 Rounded: 213.00 	 level: 10 	 Status: 5
+			Number_solutions: 3000
+(BB)  Bound Combinatory: (488) DB: 574.50 	 PB: 191.00 	 level: 10
+(BB)  Bound SDP: (488) DB: 273.10 	 Rounded: 191.00 	 level: 10 	 Status: 5
+-- Close node: 487
+-- Close node: 488
+-- Close node: 351
+
+++ Current DB(259): 488.19 	 level: 8 	Best P(336): 487.00 	 open_nodes: 53	 explored: 435 	 gap: 0.244 %
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (489) DB: 600.50 	 PB: 235.00 	 level: 9
+(BB)  Bound SDP: (489) DB: 265.77 	 Rounded: 235.00 	 level: 9 	 Status: 5
+			Number_solutions: 4800
+(BB)  Bound Combinatory: (490) DB: 542.00 	 PB: 89.00 	 level: 9
+(BB)  Bound SDP: (490) DB: 256.92 	 Rounded: 89.00 	 level: 9 	 Status: 5
+-- Close node: 489
+-- Close node: 490
+-- Close node: 259
+
+++ Current DB(274): 488.04 	 level: 7 	Best P(336): 487.00 	 open_nodes: 52	 explored: 438 	 gap: 0.214 %
+			Number_solutions: 1600
+(BB)  Bound Combinatory: (491) DB: 539.00 	 PB: 174.00 	 level: 8
+(BB)  Bound SDP: (491) DB: 275.29 	 Rounded: 174.00 	 level: 8 	 Status: 5
+			Number_solutions: 2400
+(BB)  Bound Combinatory: (492) DB: 541.00 	 PB: 173.00 	 level: 8
+(BB)  Bound SDP: (492) DB: 268.17 	 Rounded: 173.00 	 level: 8 	 Status: 5
+-- Close node: 491
+-- Close node: 492
+-- Close node: 274
+
+++ Current DB(484): 487.89 	 level: 10 	Best P(336): 487.00 	 open_nodes: 51	 explored: 441 	 gap: 0.183 %
+			Number_solutions: 288
+(BB)  Bound Combinatory: (493) DB: 578.50 	 PB: 356.00 	 level: 11
+(BB)  Bound SDP: (493) DB: 250.79 	 Rounded: 356.00 	 level: 11 	 Status: 5
+			Number_solutions: 144
+(BB)  Bound Combinatory: (494) DB: 596.00 	 PB: 370.00 	 level: 11
+(BB)  Bound SDP: (494) DB: 487.00 	 Rounded: 370.00 	 level: 11 	 Status: -8
+-- Close node: 493
+-- Close node: 494
+-- Close node: 484
+
+++ Current DB(233): 487.64 	 level: 8 	Best P(336): 487.00 	 open_nodes: 50	 explored: 444 	 gap: 0.132 %
+			Number_solutions: 1800
+(BB)  Bound Combinatory: (495) DB: 613.00 	 PB: 32.00 	 level: 9
+(BB)  Bound SDP: (495) DB: 283.60 	 Rounded: 32.00 	 level: 9 	 Status: 5
+			Number_solutions: 2700
+(BB)  Bound Combinatory: (496) DB: 570.00 	 PB: 100.00 	 level: 9
+(BB)  Bound SDP: (496) DB: 276.17 	 Rounded: 100.00 	 level: 9 	 Status: 5
+-- Close node: 495
+-- Close node: 496
+-- Close node: 233
+
+++ Current DB(155): 487.28 	 level: 6 	Best P(336): 487.00 	 open_nodes: 49	 explored: 447 	 gap: 0.058 %
+			Number_solutions: 576
+(BB)  Bound Combinatory: (497) DB: 611.50 	 PB: 378.00 	 level: 7
+(BB)  Bound SDP: (497) DB: 426.28 	 Rounded: 378.00 	 level: 7 	 Status: 5
+			Number_solutions: 384
+(BB)  Bound Combinatory: (498) DB: 540.50 	 PB: 475.00 	 level: 7
+(BB)  Bound SDP: (498) DB: 390.96 	 Rounded: 475.00 	 level: 7 	 Status: 5
+-- Close node: 497
+-- Close node: 498
+-- Close node: 155
+-- Close node: 201
+-- Close node: 190
+-- Close node: 287
+-- Close node: 250
+-- Close node: 297
+-- Close node: 221
+-- Close node: 206
+-- Close node: 169
+-- Close node: 279
+-- Close node: 236
+-- Close node: 255
+-- Close node: 231
+-- Close node: 278
+-- Close node: 265
+-- Close node: 243
+-- Close node: 244
+-- Close node: 296
+-- Close node: 223
+-- Close node: 293
+-- Close node: 283
+-- Close node: 271
+-- Close node: 266
+-- Close node: 249
+-- Close node: 239
+-- Close node: 217
+-- Close node: 286
+-- Close node: 254
+-- Close node: 264
+-- Close node: 292
+-- Close node: 285
+-- Close node: 257
+-- Close node: 262
+-- Close node: 229
+-- Close node: 252
+-- Close node: 241
+-- Close node: 225
+-- Close node: 261
+-- Close node: 289
+-- Close node: 216
+-- Close node: 290
+-- Close node: 291
+-- Close node: 232
+-- Close node: 268
+-- Close node: 282
+-- Close node: 294
+-- Close node: 288
+-- Close node: 269
+-- Close node: 276
+-- Close node: 267
+
+Branch & Bound Z*: 487.00	Explored_nodes: 499	 Best node: 298	
+Nodes list solution (cplex): 4 11 27 39 43 54 
+istanze/e/12e_n60c10.dat Z_opt: 487.00  r_best_PB: 258.00  r_DB: 713.50  r_gap: 176.55 %  t_root: 0.24  Best_n: 298  depth_best: 8   Exp_nodes: 499   max_depth: 11  Time: 53.10
