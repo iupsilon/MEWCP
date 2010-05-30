@@ -70,7 +70,7 @@ int main (int argc, char * argv[])
     double t_system;
     double t_user_start;
     double t_system_start;
-    
+
     double time_limit;
 
 
@@ -95,8 +95,8 @@ int main (int argc, char * argv[])
     }
 
 
-	/* Parsing time limit */
-	time_limit = 3600;
+    /* Parsing time limit */
+    time_limit = 3600;
 
     iterations = atoi(argv[1]);
     filename_in = argv[2];
@@ -109,7 +109,7 @@ int main (int argc, char * argv[])
 
     /* I take starting time */
     Take_Time(&t_user_start,&t_system_start);
-    
+
 
     MEWCP_load_AMPL_instance(filename_in,&matrix_weights);
 
@@ -171,8 +171,9 @@ int main (int argc, char * argv[])
 
 #if defined MEWCP_DSDP_VERBOSE1
 
+#if !defined ROOT_NODE_SIMULATION_ONLY
 
-    printf("%s Z_opt: %.2lf  DB_left: %.2lf  r_best_PB: %.2lf  r_DB: %.2lf  r_gap: %.2lf %%  t_root: %.2lf  Best_n: %u  depth_best: %u   Exp_nodes: %u   max_depth: %u  Time: %.2lf\n",
+    printf("%s Z_opt: %.2lf  DB_left: %.2lf  r_best_PB: %.2lf  r_DB: %.2lf  r_gap: %.2lf %%  t_root: %.2lf  Best_n: %u  depth_best: %u   Exp_nodes: %u   max_depth: %u  Time: %.2lf",
            filename_in,
            solution_bb->z_opt,
            solution_bb->best_bound_left,
@@ -185,7 +186,21 @@ int main (int argc, char * argv[])
            solution_bb->number_explored_nodes,
            solution_bb->max_exploration_depth,
            (t_user-t_user_start) + ( t_system-t_system_start) );
+#endif
 
+#if defined ROOT_NODE_SIMULATION_ONLY
+
+    printf("%s Root_node DB_comb: %.2lf \t DB_semidefinite: %.2lf \t PB_comb: %.2lf \t PB_semidefinite: %.2lf \t t_DB_comb: %.2lf \t t_DB_semidefinite: %.2lf",
+    			filename_in,
+    			solution_bb->DB_root_combinatorial,
+                solution_bb->DB_root_semidefinite,
+                solution_bb->PB_root_combinatorial,
+                solution_bb->PB_root_semidefinite,
+                solution_bb->time_DB_root_combinatorial,
+        		solution_bb->time_DB_root_semidefinite);
+#endif
+
+    printf("\n");
 #endif
 
     if (argc == 4)
@@ -196,8 +211,8 @@ int main (int argc, char * argv[])
             exit(EXIT_FAILURE);
         }
 
-
-        fprintf(file_out ,"%s Z_opt: %.2lf\tDB_left: %.2lf\tr_best_PB: %.2lf\tr_DB: %.2lf\tr_gap: %.2lf %%\tt_root: %.2lf\t Best_n: %u\t depth_best: %u \t Exp_nodes: %u \t max_depth: %u \t Time: %.2lf\n",
+#if !defined ROOT_NODE_SIMULATION_ONLY
+        fprintf(file_out ,"%s Z_opt: %.2lf\tDB_left: %.2lf\tr_best_PB: %.2lf\tr_DB: %.2lf\tr_gap: %.2lf %%\tt_root: %.2lf\t Best_n: %u\t depth_best: %u \t Exp_nodes: %u \t max_depth: %u \t Time: %.2lf",
                 filename_in,
                 solution_bb->z_opt,
                 solution_bb->best_bound_left,
@@ -210,9 +225,22 @@ int main (int argc, char * argv[])
                 solution_bb->number_explored_nodes,
                 solution_bb->max_exploration_depth,
                 (t_user-t_user_start) + ( t_system-t_system_start) );
+#endif
 
 
+#if defined ROOT_NODE_SIMULATION_ONLY
 
+        fprintf(file_out,"%s Root_node DB_comb: %.2lf \t DB_semidefinite: %.2lf \t PB_comb: %.2lf \t PB_semidefinite: %.2lf \t t_DB_comb: %.2lf \t t_DB_semidefinite: %.2lf",
+        		filename_in,
+        		solution_bb->DB_root_combinatorial,
+                solution_bb->DB_root_semidefinite,
+                solution_bb->PB_root_combinatorial,
+                solution_bb->PB_root_semidefinite,
+                solution_bb->time_DB_root_combinatorial,
+                solution_bb->time_DB_root_semidefinite);
+#endif
+
+        fprintf(file_out,"\n");
 
         fclose(file_out);
     }

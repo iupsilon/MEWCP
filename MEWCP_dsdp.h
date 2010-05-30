@@ -13,8 +13,8 @@
 #include "MEWCP_tabu_definitions.h"
 
 
-
-
+// Active the simulation until the root node then stops.
+//# define ROOT_NODE_SIMULATION_ONLY
 
 /* Activation of the combinatorial DB bound */
 #define COMBINATORIAL_BOUND_ACTIVE
@@ -96,8 +96,14 @@ typedef struct solution_bb_s
     double DB_root;
     double PB_root_bestK;
     double gap_root;
+    double DB_root_combinatorial; // says the value of combinatorial bound
+    double DB_root_semidefinite;  // says the value of semidefinite bound
+    double PB_root_combinatorial;
+    double PB_root_semidefinite;
     double timestamp_user_time_root;
     double timestamp_system_time_root;
+    double time_DB_root_combinatorial;  //time for combinatorial at root node 
+    double time_DB_root_semidefinite;   //time for semidefinite at root node
 }
 solution_bb_t;
 

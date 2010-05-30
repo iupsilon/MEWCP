@@ -52,9 +52,15 @@ solution_bb_t * MEWCP_branch_and_bound(open_node_t * open_root_node, constraint_
     float gap; /* is the current % gap */
     bool left_to_be_closed;
     bool right_to_be_closed;
+    
+    double time_tmp = 0;  //useful to take time
 
     cardinality_partitions = num_nodes/num_partitions;
 
+    /* Root node bounded, ready to gather some result informations */
+    solution_bb_t * solution_bb;
+    solution_bb = MEWCP_allocate_solution_bb(num_partitions);
+    
     list_branching = MEWCP_allocate_list_branching();
     list_branching->list_nodes_best_solution = MEWCP_allocate_list_nodes_solution(num_partitions);
 
@@ -96,8 +102,16 @@ solution_bb_t * MEWCP_branch_and_bound(open_node_t * open_root_node, constraint_
     {
 #if defined COMBINATORIAL_BOUND_ACTIVE
         // Combinatorial BOUND
+        
+        time_tmp = get_cpu_time();  // I take the time in order to determine how long the combinatorial bounding takes
         MEWCP_bound_combinatorial(open_root_node,matrix_weigths,num_partitions,num_nodes/num_partitions,list_branching->best_primal);
         new_best_PB_found = MEWCP_is_new_best_PB_and_update(open_root_node,list_branching,num_partitions);
+		
+		// I set the root DB due to combinatorial
+		solution_bb->DB_root_combinatorial = open_root_node->DB_comb;
+		solution_bb->PB_root_combinatorial = open_root_node->PB_comb;
+		solution_bb->time_DB_root_combinatorial = get_cpu_time() - time_tmp;
+		
 
 #if defined MEWCP_DSDP_VERBOSE1
 
@@ -112,7 +126,12 @@ solution_bb_t * MEWCP_branch_and_bound(open_node_t * open_root_node, constraint_
         /* Semidefinite BOUND */
         MEWCP_bound(open_root_node,constraints_matrix,matrix_weigths, bi,num_constraints, dim_matrix, num_nodes,num_partitions, list_branching->best_primal);
         new_best_PB_found = MEWCP_is_new_best_PB_and_update(open_root_node,list_branching,num_partitions);
-
+		
+		// I set the root DB due to semidefinite
+		solution_bb->DB_root_semidefinite = open_root_node->DB_SDP;
+		solution_bb->PB_root_semidefinite = open_root_node->PB_SDP;
+		solution_bb->time_DB_root_semidefinite = get_cpu_time() - solution_bb->time_DB_root_combinatorial;
+		
 #if defined MEWCP_DSDP_VERBOSE1
 
         if( new_best_PB_found  == true)
@@ -124,10 +143,9 @@ solution_bb_t * MEWCP_branch_and_bound(open_node_t * open_root_node, constraint_
         /* end semidefinite bound */
     }
 
-    /* Root node bounded, ready to gather some result informations */
-    solution_bb_t * solution_bb;
-    solution_bb = MEWCP_allocate_solution_bb(num_partitions);
 
+
+	/* gathering some root informations */
     solution_bb->DB_root = open_root_node->DB;
     solution_bb->PB_root_bestK = list_branching->best_primal;
     solution_bb->gap_root = (open_root_node->DB - list_branching->best_primal)/list_branching->best_primal*100;
@@ -145,6 +163,10 @@ solution_bb_t * MEWCP_branch_and_bound(open_node_t * open_root_node, constraint_
 
     while(MEWCP_is_list_branching_empty(list_branching) == false)
     {
+    	#if defined ROOT_NODE_SIMULATION_ONLY
+    	// I only want the root simulation... i break!
+    	break;
+    	#endif
     	
     	if ((get_cpu_time() - time_limit) > MEWCP_EPSILON)
     	{
