@@ -96,7 +96,7 @@ int main (int argc, char * argv[])
 
 
 	/* Parsing time limit */
-	time_limit = 10;
+	time_limit = 3600;
 
     iterations = atoi(argv[1]);
     filename_in = argv[2];
