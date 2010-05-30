@@ -41,9 +41,11 @@
 
 #define MEWCP_GAP_TOLERANCE 0.001
 #define MEWCP_POTENTIAL_PARAMETER 5
-#define MEWCP_REUSE_MATRIX 1
+#define MEWCP_REUSE_MATRIX 2
 #define MEWCP_SET_PNORM_TOLERANCE 1.0
 #define MEWCP_ALPHA 1.0
+
+//#define MEWCP_R_ZERO 1.0
 
 #define MEWCP_EPSILON 10E-4
 #define MEWCP_MIN_DOUBLE -10E7 /* Is the (double) -infinity */
@@ -57,7 +59,9 @@ typedef struct solution_bb_s
 {
     double z_opt;
     unsigned int number_explored_nodes;
-    unsigned int id_node_best_primal;
+    unsigned int node_best_primal;
+    unsigned int depth_best_primal;
+    unsigned int max_exploration_depth;
     int * list_nodes_best_solution;
     
     /* informations at the root node */
@@ -93,8 +97,10 @@ typedef struct open_node_s
 {
 
     int id_node;	/* if i is father's id, id_node is left:(2*i +1) right:(2*i +2) */
+    unsigned int serial_node;
     double DB;		/* my dual bound */
     double PB;		/* my primal bound */
+    unsigned int depth_level;  /* Is the level in the tree */
     list_blocked_nodes_t * list_blocked_nodes;
     constraint_t * vect_mat_branching_contraint;
     double * vect_y;
@@ -126,6 +132,11 @@ typedef struct list_branching_s
     unsigned int number_open_nodes;
     unsigned int number_explored_nodes;
     unsigned int id_node_best_primal;
+    unsigned int serial_node_best_primal;
+    unsigned int depth_node_best_primal;
+    unsigned int max_exploration_level;
+    unsigned int current_serial_number;
+    
     int * list_nodes_best_solution;
 
     branching_open_node_t * head;
@@ -142,6 +153,7 @@ list_branching_t;
 
 /* returns false if all partitions have only one fractional value */
 bool MEWCP_generate_equi_branch_node(double * diag_X, const unsigned int n, const unsigned int m,  int * out_num_part,  int * out_id_node);
+bool MEWCP_generate_perfect_equi_branch(double * diag_X, const unsigned int n, const unsigned int m,  int * out_num_part,  int * out_id_node);
 
 /*
  * Generate a new list of blocked nodes based on an old blocked list end equibranch decision 
@@ -160,11 +172,12 @@ void MEWCP_generate_list_blocked_nodes_branching_sons(list_blocked_nodes_t * fat
         const unsigned int cardinality_partition  );
 
 /* Execute sd to the open_node */
-void MEWCP_bound(open_node_t * open_node, constraint_t * constraints_matrix,matrix_weights_t * matrix_weigths,double * bi,
+void MEWCP_bound(open_node_t * open_node, constraint_t * constraints_matrix,matrix_weights_t * matrix_weigths, double * bi,
                  const unsigned int num_constraints,
                  const unsigned int dim_matrix,
                  const unsigned int num_nodes,
-                 const unsigned int num_partitions);
+                 const unsigned int num_partitions,
+                 const double best_PB);
 
 
 bool MEWCP_branch( open_node_t * open_node,
@@ -172,8 +185,12 @@ bool MEWCP_branch( open_node_t * open_node,
                    const unsigned int num_nodes,
                    const unsigned int num_partitions,
                    const unsigned int num_constraints,
+                   const unsigned int father_depth_level,
+                   unsigned int * serial_number_node,
                    open_node_t ** out_left_son,
                    open_node_t ** out_right_son);
+
+
 
 
 

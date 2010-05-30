@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#parametri:
+# numero iterazioni tabu
+# file output
+
+
 #Simulazione su tutte le istanze
 
 path_istanze=./istanze

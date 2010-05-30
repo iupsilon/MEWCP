@@ -49,8 +49,8 @@ int main (int argc, char * argv[])
 
 
     char * filename_in;
-    
-    
+
+
     unsigned int dim_matrix;
     FILE * file_out;
     char * filename_out = NULL;
@@ -97,7 +97,7 @@ int main (int argc, char * argv[])
     filename_in = argv[2];
     if (argc == 4)
     {
-        
+
         filename_out = argv[3];
     }
 
@@ -116,10 +116,11 @@ int main (int argc, char * argv[])
 
     tabu_result = MEWCP_compute_tabu_search(iterations,&matrix_weights,&node_list);
 
+#if defined MEWCP_DSDP_VERBOSE1
 
-    //MEWCP_print_solution(&matrix_weights,&tabu_result.solution);
-    //printf("%d %d\n",tabu_result.solution.Z,tabu_result.last_improvement_iteration);
-
+    MEWCP_print_solution(&matrix_weights,&tabu_result.solution);
+    printf("z tabu:%.2lf\tbest I: %d\n",tabu_result.solution.Z,tabu_result.last_improvement_iteration);
+#endif
 
 
     MEWCP_generate_sdp_constraints(&matrix_weights, &constraints_matrix,&bi, &vect_mat_branching_constraints,MEWCP_ALPHA,
@@ -139,6 +140,9 @@ int main (int argc, char * argv[])
     open_node = MEWCP_allocate_open_node();
 
     open_node->id_node = 0;
+    open_node->depth_level = 0;
+    open_node->serial_node = 0;
+
 
     open_node->list_blocked_nodes = MEWCP_allocate_list_blocked_nodes(num_nodes);
     open_node->vect_mat_branching_contraint = vect_mat_branching_constraints;
@@ -161,14 +165,17 @@ int main (int argc, char * argv[])
 #if defined MEWCP_DSDP_VERBOSE1
 
 
-    printf("Z_opt: %.2lf\tr_best_PB: %.2lf\tr_DB: %.2lf\tr_gap: %.2lf %%\ttime_root: %.2lf\t Best_node: %u\t Exp_nodes: %u \t Time: %.2lf\n",
+    printf("%s Z_opt: %.2lf  r_best_PB: %.2lf  r_DB: %.2lf  r_gap: %.2lf %%  t_root: %.2lf  Best_n: %u  depth_best: %u   Exp_nodes: %u   max_depth: %u  Time: %.2lf\n",
+           filename_in,
            solution_bb->z_opt,
            solution_bb->PB_root_bestK,
            solution_bb->DB_root,
            solution_bb->gap_root,
            (solution_bb->timestamp_user_time_root - t_user_start ) + ( solution_bb->timestamp_system_time_root - t_system_start),
-           solution_bb->id_node_best_primal,
+           solution_bb->node_best_primal,
+           solution_bb->depth_best_primal,
            solution_bb->number_explored_nodes,
+           solution_bb->max_exploration_depth,
            (t_user-t_user_start) + ( t_system-t_system_start) );
 
 
@@ -181,15 +188,23 @@ int main (int argc, char * argv[])
             show_usage();
             exit(EXIT_FAILURE);
         }
-        fprintf(file_out,"Z_opt: %.2lf\tr_best_PB: %.2lf\tr_DB: %.2lf\tr_gap: %.2lf %%\ttime_root: %.2lf\t Best_node: %u\t Exp_nodes: %u \t Time: %.2lf\n",
+
+
+        fprintf(file_out ,"%s Z_opt: %.2lf\tr_best_PB: %.2lf\tr_DB: %.2lf\tr_gap: %.2lf %%\tt_root: %.2lf\t Best_n: %u\t depth_best: %u \t Exp_nodes: %u \t max_depth: %u \t Time: %.2lf\n",
+                filename_in,
                 solution_bb->z_opt,
                 solution_bb->PB_root_bestK,
                 solution_bb->DB_root,
                 solution_bb->gap_root,
                 (solution_bb->timestamp_user_time_root - t_user_start ) + ( solution_bb->timestamp_system_time_root - t_system_start),
-                solution_bb->id_node_best_primal,
+                solution_bb->node_best_primal,
+                solution_bb->depth_best_primal,
                 solution_bb->number_explored_nodes,
+                solution_bb->max_exploration_depth,
                 (t_user-t_user_start) + ( t_system-t_system_start) );
+
+
+
 
         fclose(file_out);
     }
@@ -204,9 +219,9 @@ int main (int argc, char * argv[])
 
 void show_usage(void)
 {
-    printf(" ***************	*****************************************\n");
+    printf(" ********************************************************\n");
     printf(" *\t\t\t\t\t\t\t*\n");
-    printf(" *  Project: Maximum Edge Weighted Clique Problem\t*\n");		
+    printf(" *  Project: Maximum Edge Weighted Clique Problem\t*\n");
     printf(" *  Authors:\t\t\t\t\t\t*\n");
     printf(" *  (c) 2009 Yari Melzani (yari.melzani@gmail.com)\t*\n");
     printf(" *\t\t\t\t\t\t\t*\n");

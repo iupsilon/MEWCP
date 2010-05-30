@@ -738,7 +738,8 @@ void MEWCP_write_constraints_4C3_A( constraint_t * sdp_constraints_matrix, const
 
             }
         }
-
+	
+	
         // I write on the rows of other boxes 1/2
         for(j=0;j<n;++j)
         {
@@ -759,6 +760,9 @@ void MEWCP_write_constraints_4C3_A( constraint_t * sdp_constraints_matrix, const
 
             }
         }
+        
+        
+        
         sdp_constraints_matrix[k].num_nz = pos_elem;
         pos_elem = 0;
         ++k;

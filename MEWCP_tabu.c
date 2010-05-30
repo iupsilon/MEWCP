@@ -370,8 +370,8 @@ void MEWCP_load_AMPL_instance(char * filename_AMPL, matrix_weights_t * matrix_we
 
 
     // reading n,m
-    fscanf(file_AMPL,"%s %s %s %u %s\n",notcare,notcare1,notcare2,&n,notcare3);
-    fscanf(file_AMPL,"%s %s %s %u %s\n",notcare,notcare1,notcare2,&m,notcare3);
+    (void) fscanf(file_AMPL,"%s %s %s %u %s\n",notcare,notcare1,notcare2,&n,notcare3);
+    (void) fscanf(file_AMPL,"%s %s %s %u %s\n",notcare,notcare1,notcare2,&m,notcare3);
 
     // I compute c from m,n
     c= n/m;
@@ -396,7 +396,7 @@ void MEWCP_load_AMPL_instance(char * filename_AMPL, matrix_weights_t * matrix_we
     {
         for(j=0;j<=i;++j)
         {
-            fscanf(file_AMPL,"%s %d\t",notcare4,&weight_ij);
+            (void) fscanf(file_AMPL,"%s %lf\t",notcare4,&weight_ij);
             matrix_weights->weight[i][j] = weight_ij;
 
 #if defined MEWCP_TABU_DEBUG1
@@ -825,7 +825,7 @@ void MEWCP_print_matrix_weights(matrix_weights_t *  matrix_weights)
         printf("\n");
         for (j = 0; j < matrix_weights->n ; ++j)
         {
-            printf("%d ", matrix_weights->weight[i][j]);
+            printf("%.2lf ", matrix_weights->weight[i][j]);
         }
     }
     printf("\n");
@@ -842,7 +842,7 @@ void MEWCP_print_node_list(node_list_t * node_list)
     printf("Number  Is_M  Next   Sum_Din  Sum_Dout\n");
     for(i = node_list->N_head ; i != NULL_POINTER ; i = node_list->node[i].next)
     {
-        printf("%u\t%d\t%d\t%d\t%d\n",i,node_list->node[i].belongsM,
+        printf("%u\t%d\t%d\t%.2lf\t%.2lf\n",i,node_list->node[i].belongsM,
                node_list->node[i].next,
                node_list->node[i].sum_din,
                node_list->node[i].sum_dout);
@@ -854,13 +854,13 @@ void MEWCP_print_node_list(node_list_t * node_list)
     printf("Number  Is_M  Next   Sum_Din  Sum_Dout\n");
     for(i = node_list->M_head ; i != NULL_POINTER ; i = node_list->node[i].next)
     {
-        printf("%u\t%d\t%d\t%d\t%d\n",i,node_list->node[i].belongsM,
+        printf("%u\t%d\t%d\t%.2lf\t%.2lf\n",i,node_list->node[i].belongsM,
                node_list->node[i].next,
                node_list->node[i].sum_din,
                node_list->node[i].sum_dout);
     }
 
-    printf("\nOBJ Function:  %d\n\n",node_list->Z);
+    printf("\nOBJ Function:  %.2lf\n\n",node_list->Z);
 }
 
 void MEWCP_print_solution(matrix_weights_t * matrix_weights, solution_t * solution)
@@ -877,7 +877,7 @@ void MEWCP_print_solution(matrix_weights_t * matrix_weights, solution_t * soluti
     }
     printf(" }\n");
 
-    printf("Z*: %d\n",solution->Z);
+    printf("Z*: %.2lf\n",solution->Z);
 
 }
 

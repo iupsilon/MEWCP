@@ -19,7 +19,7 @@
 #define MEWCP_DBL_EPSILON 1E-6
 #define MEWCP_MAX_NEG_WEIGHT -1E6
 
-typedef int weight_t;   /* Edges and vertex costs are integer */
+typedef double weight_t;   /* Edges and vertex costs are integer */
 
 
 #define NULL_POINTER -1
