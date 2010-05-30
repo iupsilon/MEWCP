@@ -4,6 +4,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../MEWCP_combinatorial_bound.c \
 ../MEWCP_dsdp.c \
 ../MEWCP_explicit_enumeration.c \
 ../MEWCP_tabu.c \
@@ -11,6 +12,7 @@ C_SRCS += \
 ../main.c 
 
 OBJS += \
+./MEWCP_combinatorial_bound.o \
 ./MEWCP_dsdp.o \
 ./MEWCP_explicit_enumeration.o \
 ./MEWCP_tabu.o \
@@ -18,6 +20,7 @@ OBJS += \
 ./main.o 
 
 C_DEPS += \
+./MEWCP_combinatorial_bound.d \
 ./MEWCP_dsdp.d \
 ./MEWCP_explicit_enumeration.d \
 ./MEWCP_tabu.d \

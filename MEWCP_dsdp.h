@@ -14,7 +14,17 @@
 
 
 
-/* LOG DEFINITION */
+
+
+/* Activation of the combinatorial DB bound */
+#define COMBINATORIAL_BOUND_ACTIVE
+
+/* Activation of the combinatorial preprocessing at the root node */
+#define  PREPROCESSING_ACTIVE
+
+
+
+/* LOG DEFINITIONS */
 #define ASSERT
 
 //#define MEWCP_CONVERTER_DSDP_VERBOSE1
@@ -22,7 +32,7 @@
 //#define MEWCP_CONVERTER_DSDP_DEBUG
 
 
-
+/* DSDP */
 //#define MEWCP_DSDP_DEBUG
 #define MEWCP_DSDP_VERBOSE1
 #define MEWCP_DSDP_VERBOSE2
@@ -37,9 +47,20 @@
 //#define MEWCP_BOUNDING_VERBOSE2
 #define MEWCP_BOUNDING_VERBOSE1
 
+/* combinatorial bound */
+//#define MEWCP_BOUNDING_COMBINATORIAL_DEBUG
+
+
+/* Combinatorial preprocessing */
+#define MEWCP_COMBINATORIAL_PREPROCESSING_VERBOSE1
+//#define MEWCP_COMBINATORIAL_PREPROCESSING_DEBUG
 
 /* Verbosing for explicit_enumeration */
-#define MEWCP_EXPLICIT_ENUMERATION_DEBUG
+//#define MEWCP_EXPLICIT_ENUMERATION_DEBUG
+#define MEWCP_EXPLICIT_ENUMERATION_VERBOSE1
+
+
+
 
 /* DSDP PARAMETERS */
 
@@ -53,7 +74,8 @@
 
 #define MEWCP_EPSILON 10E-4
 #define MEWCP_MIN_DOUBLE -10E7 /* Is the (double) -infinity */
-#define MEWCP_MAX_EXPLICIT_SOLUTIONS 1000000
+#define MEWCP_MAX_DOUBLE 10E12
+#define MEWCP_MAX_EXPLICIT_SOLUTIONS 500000
 
 /*
  * DSDP Data structures 
@@ -102,8 +124,13 @@ typedef struct open_node_s
 
     int id_node;	/* if i is father's id, id_node is left:(2*i +1) right:(2*i +2) */
     unsigned int serial_node;
-    double DB;		/* my dual bound */
-    double PB;		/* my primal bound */
+    double DB_SDP;		/* SDP dual bound */
+    double PB_SDP;		/* SDP primal bound */
+    double DB_comb;		/* Combinatorial Dual Bound */
+    double PB_comb;		/* Combinatorial Primal Bound */
+    
+    double PB;
+    double DB;
     unsigned int depth_level;  /* Is the level in the tree */
     list_blocked_nodes_t * list_blocked_nodes;
     constraint_t * vect_mat_branching_contraint;
@@ -158,7 +185,7 @@ list_branching_t;
 /* returns false if all partitions have only one fractional value */
 bool MEWCP_generate_equi_branch_node(double * diag_X, const unsigned int n, const unsigned int m,  int * out_num_part,  int * out_id_node);
 bool MEWCP_generate_perfect_equi_branch(double * diag_X, const unsigned int n, const unsigned int m,  int * out_num_part,  int * out_id_node);
-
+bool MEWCP_generate_max_fractional_branch(double * diag_X, const unsigned int n, const unsigned int m,  int * out_num_part,  int * out_id_node);
 /*
  * Generate a new list of blocked nodes based on an old blocked list end equibranch decision 
  * branch_num_part is the number of partition 0,...,m-1
@@ -233,8 +260,7 @@ branching_open_node_t * MEWCP_find_worst_bound_element(list_branching_t * list_b
 /*
  * UTILS
  */
-// Trova i limiti che determinano il quadrato sulla diagonale del box in cui si trova il punto (i,i)
-// Scrive in OUT in boundaries
+
 /* It simply add a node to a list of blocked nodes */
 void MEWCP_add_blocked_node(const unsigned int id_node, list_blocked_nodes_t * list_blocked_nodes);
 void trova_boundaries_diagonale(const unsigned int c, const unsigned int i, int * boundaries);
@@ -246,11 +272,19 @@ void MEWCP_dump_diag_X(SDPCone * sdpcone, double * dst_diag_X, const unsigned in
 void MEWCP_dump_vect_y(DSDP * dsdp, double * dst_vect_y, const unsigned int num_constraints);
 void MEWCP_compute_sdp_rounding(double * diag_X,  int * list_nodes_rounded_solution, const unsigned int num_nodes, const unsigned int c);
 
+/* Verify if the current bounded node found a new best PB and eventually updates the new result. 
+ * Returns a bool that says if update has been carried out 
+ */
+ bool MEWCP_is_new_best_PB_and_update(open_node_t * open_node, 
+ 								list_branching_t * list_branching, 
+ 								const unsigned int num_partitions);
+
 /* Calculate the Objective function related to a list_node_soluztion, the weights matrix is given into a vector of n*(n+1) elements */
 double MEWCP_evaluate_list_nodes_solution( int * list_node_solution, matrix_weights_t * matrix_weights ,const unsigned int m);
 int sort_compare (const void * a, const void * b);
 void Take_Time(double * user_time, double * system_time);
 
+/*****  END UTILS ********/
 
 /* ALLOCATION FUNCTIONS */
 double * MEWCP_allocate_vect_y(const unsigned int num_constraints);

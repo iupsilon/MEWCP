@@ -276,7 +276,6 @@ void MEWCP_generate_constraints_branch(list_blocked_nodes_t * list_blocked_nodes
 
     num_blocked_nodes = list_blocked_nodes->num_blocked_nodes;
 
-
     for (i=0; i<num_blocked_nodes;++i)
     {
         current_blocked_node = list_blocked_nodes->blocked_node[i];
@@ -290,8 +289,36 @@ void MEWCP_generate_constraints_branch(list_blocked_nodes_t * list_blocked_nodes
         vect_mat_contraints->weight[pos_elem] = (double) 1;
         ++pos_elem;
 
+        /* Adding non diagonal elements */
+        /*
+        unsigned int j;
+        for (j=i+1;j<n;++j)
+        {
+            if (  j > boundaries[1] ) // if (i,j) isn't in the diagonal box of (i,i)
+            {
 
+                pos_vect_matrix = MEWCP_convert_coords_ij_to_vector_matrix(j+1,current_blocked_node  +1);
 
+                vect_mat_contraints->index[pos_elem] = pos_vect_matrix;
+                vect_mat_contraints->weight[pos_elem] = (double) 1;
+                ++ pos_elem;
+            }
+        }
+
+        for(j=0;j<current_blocked_node;++j)
+        {
+            if (j<boundaries[0])
+            {
+                pos_vect_matrix = MEWCP_convert_coords_ij_to_vector_matrix(current_blocked_node +1,j+1);
+
+                vect_mat_contraints->index[pos_elem] = pos_vect_matrix;
+                vect_mat_contraints->weight[pos_elem] = (double) 1;
+                ++ pos_elem;
+            }
+        }
+        
+        */
+        /* End adding non diagonal elements */
 
 
     }
@@ -323,10 +350,11 @@ void MEWCP_write_constraints_weights_matrix(matrix_weights_t * matrix_weights, c
             /* printf("[%d,%d] %d\t",i+1,j+1,w); */
 
             pos_vect_matrix = MEWCP_convert_coords_ij_to_vector_matrix(j+1,i+1);
-			#if defined MEWCP_CONVERTER_DSDP_DEBUG
-			printf("[%d][%d]-> %d\n",j,i,pos_vect_matrix);
-			#endif
-			
+#if defined MEWCP_CONVERTER_DSDP_DEBUG
+
+            printf("[%d][%d]-> %d\n",j,i,pos_vect_matrix);
+#endif
+
             if (i != j)
             {
 
@@ -428,7 +456,7 @@ void MEWCP_write_constraints_simple_MC( constraint_t * sdp_constraints_matrix, c
 
     }
     /* Fine vincoli di multiple choice */
-    
+
 }
 
 void MEWCP_write_constraints_improved_MC_A(constraint_t * sdp_constraints_matrix, const unsigned int vector_length, const unsigned int n, const unsigned int c,  unsigned int k)
@@ -580,7 +608,7 @@ void MEWCP_write_constraints_improved_MC_B( constraint_t * sdp_constraints_matri
             ++k;  // cambio matrice
         }
     }
-   
+
 }
 
 void MEWCP_write_constraints_improved_MC_C( constraint_t * sdp_constraints_matrix, const unsigned int vector_length, const unsigned int m, const unsigned int c,  unsigned int k)
@@ -625,7 +653,7 @@ void MEWCP_write_constraints_improved_MC_C( constraint_t * sdp_constraints_matri
         pos_elem = 0;
         ++k;  // This way I create m contraints instead of 1, should be the same
     }
-    
+
 }
 
 
@@ -738,8 +766,8 @@ void MEWCP_write_constraints_4C3_A( constraint_t * sdp_constraints_matrix, const
 
             }
         }
-	
-	
+
+
         // I write on the rows of other boxes 1/2
         for(j=0;j<n;++j)
         {
@@ -760,15 +788,15 @@ void MEWCP_write_constraints_4C3_A( constraint_t * sdp_constraints_matrix, const
 
             }
         }
-        
-        
-        
+
+
+
         sdp_constraints_matrix[k].num_nz = pos_elem;
         pos_elem = 0;
         ++k;
     }
     /* End constraints  4C'''A */
- 
+
 }
 
 void MEWCP_write_constraints_4C3_B(constraint_t* sdp_constraints_matrix, const unsigned int vector_length, const unsigned int n, const unsigned int m, const unsigned int c,  unsigned int k)
@@ -873,7 +901,7 @@ void MEWCP_write_constraints_4C3_B(constraint_t* sdp_constraints_matrix, const u
     }
 
     /* End of constraints 4c''' (B) */
-   
+
 }
 
 

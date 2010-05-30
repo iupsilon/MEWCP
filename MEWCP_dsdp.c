@@ -17,6 +17,7 @@
 
 #include "converter_dsdp.h"
 #include "MEWCP_explicit_enumeration.h"
+#include "MEWCP_combinatorial_bound.h"
 #include "MEWCP_tabu.h"
 #include "MEWCP_dsdp.h"
 #include "dsdp/dsdp5.h"
@@ -35,6 +36,10 @@ solution_bb_t * MEWCP_branch_and_bound(open_node_t * open_root_node, constraint_
     printf("* MEWCP_branch_and_bound\n\tHere we goooooooooooooo!!!! *\n");
 #endif
 
+    unsigned int cardinality_partitions;
+    bool new_best_PB_found;
+    bool active_combinatorial_bound = false;
+
     list_branching_t * list_branching;
 
     /* Branching variables */
@@ -45,7 +50,10 @@ solution_bb_t * MEWCP_branch_and_bound(open_node_t * open_root_node, constraint_
     bool possible_branch;
 
     float gap; /* is the current % gap */
+    bool left_to_be_closed;
+    bool right_to_be_closed;
 
+    cardinality_partitions = num_nodes/num_partitions;
 
     list_branching = MEWCP_allocate_list_branching();
     list_branching->list_nodes_best_solution = MEWCP_allocate_list_nodes_solution(num_partitions);
@@ -57,27 +65,64 @@ solution_bb_t * MEWCP_branch_and_bound(open_node_t * open_root_node, constraint_
 
 
     /* Let's consider root node */
-    MEWCP_bound(open_root_node,constraints_matrix,matrix_weigths, bi,num_constraints, dim_matrix, num_nodes,num_partitions, list_branching->best_primal);
 
-    if( (open_root_node->PB - list_branching->best_primal) >= MEWCP_EPSILON)
+#if defined PREPROCESSING_ACTIVE
+    /* COMBINATORIAL PREPROCESSING */
+    MEWCP_compute_combinatorial_preprocessing(open_root_node,matrix_weigths,num_partitions,cardinality_partitions,list_branching->best_primal);
+
+    /* Now the root node has been modified with a new list of blocked nodes and a related
+     * brancing constraint 
+     */
+#endif // combinatorial preprocessing
+
+    /* Explicit Enumeration */
+    if ( MEWCP_is_node_little_enough(open_root_node->list_blocked_nodes,num_partitions,num_nodes/num_partitions,MEWCP_MAX_EXPLICIT_SOLUTIONS) == true)
     {
-        list_branching->best_primal = open_root_node->PB;
-        list_branching->id_node_best_primal = open_root_node->id_node;
-        list_branching->serial_node_best_primal = open_root_node->serial_node;
-        list_branching->depth_node_best_primal = open_root_node->depth_level;
+        MEWCP_bound_explicit(open_root_node,matrix_weigths,num_partitions,num_nodes/num_partitions);
 
-        MEWCP_clone_list_nodes_solution(open_root_node->list_nodes_solution,list_branching->list_nodes_best_solution, num_partitions);
+        // I update the best valueif needed
+        new_best_PB_found = MEWCP_is_new_best_PB_and_update(open_root_node,list_branching,num_partitions);
 
 #if defined MEWCP_DSDP_VERBOSE1
 
-        printf("\t*****  Node: %d\tNew best PB: %.2lf\n",open_root_node->serial_node,open_root_node->PB );
+        if( new_best_PB_found  == true)
+        {
+            printf("\t*****(Explicit enumeration)  Node: %d\tNew best PB: %.2lf\n",open_root_node->serial_node,open_root_node->PB );
+        }
 #endif
 
-    }
+    }  // end explicit enumeration
+    else
+    {
+#if defined COMBINATORIAL_BOUND_ACTIVE
+        // Combinatorial BOUND
+        MEWCP_bound_combinatorial(open_root_node,matrix_weigths,num_partitions,num_nodes/num_partitions,list_branching->best_primal);
+        new_best_PB_found = MEWCP_is_new_best_PB_and_update(open_root_node,list_branching,num_partitions);
 
-    //list_branching->best_primal = open_root_node->PB;
-    //MEWCP_clone_list_nodes_solution(open_root_node->list_nodes_solution,list_branching->list_nodes_best_solution, num_partitions);
-    /* XXXXXXXXXXXXXXXXXXXXXXXXXX TOGLIERE BOUND */
+#if defined MEWCP_DSDP_VERBOSE1
+
+        if( new_best_PB_found  == true)
+        {
+            printf("\t*****(Comb Bound)  Node: %d\tNew best PB: %.2lf\n",open_root_node->serial_node,open_root_node->PB );
+        }
+#endif
+        //end combinatorial Bound
+#endif // end combinatorial bound condition
+
+        /* Semidefinite BOUND */
+        MEWCP_bound(open_root_node,constraints_matrix,matrix_weigths, bi,num_constraints, dim_matrix, num_nodes,num_partitions, list_branching->best_primal);
+        new_best_PB_found = MEWCP_is_new_best_PB_and_update(open_root_node,list_branching,num_partitions);
+
+#if defined MEWCP_DSDP_VERBOSE1
+
+        if( new_best_PB_found  == true)
+        {
+            printf("\t*****(SDP Bound)  Node: %d\tNew best PB: %.2lf\n",open_root_node->serial_node,open_root_node->PB );
+        }
+#endif
+
+        /* end semidefinite bound */
+    }
 
     /* Root node bounded, ready to gather some result informations */
     solution_bb_t * solution_bb;
@@ -90,6 +135,7 @@ solution_bb_t * MEWCP_branch_and_bound(open_node_t * open_root_node, constraint_
 
 
     /* Let's start! */
+
     MEWCP_push_open_node(open_root_node,list_branching);
 
 
@@ -111,13 +157,43 @@ solution_bb_t * MEWCP_branch_and_bound(open_node_t * open_root_node, constraint_
             gap = (open_node_worst_bound->DB - list_branching->best_primal)/list_branching->best_primal * 100;
 #if defined MEWCP_DSDP_VERBOSE1
 
-            printf("\n++ Current DB(%d): %.2lf \t level: %u \tBest P(%d): %.2lf \t open_nodes: %d\t explored: %u \t gap: %.3f %%\n",open_node_worst_bound->serial_node,open_node_worst_bound->DB, open_node_worst_bound->depth_level, list_branching->id_node_best_primal,list_branching->best_primal, list_branching->number_open_nodes, list_branching->number_explored_nodes,gap);
+            printf("\n++ Current DB(%d): %.2lf \t level: %u \tBest P(%d): %.2lf \t open_nodes: %d\t explored: %u \t gap: %.3f %%\n",open_node_worst_bound->serial_node,open_node_worst_bound->DB, open_node_worst_bound->depth_level, list_branching->serial_node_best_primal,list_branching->best_primal, list_branching->number_open_nodes, list_branching->number_explored_nodes,gap);
 #endif
 
             possible_branch = MEWCP_branch(open_node_worst_bound,dim_matrix,num_nodes,num_partitions,num_constraints,open_node_worst_bound->depth_level, &list_branching->current_serial_number, &son_left,&son_right);
 
+
+
             if (possible_branch == true)
             {
+
+                /* I decide wether the node has to be closed */
+                left_to_be_closed = false;
+                right_to_be_closed = false;
+
+#if defined COMBINATORIAL_BOUND_ACTIVE
+                /* I want to know if combinatorial bound was convinient on the father */
+                if( ((open_node_worst_bound->DB_SDP - open_node_worst_bound->DB_comb) > MEWCP_EPSILON) && open_node_worst_bound->DB_comb != 0)
+                {
+                    active_combinatorial_bound = true;
+#if defined  MEWCP_DSDP_VERBOSE2
+
+                    printf("combinatorial ACTIVE\t DB_SDP= %.2lf\t DB_comb= %.lf\n", open_node_worst_bound->DB_SDP,open_node_worst_bound->DB_comb);
+#endif
+
+                }
+                else
+                {
+                    active_combinatorial_bound = false;
+#if defined  MEWCP_DSDP_VERBOSE2
+
+                    printf("combinatorial NOT active\t  DB_SDP= %.2lf\t DB_comb= %.lf\n",open_node_worst_bound->DB_SDP,open_node_worst_bound->DB_comb);
+#endif
+
+                }
+
+#endif // if combinatorial bound is active
+
                 /* I check the depth */
                 if ((open_node_worst_bound->depth_level +1) > list_branching->max_exploration_level )
                 {
@@ -125,55 +201,156 @@ solution_bb_t * MEWCP_branch_and_bound(open_node_t * open_root_node, constraint_
                 }
 
                 /* I decide what type of bound use */
-                if ( MEWCP_is_node_little_enough(son_left->list_blocked_nodes,num_partitions,num_nodes/num_partitions,MEWCP_MAX_EXPLICIT_SOLUTIONS) == true)
+                if ( MEWCP_is_node_little_enough(son_left->list_blocked_nodes,num_partitions,cardinality_partitions,MEWCP_MAX_EXPLICIT_SOLUTIONS) == true)
                 {
-                    MEWCP_bound_explicit(son_left,matrix_weigths,num_partitions,num_nodes/num_partitions);
+                    MEWCP_bound_explicit(son_left,matrix_weigths,num_partitions,cardinality_partitions);
+
+
+                    // I update the best value if needed
+                    new_best_PB_found = MEWCP_is_new_best_PB_and_update(son_left,list_branching,num_partitions);
+
+#if defined MEWCP_DSDP_VERBOSE1
+
+                    if( new_best_PB_found  == true)
+                    {
+                        printf("\t*****(Explicit enumeration)  Node: %d\tNew best PB: %.2lf\n",son_left->serial_node,son_left->PB );
+                    }
+#endif
+                    left_to_be_closed = true;
                 }
                 else
                 {
-                    MEWCP_bound(son_left,constraints_matrix,matrix_weigths, bi,num_constraints,dim_matrix,num_nodes,num_partitions,  list_branching->best_primal );
+#if defined COMBINATORIAL_BOUND_ACTIVE
+                    // Combinatorial Bound
+                    if (active_combinatorial_bound == true)
+                    {
+                        MEWCP_bound_combinatorial(son_left,matrix_weigths,num_partitions,cardinality_partitions,list_branching->best_primal);
+                        new_best_PB_found = MEWCP_is_new_best_PB_and_update(son_left,list_branching,num_partitions);
+
+#if defined MEWCP_DSDP_VERBOSE1
+
+                        if( new_best_PB_found  == true)
+                        {
+                            printf("\t*****(Comb Bound)  Node: %d\tNew best PB: %.2lf\n",son_left->serial_node,son_left->PB );
+                        }
+#endif
+
+
+
+                        // end Combinatorial Bound
+
+
+                        // check if left son has to be closed
+                        if ( (list_branching->best_primal - son_left->DB ) > MEWCP_EPSILON)
+                        {
+                            left_to_be_closed = true;
+                        }
+                    }
+#endif /* end combinatorial */
+
+                    /* Semidefinite Bound */
+                    if (left_to_be_closed == false)
+                    {
+                        MEWCP_bound(son_left,constraints_matrix,matrix_weigths, bi,num_constraints,dim_matrix,num_nodes,num_partitions,  list_branching->best_primal );
+                        /* I check if PB is improved */
+                        new_best_PB_found = MEWCP_is_new_best_PB_and_update(son_left,list_branching,num_partitions);
+
+#if defined MEWCP_DSDP_VERBOSE1
+
+                        if( new_best_PB_found  == true)
+                        {
+                            printf("\t*****(SDP Bound)  Node: %d\tNew best PB: %.2lf\n",son_left->serial_node,son_left->PB );
+                        }
+#endif
+
+                    }
+                    /* end semidefinite bound */
+
+                    /* check if left son has to be closed */
+                    if ( (list_branching->best_primal - son_left->DB ) > MEWCP_EPSILON)
+                    {
+                        left_to_be_closed = true;
+                    }
+
                 }
+
+                /****** BOUND RIGHT NODE ********/
 
                 if ( MEWCP_is_node_little_enough(son_right->list_blocked_nodes,num_partitions,num_nodes/num_partitions,MEWCP_MAX_EXPLICIT_SOLUTIONS) == true)
                 {
                     MEWCP_bound_explicit(son_right,matrix_weigths,num_partitions,num_nodes/num_partitions);
+
+                    // I update the best value if needed
+                    new_best_PB_found = MEWCP_is_new_best_PB_and_update(son_right,list_branching,num_partitions);
+
+#if defined MEWCP_DSDP_VERBOSE1
+
+                    if( new_best_PB_found  == true)
+                    {
+                        printf("\t*****(Explicit enumeration)  Node: %d\tNew best PB: %.2lf\n",son_right->serial_node,son_right->PB );
+                    }
+
+#endif
+
+
+                    right_to_be_closed = true;
                 }
                 else
                 {
-                    MEWCP_bound(son_right,constraints_matrix,matrix_weigths, bi,num_constraints,dim_matrix,num_nodes,num_partitions, list_branching->best_primal );
-                }
+#if defined COMBINATORIAL_BOUND_ACTIVE
+                    if (active_combinatorial_bound == true)
+                    {
+                        // Combinatorial Bound
+                        MEWCP_bound_combinatorial(son_right,matrix_weigths,num_partitions,num_nodes/num_partitions,list_branching->best_primal);
 
+                        new_best_PB_found = MEWCP_is_new_best_PB_and_update(son_right,list_branching,num_partitions);
 
-                /* I check if PB is improved */
-                if( (son_left->PB - list_branching->best_primal) >= MEWCP_EPSILON)
-                {
-                    list_branching->best_primal = son_left->PB;
-                    list_branching->id_node_best_primal = son_left->id_node;
-                    list_branching->serial_node_best_primal = son_left->serial_node;
-                    list_branching->depth_node_best_primal = son_left->depth_level;
-                    MEWCP_clone_list_nodes_solution(son_left->list_nodes_solution,list_branching->list_nodes_best_solution, num_partitions);
-#if defined MEWCP_DSDP_VERBOSE2
+#if defined MEWCP_DSDP_VERBOSE1
 
-                    printf("\t*****  Node: %d\tNew best PB: %.2lf\n",son_left->serial_node,son_left->PB );
+                        if( new_best_PB_found  == true)
+                        {
+                            printf("\t*****(Comb Bound)  Node: %d\tNew best PB: %.2lf\n",son_right->serial_node,son_right->PB );
+                        }
+#endif
+                        // end Combinatorial Bound
+
+                        // check if left son has to be closed
+                        if ( (list_branching->best_primal - son_right->DB ) > MEWCP_EPSILON)
+                        {
+                            right_to_be_closed = true;
+                        }
+                    }
+#endif /* end combinatorial */
+
+                    /* Semidefinite Bound */
+
+                    if (right_to_be_closed == false)
+                    {
+                        MEWCP_bound(son_right,constraints_matrix,matrix_weigths, bi,num_constraints,dim_matrix,num_nodes,num_partitions, list_branching->best_primal );
+
+                        /* I check if PB is improved */
+                        new_best_PB_found = MEWCP_is_new_best_PB_and_update(son_right,list_branching,num_partitions);
+
+#if defined MEWCP_DSDP_VERBOSE1
+
+                        if( new_best_PB_found  == true)
+                        {
+                            printf("\t*****(SDP Bound)  Node: %d\tNew best PB: %.2lf\n",son_right->serial_node,son_right->PB );
+                        }
 #endif
 
-                }
-                if( (son_right->PB - list_branching->best_primal) >= MEWCP_EPSILON)
-                {
-                    list_branching->best_primal = son_right->PB;
-                    list_branching->id_node_best_primal = son_right->id_node;
-                    list_branching->serial_node_best_primal = son_right->serial_node;
-                    list_branching->depth_node_best_primal = son_right->depth_level;
-                    MEWCP_clone_list_nodes_solution(son_right->list_nodes_solution,list_branching->list_nodes_best_solution, num_partitions);
-#if defined MEWCP_DSDP_VERBOSE2
+                    }
+                    /* end semidefinite bound */
 
-                    printf("\t*****  Node: %d\tNew best PB: %.2lf\n",son_right->serial_node,son_right->PB );
-#endif
-
+                    /* check if left son has to be closed */
+                    if ( (list_branching->best_primal - son_right->DB ) > MEWCP_EPSILON)
+                    {
+                        right_to_be_closed = true;
+                    }
                 }
 
-                /* I insert new nodes into the branching list if possible */
-                if ( (list_branching->best_primal - son_left->DB ) > MEWCP_EPSILON)
+                /* let's close or add nodes to the open nodes */
+                if ( left_to_be_closed == true)
                 {
                     MEWCP_close_open_node(list_branching,son_left);
                 }
@@ -182,7 +359,8 @@ solution_bb_t * MEWCP_branch_and_bound(open_node_t * open_root_node, constraint_
                     MEWCP_push_open_node(son_left,list_branching);
                 }
 
-                if ( (list_branching->best_primal - son_right->DB ) > MEWCP_EPSILON)
+
+                if ( right_to_be_closed == true)
                 {
                     MEWCP_close_open_node(list_branching,son_right);
                 }
@@ -192,11 +370,6 @@ solution_bb_t * MEWCP_branch_and_bound(open_node_t * open_root_node, constraint_
                 }
 
             }
-            //else
-            //{
-            //    MEWCP_close_open_node(open_node_worst_bound);
-            //}
-
         }
 
         /* I can close the node! */
@@ -235,7 +408,7 @@ solution_bb_t * MEWCP_branch_and_bound(open_node_t * open_root_node, constraint_
 void MEWCP_close_open_node(list_branching_t * list_branching, open_node_t * open_node)
 {
 #if defined MEWCP_DSDP_VERBOSE1
-    printf("-- Close node: %d\n",open_node->id_node);
+    printf("-- Close node: %d\n",open_node->serial_node);
 #endif
 
     list_branching->number_explored_nodes += 1;
@@ -341,12 +514,18 @@ void MEWCP_bound(open_node_t * open_node, constraint_t * constraints_matrix,matr
 
     DSDPComputeX(dsdp);
 
-
-
     DSDPStopReason(dsdp, &reason);
     DSDPGetPObjective(dsdp, &pobj);
     DSDPGetTraceX(dsdp, &sol_traceX);
 
+#if defined MEWCP_BOUNDING_DEBUG
+
+    if ((reason != 1) && (reason != 5))
+    {
+        printf("DSDP Error!: %d\n",reason);
+        getchar();
+    }
+#endif
     /* I take the negative pobj */
     pobj = -pobj;
 
@@ -384,14 +563,17 @@ void MEWCP_bound(open_node_t * open_node, constraint_t * constraints_matrix,matr
 
 
     /* I compute the rounding of diagonan_X */
-    open_node->list_nodes_solution = MEWCP_allocate_list_nodes_solution(num_partitions);
-    MEWCP_compute_sdp_rounding(open_node->diagX,open_node->list_nodes_solution,num_nodes,cardinality_partition);
+
+    int * list_nodes_rounded = MEWCP_allocate_list_nodes_solution(num_partitions);
+
+
+    MEWCP_compute_sdp_rounding(open_node->diagX,list_nodes_rounded,num_nodes,cardinality_partition);
 #if defined MEWCP_BOUNDING_VERBOSE2
 
-    MEWCP_print_list_nodes_solution(open_node->list_nodes_solution,num_partitions);
+    MEWCP_print_list_nodes_solution(list_nodes_rounded,num_partitions);
 #endif
 
-    z_rouded = MEWCP_evaluate_list_nodes_solution(open_node->list_nodes_solution,matrix_weigths,num_partitions);
+    z_rouded = MEWCP_evaluate_list_nodes_solution(list_nodes_rounded,matrix_weigths,num_partitions);
 
 
 
@@ -402,17 +584,31 @@ void MEWCP_bound(open_node_t * open_node, constraint_t * constraints_matrix,matr
 
 #if defined MEWCP_BOUNDING_VERBOSE1
 
-    printf("(%d) (P) Z: %.2lf \t Rounded: %.2lf \t level: %u \t Status: %d\n",open_node->serial_node, pobj,z_rouded, open_node->depth_level,reason);
+    printf("(BB)  Bound SDP: (%d) DB: %.2lf \t Rounded: %.2lf \t level: %u \t Status: %d\n",open_node->serial_node, pobj,z_rouded, open_node->depth_level,reason);
 #endif
 
 
 
 
     /* Update open_node */
-    open_node->DB = pobj;
-    open_node->PB = z_rouded;
+
+    open_node->DB_SDP = pobj;
+    open_node->PB_SDP = z_rouded;
+
+    if ((open_node->DB - pobj) > MEWCP_EPSILON )
+    {
+        open_node->DB = pobj;
+    }
+
+    if ( (z_rouded - open_node->PB) > MEWCP_EPSILON )
+    {
+        open_node->PB = z_rouded;
+        open_node->list_nodes_solution = MEWCP_allocate_list_nodes_solution(num_partitions);
+        MEWCP_clone_list_nodes_solution(list_nodes_rounded,open_node->list_nodes_solution,num_partitions);
+    }
 
 
+    MEWCP_free_list_nodes_solution(list_nodes_rounded);
     DSDPDestroy ( dsdp);
 
 
@@ -450,6 +646,8 @@ bool MEWCP_branch( open_node_t * open_node,
 
     /* WELL Now let's generate branching sons */
     possible_branch = MEWCP_generate_perfect_equi_branch(open_node->diagX,num_nodes,num_partitions,&out_num_part,&out_id_node);
+    //possible_branch = MEWCP_generate_max_fractional_branch(open_node->diagX,num_nodes,num_partitions,&out_num_part,&out_id_node);
+
 
 #if defined MEWCP_DSDP_DEBUG
 
@@ -971,6 +1169,135 @@ bool MEWCP_generate_perfect_equi_branch(double * diag_X, const unsigned int n, c
     }
 }
 
+/*
+ * I select the partition with the most number of fractional variables
+ * I take the element that divides the partition in 2 equi number of fractional
+ * If I have more than one partition with the same max number of fract variables I take the one with pivot element having nearest sum to 1/2
+ */
+bool MEWCP_generate_max_fractional_branch(double * diag_X, const unsigned int n, const unsigned int m,  int * out_num_part,  int * out_id_node)
+{
+#if defined MEWCP_CONVERTER_DSDP_VERBOSE1
+    printf("* MEWCP_generate_max_fractional_branch *\n");
+#endif
+
+
+    unsigned int i,j,c;
+
+
+    int num_fract_var[m];
+    double min_diff;
+
+
+    double  sum_cur;
+    int max_num_fract_var =0;
+
+    c = n/m;
+    int fract[m][c];  // number of fractional varibles until that node
+    double sum[m][c];  //density until that element
+
+    /* I have to clean the vectors */
+    for(i=0;i<m;++i)
+    {
+        for (j = 0; j < c; ++j)
+        {
+            fract[i][j] = 0;
+            sum[i][j] = 0.0;
+        }
+    }
+
+
+    for(i=0;i<m;++i)
+    {
+
+
+        sum_cur = 0;
+
+        num_fract_var[i] = 0;
+
+
+        for(j=i*c;j<(i*c +c); ++j )
+        {
+            /* I find the number of fractional variables */
+            sum_cur += diag_X[j];
+            sum[i][j%c] = sum_cur;
+
+
+            if( (diag_X[j] - 0 ) >= MEWCP_EPSILON )
+            {
+                num_fract_var[i] += 1;
+                fract[i][j%c] = num_fract_var[i];
+
+                if (num_fract_var[i] > max_num_fract_var)
+                {
+                    /* I set the maximum fractional number of variables */
+                    max_num_fract_var = num_fract_var[i];
+                }
+            }
+#if defined MEWCP_BRANCHING_DEBUG
+            printf("part: %d id: %d\t diag: %.2lf  sum: %.2lf  fract: %d\n",i,j,diag_X[j],sum[i][j%c], fract[i][j%c]);
+#endif
+
+        }
+#if defined MEWCP_BRANCHING_DEBUG
+        printf("\n");
+#endif
+
+    }
+    int half_pivot;
+    int candidate_node = -1;
+    int candidate_partition = -1;
+    min_diff = 1;
+
+    half_pivot = (int) (floor ((float) max_num_fract_var / 2));
+    for (i=0;i<m;++i)
+    {
+        if ( num_fract_var[i] == max_num_fract_var )
+        {
+
+            for(j=0;j<c;++j)
+            {
+                if(fract[i][j] == half_pivot)
+                {
+
+                    if( (fabs(sum[i][j] - 0.5) < min_diff) )
+                    {
+                        min_diff = fabs((sum[i][j] - 0.5));
+                        candidate_node = j;
+                        candidate_partition = i;
+
+                    }
+                    break;
+                }
+            }
+
+
+            *out_id_node = (candidate_partition*c) + candidate_node;
+            *out_num_part = candidate_partition;
+        }
+
+    }
+
+
+
+
+    if ( max_num_fract_var < 2 )
+    {
+
+        return false;
+    }
+    else
+    {
+#if defined MEWCP_BRANCHING_DEBUG
+        printf("taken\t part: %d \t node: %d\n",*out_num_part, *out_id_node);
+#endif
+
+        return true;
+    }
+
+}
+
+
+
 
 void MEWCP_add_blocked_node(const unsigned int id_node, list_blocked_nodes_t * list_blocked_nodes)
 {
@@ -1056,8 +1383,10 @@ open_node_t * MEWCP_allocate_open_node(void)
     }
 
     open_node->id_node = -1;
-    open_node->DB = (double) 0;
-    open_node->PB = (double) 0;
+    open_node->DB = (double) MEWCP_MAX_DOUBLE;
+    open_node->PB = (double) MEWCP_MIN_DOUBLE;
+
+
 
     open_node->list_nodes_solution = NULL;
     open_node->diagX = NULL;
@@ -1378,6 +1707,26 @@ void MEWCP_dump_vect_y(DSDP  * dsdp, double * dst_vect_y, const unsigned int num
 {
 
     DSDPGetY (*dsdp, dst_vect_y , num_constraints);
+}
+
+
+bool MEWCP_is_new_best_PB_and_update(open_node_t * open_node, list_branching_t * list_branching, const unsigned int num_partitions)
+{
+    bool has_been_updated = false;
+
+    /* if PB improved */
+    if( (open_node->PB - list_branching->best_primal) >= MEWCP_EPSILON)
+    {
+        list_branching->best_primal = open_node->PB;
+        list_branching->id_node_best_primal = open_node->id_node;
+        list_branching->serial_node_best_primal = open_node->serial_node;
+        list_branching->depth_node_best_primal = open_node->depth_level;
+        MEWCP_clone_list_nodes_solution(open_node->list_nodes_solution,list_branching->list_nodes_best_solution, num_partitions);
+
+        /* Ok update completed */
+        has_been_updated = true;
+    }
+    return has_been_updated;
 }
 
 

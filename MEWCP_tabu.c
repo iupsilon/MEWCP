@@ -34,7 +34,7 @@ tabu_result_t MEWCP_compute_tabu_search(const unsigned int num_iterations, matri
     weight_t Z_iteration_tabu;
     weight_t Z_best;
 
-
+	last_improvement_iteration = 0;  /* if 0 iterations are requested */
     tabu_result.last_improvement_iteration = 0;
     tabu_result.last_improvement_time = (double) 0;
     MEWCP_create_solution(matrix_weights,&tabu_result.solution);
@@ -379,7 +379,7 @@ void MEWCP_load_AMPL_instance(char * filename_AMPL, matrix_weights_t * matrix_we
     // I throw away lines I don't care
     for (i=0; i< (2*c*m +7); ++i)
     {
-        fscanf(file_AMPL,"%s\n",notcare4);
+        (void) fscanf(file_AMPL,"%s\n",notcare4);
 #if defined MEWCP_TABU_DEBUG2
 
         printf("%s\n",notcare4);
