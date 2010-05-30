@@ -36,7 +36,7 @@ void MEWCP_generate_sdp_constraints(const char * filename_dat, double *** sdp_co
 /*		Functions for contraints
  * ********************************************************************/
 
-void MEWCP_write_constraints_weights_matrix(FILE * file_dat, double ** sdp_constraints_matrix, const unsigned int vector_length, const unsigned int n, const double alpha, unsigned int k);
+void MEWCP_write_constraints_weights_matrix(FILE * file_dat, double ** sdp_constraints_matrix, const unsigned int vector_length, const unsigned int n, unsigned int k);
 void MEWCP_write_constraints_cardinality(FILE * file_dat, double ** sdp_constraints_matrix, const unsigned int vector_length, const unsigned int n,  unsigned int k);
 void MEWCP_write_constraints_simple_MC(FILE * file_dat,  double ** sdp_constraints_matrix, const unsigned int vector_length, const unsigned int n, const unsigned int c,  unsigned int k);
 void MEWCP_write_constraints_improved_MC_A(FILE * file_dat, double ** sdp_constraints_matrix, const unsigned int vector_length, const unsigned int n, const unsigned int c,  unsigned int k);

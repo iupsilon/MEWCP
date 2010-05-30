@@ -28,12 +28,12 @@ int main (int argc, char * argv[])
     bool c_4C3_A;
     bool c_4C3_B;
 
-    c_cardinality =         true;
+    c_cardinality =         false;
     c_simple_MC =           true;
-    c_improved_MC_A =       false;
+    c_improved_MC_A =       true;
     c_improved_MC_B =       false;
     c_improved_MC_C =       false;
-    c_4C2 =                 false;
+    c_4C2 =                 true;
     c_4C3_A	 =              false;
     c_4C3_B =               false;
 
@@ -104,12 +104,18 @@ int main (int argc, char * argv[])
     MEWCP_generate_constraints_branch(open_node->list_blocked_nodes, vect_mat_branching_constraints,dim_matrix,num_nodes, cardinality_partition);
 
 
+	/* I simply allocate a 0 vect_y */
+	open_node->vect_y = MEWCP_allocate_vect_y(num_constraints);
+	MEWCP_clone_vect_y(bi,open_node->vect_y,num_constraints);
+	
 
     MEWCP_branch_and_bound(open_node,constraints_matrix,bi,num_constraints,dim_matrix,num_nodes,num_partitions);
 
+	#if defined MEWCP_DSDP_DEBUG
+	printf("\tEnd Branch and bound... \n");	
+	#endif
 
-
-    MEWCP_close_open_node(open_node);
+    //MEWCP_close_open_node(open_node);
     
     /*
     MEWCP_bound( open_node,  constraints_matrix,  bi,

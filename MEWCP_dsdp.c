@@ -39,14 +39,19 @@ void MEWCP_branch_and_bound(open_node_t * open_root_node, double ** constraints_
     bool possible_branch;
 
 
+    list_branching = MEWCP_allocate_list_branching();
+
+
     /* First I compute Tabu search in order to get a good Primal Bound */
     // ******************* TABU SEARCH!
+    list_branching->best_primal = MEWCP_MIN_DOUBLE;
 
 
-    list_branching = MEWCP_allocate_list_branching();
 
     /* Let's consider root node */
     MEWCP_bound(open_root_node,constraints_matrix,bi,num_constraints,dim_matrix,num_nodes,num_partitions);
+    /* JUST TEMPORARILY */
+    list_branching->best_primal = open_root_node->PB;
 
     MEWCP_push_open_node(open_root_node,list_branching);
     /* All done, I'm ready to start with branching procedure */
@@ -62,7 +67,7 @@ void MEWCP_branch_and_bound(open_node_t * open_root_node, double ** constraints_
 
         if ( (open_node_worst_bound->DB - list_branching->best_primal) > MEWCP_EPSILON )
         {
-            possible_branch = MEWCP_branch(open_node_worst_bound,dim_matrix,num_nodes,num_partitions,&son_left,&son_right);
+            possible_branch = MEWCP_branch(open_node_worst_bound,dim_matrix,num_nodes,num_partitions,num_constraints, &son_left,&son_right);
 
             if (possible_branch == true)
             {
@@ -73,14 +78,16 @@ void MEWCP_branch_and_bound(open_node_t * open_root_node, double ** constraints_
                 if( (son_left->PB - list_branching->best_primal) > MEWCP_EPSILON)
                 {
                     list_branching->best_primal = son_left->PB;
+                    list_branching->id_node_best_primal = son_left->id_node;
                 }
                 if( (son_right->PB - list_branching->best_primal) > MEWCP_EPSILON)
                 {
                     list_branching->best_primal = son_right->PB;
+                    list_branching->id_node_best_primal = son_right->id_node;
                 }
 
                 /* I insert new nodes into the branching list if possible */
-                if ( (list_branching->best_primal - son_left->PB ) > MEWCP_EPSILON)
+                if ( (list_branching->best_primal - son_left->DB ) > MEWCP_EPSILON)
                 {
                     MEWCP_close_open_node(son_left);
                 }
@@ -89,7 +96,7 @@ void MEWCP_branch_and_bound(open_node_t * open_root_node, double ** constraints_
                     MEWCP_push_open_node(son_left,list_branching);
                 }
 
-                if ( (list_branching->best_primal - son_right->PB ) > MEWCP_EPSILON)
+                if ( (list_branching->best_primal - son_right->DB ) > MEWCP_EPSILON)
                 {
                     MEWCP_close_open_node(son_right);
                 }
@@ -99,10 +106,10 @@ void MEWCP_branch_and_bound(open_node_t * open_root_node, double ** constraints_
                 }
 
             }
-            else
-            {
-                MEWCP_close_open_node(open_node_worst_bound);
-            }
+            //else
+            //{
+            //    MEWCP_close_open_node(open_node_worst_bound);
+            //}
 
         }
 
@@ -123,9 +130,14 @@ void MEWCP_branch_and_bound(open_node_t * open_root_node, double ** constraints_
 
 
 
+    /* Before I leave I'd let you know the best solution */
+#if defined MEWCP_DSDP_VERBOSE1
+    printf("\nBranch & Bound Z*: %.2lf\tExplored_nodes: %d\t Best node: %d\n",list_branching->best_primal,list_branching->number_explored_nodes, list_branching->id_node_best_primal);
+#endif
 
 
 
+    /* Freeing structures */
 
     MEWCP_free_list_branching(list_branching);
 
@@ -197,20 +209,25 @@ void MEWCP_bound(open_node_t * open_node, double ** constraints_matrix, double *
         }
 
 
-#if defined MEWCP_DSDP_DEBUG
 
-        SDPConeViewDataMatrix(sdpcone, 0, i);
+
+#if defined MEWCP_BOUNDING_DEBUG
+
+        //SDPConeViewDataMatrix(sdpcone, 0, i);
 #endif
 
     }
 
     /* set DSDP parameters */
+
     info=DSDPSetGapTolerance(dsdp,MEWCP_GAP_TOLERANCE);
     info=DSDPSetPotentialParameter(dsdp,MEWCP_POTENTIAL_PARAMETER);
     info=DSDPReuseMatrix(dsdp,MEWCP_REUSE_MATRIX);
     info=DSDPSetPNormTolerance(dsdp,MEWCP_SET_PNORM_TOLERANCE);
 
-#if defined MEWCP_CONVERTER_DSDP_VERBOSE2
+
+
+#if defined MEWCP_DSDP_DEBUG
 
     DSDPSetStandardMonitor(dsdp, 1); /* verbose each iteration */
     DSDPLogInfoAllow(1,0);
@@ -218,6 +235,14 @@ void MEWCP_bound(open_node_t * open_node, double ** constraints_matrix, double *
 
 
     DSDPSetup(dsdp);
+
+    /* Now I set the initial values of the variables y in (D) */
+    for (i=0; i< num_constraints; ++i)
+    {
+        DSDPSetY0(dsdp, i+1, open_node->vect_y[i]);
+       
+    }
+
     DSDPSolve(dsdp);
     DSDPComputeX(dsdp);
 
@@ -228,20 +253,18 @@ void MEWCP_bound(open_node_t * open_node, double ** constraints_matrix, double *
     /* I take the negative pobj */
     pobj = -pobj;
 
-#if defined MEWCP_DSDP_DEBUG
+#if defined MEWCP_BOUNDING_DEBUG
 
     double * sol_vect_X;
     int sol_dim_vect_X;
-    double vect_y[num_constraints ];
+
 
     SDPConeGetXArray(sdpcone, 0, &sol_vect_X, &sol_dim_vect_X);
 
-    printf("\n");
-    SDPConeViewX(sdpcone, 0, num_nodes, sol_vect_X, sol_dim_vect_X);
-    printf("\n");
+    //printf("\n");
+    //SDPConeViewX(sdpcone, 0, num_nodes, sol_vect_X, sol_dim_vect_X);
+    //printf("\n");
 
-    DSDPGetY (dsdp,  vect_y, num_constraints);
-    MEWCP_print_vectorY(vect_y,num_constraints);
 #endif
 
 
@@ -250,9 +273,16 @@ void MEWCP_bound(open_node_t * open_node, double ** constraints_matrix, double *
     open_node->diagX = MEWCP_allocate_diag_X(num_nodes);
     MEWCP_dump_diag_X(&sdpcone,open_node->diagX,num_nodes);
 
-#if defined MEWCP_DSDP_DEBUG
+    /* Now I get the value of Y variables */
+    open_node->vect_y = MEWCP_allocate_vect_y(num_constraints);
+    MEWCP_dump_vect_y(&dsdp, open_node->vect_y, num_constraints);
+
+
+#if defined MEWCP_BOUNDING_DEBUG
 
     MEWCP_print_diag_X(open_node->diagX,num_nodes);
+    MEWCP_print_vectorY(open_node->vect_y,num_constraints);
+
 #endif
 
 
@@ -263,9 +293,13 @@ void MEWCP_bound(open_node_t * open_node, double ** constraints_matrix, double *
 
     z_rouded = MEWCP_evaluate_list_nodes_solution(open_node->list_nodes_solution,constraints_matrix[0],num_partitions);
 
+
+
+
+
 #if defined MEWCP_DSDP_VERBOSE1
 
-    printf("(P) Obj_value: %.2lf \t Rounded: %.2lf \t Trace(X): %.2lf \t Termination value: %d\n",pobj,z_rouded, sol_traceX,reason);
+    printf("(%d) (P) Obj_value: %.2lf \t Rounded: %.2lf \t Trace(X): %.2lf \t Termination value: %d\n",open_node->id_node, pobj,z_rouded, sol_traceX,reason);
 #endif
 
 
@@ -285,6 +319,7 @@ bool MEWCP_branch( open_node_t * open_node,
                    const unsigned int dim_matrix,
                    const unsigned int num_nodes,
                    const unsigned int num_partitions,
+                   const unsigned int num_constraints,
                    open_node_t ** out_left_son,
                    open_node_t ** out_right_son)
 
@@ -343,6 +378,15 @@ bool MEWCP_branch( open_node_t * open_node,
 
         MEWCP_generate_constraints_branch(son_left->list_blocked_nodes, son_left->vect_mat_branching_contraint,dim_matrix,num_nodes,cardinality_partition);
         MEWCP_generate_constraints_branch(son_right->list_blocked_nodes, son_right->vect_mat_branching_contraint, dim_matrix,num_nodes,cardinality_partition);
+
+
+        /* I clone the vect_y */
+        son_left->vect_y = MEWCP_allocate_vect_y(num_constraints);
+        son_right->vect_y = MEWCP_allocate_vect_y(num_constraints);
+
+        MEWCP_clone_vect_y(open_node->vect_y, son_left->vect_y,num_constraints);
+        MEWCP_clone_vect_y(open_node->vect_y, son_right->vect_y,num_constraints);
+
 
         /* sdpcone not needed by the function, waiting for a proper printing funcion
         #if defined  MEWCP_DSDP_DEBUG
@@ -445,6 +489,7 @@ void MEWCP_push_open_node(open_node_t * open_node, list_branching_t * list_branc
     }
 
     list_branching->number_open_nodes += 1;
+    list_branching->number_explored_nodes += 1;
 
 }
 
@@ -494,8 +539,8 @@ open_node_t * MEWCP_pop_open_node( list_branching_t * list_branching)
 
 open_node_t * MEWCP_pop_specific_open_node(branching_open_node_t * branching_open_node , list_branching_t * list_branching)
 {
-#if defined MEWCP_DSDP_DEBUG
-    printf("* MEWCP_pop_specific_open_node *\n");
+#if defined MEWCP_DSDP_VERBOSE1
+    printf("* MEWCP_pop_specific_open_node: %d *\n",branching_open_node->open_node->id_node);
 #endif
 
     open_node_t * open_node;
@@ -613,7 +658,7 @@ bool MEWCP_generate_equi_branch_node(double * diag_X, const unsigned int n, cons
     unsigned int i,j,c;
     double sum_partition[m];
     int  id_node_part[m];
-    double max_sum_tmp;
+    double min_sum_tmp;
 
 
     double sum_prev, sum_cur;
@@ -628,10 +673,14 @@ bool MEWCP_generate_equi_branch_node(double * diag_X, const unsigned int n, cons
         for(j=i*c;j<(i*c +c); ++j )
         {
             sum_cur = sum_prev + diag_X[j];
+#if defined MEWCP_BRANCHING_DEBUG
 
-            if ( (1- diag_X[j] <=  MEWCP_EPSILON) ) /* only one element not zero I cannot branch! */
+            printf("Part: %d \t diag[%d]: %.2lf \t Sum: %.2lf\n",i,j,diag_X[j],sum_cur);
+#endif
+
+            if ( ( (double) 1.0 - diag_X[j] <  MEWCP_EPSILON) ) /* only one element not zero I cannot branch! */
             {
-#if defined MEWCP_CONVERTER_DSDP_DEBUG
+#if defined MEWCP_BRANCHING_DEBUG
                 printf("Partition: %d only one node is 1\n",i);
 #endif
 
@@ -640,28 +689,35 @@ bool MEWCP_generate_equi_branch_node(double * diag_X, const unsigned int n, cons
                 break;
 
             }
-            else if ( (sum_cur - 0.5 > MEWCP_EPSILON) && j != (i*c +c -1) ) /* OK I have 1/2 and more considering not all the elements */
+            else if ( (sum_cur - 0.5 >= MEWCP_EPSILON) && (j != (i*c +c -1)) ) /* OK I have 1/2 and more considering not all the elements */
             {
                 id_node_part[i] = j;
                 sum_partition[i] = sum_cur;
+                break;
             }
-            else if ( (sum_cur - 0.5 > MEWCP_EPSILON) && j == (i*c +c -1) ) /* BRRR I have 1/2 and more considering not the elements */
+            else if ( (sum_cur - 0.5 > MEWCP_EPSILON) && (j == (i*c +c -1)) ) /* BRRR I have 1/2 and more considering not the elements */
             {
                 id_node_part[i] = j-1;
                 sum_partition[i] = sum_prev;
+                break;
             }
 
 
             sum_prev = sum_cur;
         }
+#if defined MEWCP_BRANCHING_DEBUG
+        printf("Ho preso: %d \t somma: %.2lf\n",id_node_part[i],sum_partition[i]);
+#endif
+
     }
 
-    max_sum_tmp = 0;
+    min_sum_tmp = (double) 1.0;
     for (i=0;i<m;++i)
     {
-        if (  (sum_partition[i] > max_sum_tmp) && ( (sum_partition[i] - 1.0)<MEWCP_EPSILON) )
+        if (  (( (sum_partition[i] - min_sum_tmp) < MEWCP_EPSILON)) &&   (sum_partition[i] != -1)  )
         {
-            max_sum_tmp = sum_partition[i];
+            printf("sumpart[%d]: %lf\n", i, sum_partition[i]);
+            min_sum_tmp = sum_partition[i];
 
 
             *out_id_node = id_node_part[i];
@@ -679,7 +735,7 @@ bool MEWCP_generate_equi_branch_node(double * diag_X, const unsigned int n, cons
 
 
 
-    if ( max_sum_tmp < MEWCP_EPSILON)
+    if ( (min_sum_tmp < MEWCP_EPSILON) || (( 1.0 - min_sum_tmp)< MEWCP_EPSILON))
     {
         return false;
     }
@@ -696,14 +752,20 @@ void MEWCP_add_blocked_node(const unsigned int id_node, list_blocked_nodes_t * l
 
     pos_insertion = list_blocked_nodes->num_blocked_nodes;
 
-#if defined DEBUG
+    if (list_blocked_nodes->bool_list[id_node] == false)
+    {
+        list_blocked_nodes->bool_list[id_node] = true;
+        list_blocked_nodes->blocked_node[pos_insertion] = id_node;
+        list_blocked_nodes->num_blocked_nodes += 1;
+    }
+#if defined MEWCP_BRANCHING_DEBUG
+    else
+    {
+        printf("Node: %d is already blocked!\n",id_node);
 
-    assert(list_blocked_nodes->bool_list[id_node] == false);
+
+    }
 #endif
-
-    list_blocked_nodes->bool_list[id_node] = true;
-    list_blocked_nodes->blocked_node[pos_insertion] = id_node;
-    list_blocked_nodes->num_blocked_nodes += 1;
 
     /* All structures are updated */
 }
@@ -952,6 +1014,21 @@ double * MEWCP_allocate_diag_X(const unsigned int length)
     return diagX;
 }
 
+double * MEWCP_allocate_vect_y(const unsigned int num_constraints)
+{
+    double * vect_y;
+
+    vect_y = (double *) calloc(num_constraints, sizeof(double));
+    if (vect_y  == NULL)
+    {
+        printf("*******  Allocation MEWCP_allocate_vect_y FAILED!\n");
+        exit(EXIT_FAILURE);
+    }
+
+
+    return vect_y;
+}
+
 void trova_boundaries_diagonale(const unsigned int c, const unsigned int i, int * boundaries)
 {
     // Devo stabilire in che partizione Sk si trova il punto i,j
@@ -987,13 +1064,19 @@ void trova_boundaries_diagonale(const unsigned int c, const unsigned int i, int 
 void MEWCP_clone_list_blocked_modes(list_blocked_nodes_t * list_to_be_cloned, list_blocked_nodes_t * list_cloned, const unsigned int num_nodes)
 {
 
-    /* I copu the list */
+    /* I copy the list */
     memcpy(list_cloned->blocked_node, list_to_be_cloned->blocked_node, num_nodes * sizeof(unsigned int) );
     memcpy(list_cloned->bool_list, list_to_be_cloned->bool_list, num_nodes * sizeof(bool));
 
     list_cloned->num_blocked_nodes = list_to_be_cloned->num_blocked_nodes;
 }
 
+
+void MEWCP_clone_vect_y(double * vect_y_to_be_cloned, double * vect_y_cloned, const unsigned int num_constraints)
+{
+    memcpy(vect_y_cloned, vect_y_to_be_cloned, num_constraints*sizeof(double));
+
+}
 
 void MEWCP_dump_diag_X(SDPCone * sdpcone, double * dst_diag_X, const unsigned int num_nodes)
 {
@@ -1012,9 +1095,15 @@ void MEWCP_dump_diag_X(SDPCone * sdpcone, double * dst_diag_X, const unsigned in
         dst_diag_X[i] = sol_X[pos];
     }
 
-
-
 }
+
+
+void MEWCP_dump_vect_y(DSDP  * dsdp, double * dst_vect_y, const unsigned int num_constraints)
+{
+
+    DSDPGetY (*dsdp, dst_vect_y , num_constraints);
+}
+
 
 void MEWCP_compute_sdp_rounding(double * diag_X, unsigned int * list_nodes_rounded_solution, const unsigned int num_nodes, const unsigned int c)
 {
@@ -1090,7 +1179,7 @@ void MEWCP_print_diag_X(double * diag_X, const unsigned int num_nodes)
     printf("Diag X: ");
     for (i=0;i<num_nodes; ++i)
     {
-        printf("%lf ",diag_X[i]);
+        printf("%.2lf ",diag_X[i]);
     }
     printf("\n");
 }
@@ -1126,13 +1215,14 @@ void MEWCP_print_list_nodes_solution(unsigned int * list_nodes_solution, const u
 /* ******************************************
  * FREE FUNCTIONS 
  * ******************************************/
-void MEWCP_free_list_blocked_nodes(list_blocked_nodes_t * list_blocked_nodes, const unsigned int num_nodes )
+void MEWCP_free_list_blocked_nodes(list_blocked_nodes_t * list_blocked_nodes)
 {
 #if defined MEWCP_DSDP_DEBUG
     printf("* MEWCP_free_list_blocked_nodes *\n");
 #endif
 
     free( list_blocked_nodes->blocked_node);
+    free (list_blocked_nodes->bool_list);
 }
 
 void MEWCP_free_sdp_constraints_matrix(double ** sdp_constraints_matrix, const unsigned int num_constraints )
@@ -1165,6 +1255,15 @@ void MEWCP_free_diag_X(double * diag_X)
     free(diag_X);
 }
 
+void MEWCP_free_vect_y(double * vect_y)
+{
+#if defined MEWCP_DSDP_DEBUG
+    printf("* MEWCP_free_vect_y *\n");
+#endif
+
+    free(vect_y);
+}
+
 void MEWCP_free_list_nodes_solution(unsigned int * list_nodes_solution)
 {
 #if defined MEWCP_DSDP_DEBUG
@@ -1189,11 +1288,12 @@ void MEWCP_free_open_node(open_node_t * open_node)
     printf("* MEWCP_free_open_node *\n");
 #endif
 
-    free(open_node->list_blocked_nodes);
-    free(open_node->vect_mat_branching_contraint);
 
-    free(open_node->diagX);
-    free(open_node->list_nodes_solution);
+    MEWCP_free_list_blocked_nodes (open_node->list_blocked_nodes);
+    MEWCP_free_vect_mat_branching_constraints(open_node->vect_mat_branching_contraint);
+    MEWCP_free_diag_X(open_node->diagX);
+    MEWCP_free_list_nodes_solution(open_node->list_nodes_solution);
+    MEWCP_free_vect_y(open_node->vect_y);
 
     free(open_node);
 }

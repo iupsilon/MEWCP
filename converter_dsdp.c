@@ -144,7 +144,7 @@ void MEWCP_generate_sdp_constraints(const char * filename_dat, double *** sdp_co
 
     k=0;
 
-    MEWCP_write_constraints_weights_matrix(file_dat, *sdp_constraints_matrix,vector_length, n,alpha,k);
+    MEWCP_write_constraints_weights_matrix(file_dat, *sdp_constraints_matrix,vector_length, n,k);
 #if defined MEWCP_CONVERTER_DSDP_DEBUG
 
     MEWCP_print_contraints_matrix(*sdp_constraints_matrix,number_constraints,vector_length);
@@ -305,7 +305,7 @@ void MEWCP_generate_constraints_branch(list_blocked_nodes_t * list_blocked_nodes
 }
 
 
-void MEWCP_write_constraints_weights_matrix(FILE * file_dat, double ** sdp_constraints_matrix, const unsigned int vector_length, const unsigned int n,  const double alpha, unsigned int k)
+void MEWCP_write_constraints_weights_matrix(FILE * file_dat, double ** sdp_constraints_matrix, const unsigned int vector_length, const unsigned int n, unsigned int k)
 {
 
 #if defined MEWCP_CONVERTER_DSDP_VERBOSE1
@@ -330,12 +330,12 @@ void MEWCP_write_constraints_weights_matrix(FILE * file_dat, double ** sdp_const
 
             if (i != j)
             {
-                sdp_constraints_matrix[k][pos_vect_matrix] =  -((double) w/2 + alpha);
+                sdp_constraints_matrix[k][pos_vect_matrix] =  -(double) w/2;
 
             }
             else
             {
-                sdp_constraints_matrix[k][pos_vect_matrix] =  -((double) w + alpha);
+                sdp_constraints_matrix[k][pos_vect_matrix] =  -(double) w ;
             }
 #if defined MEWCP_CONVERTER_DSDP_VERBOSE1
             if (i != j)
