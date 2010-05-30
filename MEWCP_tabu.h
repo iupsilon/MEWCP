@@ -15,10 +15,10 @@
  * 		DEFINITIONS
  ******************************************************************/
 
-#define MEWCP_TABU_VERBOSE1
-#define MEWCP_TABU_VERBOSE2
+//#define MEWCP_TABU_VERBOSE1
+//#define MEWCP_TABU_VERBOSE2
 //#define MEWCP_TABU_DEBUG1
-#define ASSERT
+//#define ASSERT
 
 
 #define MAX_WORSENING_ITERATIONS 1000

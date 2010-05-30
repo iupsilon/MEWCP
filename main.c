@@ -9,6 +9,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <time.h>
+#include <sys/times.h>
+
 
 #include "dsdp/dsdp5.h"
 #include "converter_dsdp.h"
@@ -16,6 +19,12 @@
 #include "MEWCP_tabu.h"
 #include "MEWCP_tabu_definitions.h"
 
+
+/*******************************************
+ * PROTOTYPES
+ ******************************************/
+
+void show_usage(void);
 
 int main (int argc, char * argv[])
 {
@@ -40,21 +49,11 @@ int main (int argc, char * argv[])
 
 
     char * filename_in;
-
-    /*
-    unsigned  int i;
-    int info;
-    */
-
+    
+    
     unsigned int dim_matrix;
-    /*
-        double pobj;
-        double sol_traceX;
-        double * sol_vect_X;
-        int sol_dim_vect_X;
-        int tmp_num_variables;
-        */
-
+    FILE * file_out;
+    char * filename_out = NULL;
 
     unsigned int num_constraints;
     unsigned int num_blocks;
@@ -64,6 +63,15 @@ int main (int argc, char * argv[])
     double  * bi;
     constraint_t * vect_mat_branching_constraints;
     constraint_t * constraints_matrix;
+    solution_bb_t * solution_bb;
+
+    /* variables to take time */
+    double t_user;
+    double t_system;
+    double t_user_start;
+    double t_system_start;
+
+
 
     open_node_t * open_node;
     num_blocks = NUM_BLOCKS;
@@ -77,8 +85,24 @@ int main (int argc, char * argv[])
 
     tabu_result_t tabu_result;
 
+    /* Checking parameters number */
+    if(argc != 4 && argc != 3)
+    {
+        show_usage();
+        return EXIT_SUCCESS;
+    }
+
+
     iterations = atoi(argv[1]);
     filename_in = argv[2];
+    if (argc == 4)
+    {
+        
+        filename_out = argv[3];
+    }
+
+    /* I take starting time */
+    Take_Time(&t_user_start,&t_system_start);
 
     MEWCP_load_AMPL_instance(filename_in,&matrix_weights);
 
@@ -91,14 +115,12 @@ int main (int argc, char * argv[])
     MEWCP_compute_starting_solution(&matrix_weights,&node_list);
 
     tabu_result = MEWCP_compute_tabu_search(iterations,&matrix_weights,&node_list);
-	
-
-    MEWCP_print_solution(&matrix_weights,&tabu_result.solution);
 
 
-    printf("%d %d\n",tabu_result.solution.Z,tabu_result.last_improvement_iteration);
+    //MEWCP_print_solution(&matrix_weights,&tabu_result.solution);
+    //printf("%d %d\n",tabu_result.solution.Z,tabu_result.last_improvement_iteration);
 
-	//return EXIT_SUCCESS;
+
 
     MEWCP_generate_sdp_constraints(&matrix_weights, &constraints_matrix,&bi, &vect_mat_branching_constraints,MEWCP_ALPHA,
                                    c_cardinality,
@@ -128,224 +150,73 @@ int main (int argc, char * argv[])
     MEWCP_clone_vect_y(bi,open_node->vect_y,num_constraints);
 
 
-    MEWCP_branch_and_bound(open_node,constraints_matrix, &matrix_weights,bi,num_constraints,dim_matrix,num_nodes,num_partitions,tabu_result.solution.Z,tabu_result.solution.node_solution);
+    solution_bb = MEWCP_branch_and_bound(open_node,constraints_matrix, &matrix_weights,bi,num_constraints,dim_matrix,num_nodes,num_partitions,tabu_result.solution.Z,tabu_result.solution.node_solution);
 
-#if defined MEWCP_DSDP_DEBUG
 
-    printf("\tEnd Branch and bound... \n");
+
+
+    /* I take final time */
+    Take_Time(&t_user,&t_system);
+
+#if defined MEWCP_DSDP_VERBOSE1
+
+
+    printf("Z_opt: %.2lf\tr_best_PB: %.2lf\tr_DB: %.2lf\tr_gap: %.2lf %%\ttime_root: %.2lf\t Best_node: %u\t Exp_nodes: %u \t Time: %.2lf\n",
+           solution_bb->z_opt,
+           solution_bb->PB_root_bestK,
+           solution_bb->DB_root,
+           solution_bb->gap_root,
+           (solution_bb->timestamp_user_time_root - t_user_start ) + ( solution_bb->timestamp_system_time_root - t_system_start),
+           solution_bb->id_node_best_primal,
+           solution_bb->number_explored_nodes,
+           (t_user-t_user_start) + ( t_system-t_system_start) );
+
+
 #endif
 
-    //MEWCP_close_open_node(open_node);
-
-    /*
-    MEWCP_bound( open_node,  constraints_matrix,  bi,
-                                   num_constraints,
-                                   dim_matrix,
-                                   num_nodes,
-                                   num_partitions);
-
-    */
-
-    //MEWCP_print_vectorY(bi,num_constraints);
-
-    /*
-        info = DSDPCreate(num_constraints,&dsdp);
-        info = DSDPCreateSDPCone(dsdp,num_blocks,&sdpcone);
-        info = SDPConeSetBlockSize(sdpcone, 0, num_nodes);  // dimension of block is n 
-    */
-
-    /*
-     
-        for (i=0;i<num_constraints;++i)
+    if (argc == 4)
+    {
+        if ((file_out = fopen(filename_out,"ab")) == NULL)
         {
-            info = DSDPSetDualObjective(dsdp,i+1,bi[i]);
-     
+            show_usage();
+            exit(EXIT_FAILURE);
         }
-     
-        for (i=0; i < num_constraints +1; ++i) // Matrix are number of constraints +1 because of matrix W 
-        {
-            if (i != num_constraints ) // It's not the last constraint matrix 
-            {
-                SDPConeSetADenseVecMat(sdpcone, 0, i, num_nodes, MEWCP_ALPHA , constraints_matrix[i], dim_matrix);
-            }
-            else // It's the last matrix containing branching contraints 
-            {
-                SDPConeSetADenseVecMat(sdpcone, 0, i, num_nodes, 1 , vect_mat_branching_constraints, dim_matrix);
-            }
-     
-    #if defined MEWCP_CONVERTER_DSDP_DEBUG
-     
-            SDPConeViewDataMatrix(sdpcone, 0, i);
-    #endif
-     
-        }
-     
-    */
+        fprintf(file_out,"Z_opt: %.2lf\tr_best_PB: %.2lf\tr_DB: %.2lf\tr_gap: %.2lf %%\ttime_root: %.2lf\t Best_node: %u\t Exp_nodes: %u \t Time: %.2lf\n",
+                solution_bb->z_opt,
+                solution_bb->PB_root_bestK,
+                solution_bb->DB_root,
+                solution_bb->gap_root,
+                (solution_bb->timestamp_user_time_root - t_user_start ) + ( solution_bb->timestamp_system_time_root - t_system_start),
+                solution_bb->id_node_best_primal,
+                solution_bb->number_explored_nodes,
+                (t_user-t_user_start) + ( t_system-t_system_start) );
 
-    /* Get read to go */
+        fclose(file_out);
+    }
 
-    /*
-        info=DSDPSetGapTolerance(dsdp,MEWCP_GAP_TOLERANCE);
-        info=DSDPSetPotentialParameter(dsdp,MEWCP_POTENTIAL_PARAMETER);
-        info=DSDPReuseMatrix(dsdp,MEWCP_REUSE_MATRIX);
-        info=DSDPSetPNormTolerance(dsdp,MEWCP_SET_PNORM_TOLERANCE);
-     
-     
-    #if defined MEWCP_CONVERTER_DSDP_VERBOSE2
-     
-        DSDPSetStandardMonitor(dsdp, 1); // verbose each iteration 
-        DSDPLogInfoAllow(1,0);
-    #endif
-     
-    #if defined MEWCP_CONVERTER_DSDP_DEBUG
-     
-        double vect_y[num_constraints ];
-        DSDPGetY (dsdp,  vect_y, num_constraints);
-        MEWCP_print_vectorY(vect_y,num_constraints);
-    #endif
-     
-     
-        DSDPSetup(dsdp);
-        DSDPSolve(dsdp);
-     
-        DSDPComputeX(dsdp);
-     
-     
-     
-     
-     
-     
-    #if defined MEWCP_CONVERTER_DSDP_DEBUG
-     
-        SDPConeGetXArray(sdpcone, 0, &sol_vect_X, &sol_dim_vect_X);
-     
-        printf("\n");
-        SDPConeViewX(sdpcone, 0, num_nodes, sol_vect_X, sol_dim_vect_X);
-        printf("\n");
-     
-        DSDPGetY (dsdp,  vect_y, num_constraints);
-        MEWCP_print_vectorY(vect_y,num_constraints);
-    #endif
-     
-     
-        double * diagX;
-        MEWCP_allocate_diag_X(&diagX, num_nodes);
-        MEWCP_dump_diag_X(&sdpcone,diagX,num_nodes);
-        //MEWCP_print_diag_X(diagX,num_nodes);
-     
-        unsigned int * list_nodes_solution;
-     
-        MEWCP_allocate_list_nodes_solution(&list_nodes_solution,num_partitions);
-        MEWCP_compute_sdp_rounding(diagX,list_nodes_solution,num_nodes,cardinality_partition);
-        MEWCP_print_list_nodes_solution(list_nodes_solution,num_partitions);
-     
-        double z_rouded = MEWCP_evaluate_list_nodes_solution(list_nodes_solution,constraints_matrix[0],num_partitions);
-    */
-
-    /* generating branching */
-    /*
-        int out_num_part;
-        int out_id_node;
-        bool possible_branch;
-        possible_branch = MEWCP_generate_equi_branch_node(diagX,num_nodes,num_partitions,&out_num_part,&out_id_node);
-     
-        printf("Possible branch: %d \t partition: %d \t id_node: %d \n",possible_branch, out_num_part, out_id_node);
-     
-        list_blocked_nodes_t left_son_blocked_nodes;
-        list_blocked_nodes_t right_son_blocked_nodes;
-     
-        MEWCP_allocate_list_blocked_nodes(&left_son_blocked_nodes,num_nodes);
-        MEWCP_allocate_list_blocked_nodes(&right_son_blocked_nodes,num_nodes);
-     
-        MEWCP_generate_list_blocked_nodes_branching_sons(&list_blocked_nodes,&left_son_blocked_nodes,&right_son_blocked_nodes,out_num_part, out_id_node,num_nodes,cardinality_partition);
-     
-        MEWCP_print_list_blocked_nodes(&left_son_blocked_nodes);
-        MEWCP_print_list_blocked_nodes(&right_son_blocked_nodes);
-    */
-    /* generate branching constraints based on the blocked nodes */
-
-    /*
-        double * left_son_vect_mat_branching_contsraints;
-        double * right_son_vect_mat_branching_contsraints;
-        MEWCP_allocate_vect_mat_branching_constraints(&left_son_vect_mat_branching_contsraints,dim_matrix);
-        MEWCP_allocate_vect_mat_branching_constraints(&right_son_vect_mat_branching_contsraints,dim_matrix);
-        MEWCP_generate_constraints_branch(&left_son_blocked_nodes,left_son_vect_mat_branching_contsraints,dim_matrix,num_nodes,cardinality_partition);
-        MEWCP_generate_constraints_branch(&right_son_blocked_nodes,right_son_vect_mat_branching_contsraints,dim_matrix,num_nodes,cardinality_partition);
-     
-        printf("Left: \n");
-        SDPConeViewX(sdpcone, 0, num_nodes, left_son_vect_mat_branching_contsraints, dim_matrix);
-        printf("Right: \n");
-        SDPConeViewX(sdpcone, 0, num_nodes, right_son_vect_mat_branching_contsraints, dim_matrix);
-    */
-
-    /* Ok */
-
-    /*
-        // (void)	SDPConeRemoveDataMatrix(sdpcone, 0, num_constraints);
-     
-        //(void) 	SDPConeAddDataMatrix ( sdpcone, 0, num_constraints, num_nodes, char format, struct DSDPDataMat_Ops *dsdpdataops, void *data)
-        printf("\n");
-     
-        SDPConeRemoveDataMatrix (sdpcone, 0, num_constraints);
-        SDPConeAddADenseVecMat ( sdpcone, 0, num_constraints, num_nodes,MEWCP_ALPHA , left_son_vect_mat_branching_contsraints, dim_matrix);
-     
-     
-        SDPConeViewDataMatrix(sdpcone, 0, num_constraints);
-     
-     
-     
-        DSDPSetup(dsdp);
-        DSDPSolve(dsdp);
-        DSDPComputeX(dsdp);
-     
-     
-     
-     
-        SDPConeRemoveDataMatrix (sdpcone, 0, num_constraints);
-        SDPConeSetADenseVecMat(sdpcone, 0, num_constraints, num_nodes, 1 , right_son_vect_mat_branching_contsraints, dim_matrix);
-        SDPConeViewDataMatrix(sdpcone, 0, num_constraints);
-     
-        DSDPSetup(dsdp);
-        DSDPSolve(dsdp);
-     
-        DSDPComputeX(dsdp);
-     
-     
-     
-        printf("\n");
-     
-     
-     
-    */
-
-
-    /*
-    #if defined MEWCP_CONVERTER_DSDP_DEBUG
-     
-        SDPConeView3(sdpcone);
-    #endif
-     
-        DSDPStopReason(dsdp, &reason);
-        DSDPGetPObjective(dsdp,&pobj);
-     
-     
-        DSDPGetTraceX(dsdp, &sol_traceX);
-        printf("(P) Obj_value: %.2lf \t Rounded: %.2lf \t Trace(X): %.2lf \t Termination value: %d\n",-pobj,z_rouded, sol_traceX,reason);
-        //printf("Trace(X): %.2lf\n",sol_traceX);
-        //printf("\n");
-     
-    #if defined MEWCP_CONVERTER_DSDP_DEBUG
-     
-        printf("\n\n");
-        DSDPView(dsdp);
-    #endif
-     
-        // ************************** END printing solution
-     
-        DSDPDestroy ( dsdp);
-     */
     MEWCP_free_matrix_weights(&matrix_weights);
     MEWCP_free_node_list(&node_list);
+    MEWCP_free_solution_bb(solution_bb);
 
     return EXIT_SUCCESS;
+}
+
+
+void show_usage(void)
+{
+    printf(" ***************	*****************************************\n");
+    printf(" *\t\t\t\t\t\t\t*\n");
+    printf(" *  Project: Maximum Edge Weighted Clique Problem\t*\n");		
+    printf(" *  Authors:\t\t\t\t\t\t*\n");
+    printf(" *  (c) 2009 Yari Melzani (yari.melzani@gmail.com)\t*\n");
+    printf(" *\t\t\t\t\t\t\t*\n");
+    printf(" ********************************************************\n\n");
+    printf("MEWCP Parameters:\n");
+    printf("Parameters:\n");
+    printf("\t\t1) number tabu search iterations\n");
+    printf("\t\t2) instance in format .dat\n");
+    printf("\t\t3) <output file (optional)>\n");
+    printf("\n");
+
+
 }

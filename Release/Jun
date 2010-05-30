@@ -1,0 +1,6 @@
+Simulazione dsdp
+a
+Z_opt: 8468.00	r_best_PB: 8468.00	r_DB: 8467.68	r_gap: -0.00 %	time_root: 0.07	 Best_node: 0	 Exp_nodes: 1 	 Time: 0.07
+Z_opt: 1331.00	r_best_PB: 1326.00	r_DB: 1339.67	r_gap: 1.03 %	time_root: 0.06	 Best_node: 6	 Exp_nodes: 9 	 Time: 0.41
+Z_opt: 354.00	r_best_PB: 354.00	r_DB: 359.62	r_gap: 1.59 %	time_root: 0.07	 Best_node: 0	 Exp_nodes: 5 	 Time: 0.27
+Z_opt: 14387.00	r_best_PB: 14387.00	r_DB: 14392.32	r_gap: 0.04 %	time_root: 0.11	 Best_node: 0	 Exp_nodes: 3 	 Time: 0.32

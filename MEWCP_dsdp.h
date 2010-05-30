@@ -15,7 +15,7 @@
 
 
 /* LOG DEFINITION */
-#define ASSERT
+//#define ASSERT
 
 //#define MEWCP_CONVERTER_DSDP_VERBOSE1
 //#define MEWCP_CONVERTER_DSDP_VERBOSE2
@@ -41,9 +41,11 @@
 
 #define MEWCP_GAP_TOLERANCE 0.001
 #define MEWCP_POTENTIAL_PARAMETER 5
-#define MEWCP_REUSE_MATRIX 1
+#define MEWCP_REUSE_MATRIX 2
 #define MEWCP_SET_PNORM_TOLERANCE 1.0
 #define MEWCP_ALPHA 1.0
+
+//#define MEWCP_R_ZERO 1.0
 
 #define MEWCP_EPSILON 10E-4
 #define MEWCP_MIN_DOUBLE -10E7 /* Is the (double) -infinity */
@@ -52,6 +54,22 @@
 /*
  * DSDP Data structures 
  */
+
+typedef struct solution_bb_s
+{
+    double z_opt;
+    unsigned int number_explored_nodes;
+    unsigned int id_node_best_primal;
+    int * list_nodes_best_solution;
+    
+    /* informations at the root node */
+    double DB_root;
+    double PB_root_bestK;
+    double gap_root;
+    double timestamp_user_time_root;
+    double timestamp_system_time_root;
+}
+solution_bb_t;
 
 #define NUM_BLOCKS 1
 
@@ -144,11 +162,12 @@ void MEWCP_generate_list_blocked_nodes_branching_sons(list_blocked_nodes_t * fat
         const unsigned int cardinality_partition  );
 
 /* Execute sd to the open_node */
-void MEWCP_bound(open_node_t * open_node, constraint_t * constraints_matrix,matrix_weights_t * matrix_weigths,double * bi,
+void MEWCP_bound(open_node_t * open_node, constraint_t * constraints_matrix,matrix_weights_t * matrix_weigths, double * bi,
                  const unsigned int num_constraints,
                  const unsigned int dim_matrix,
                  const unsigned int num_nodes,
-                 const unsigned int num_partitions);
+                 const unsigned int num_partitions,
+                 const double best_PB);
 
 
 bool MEWCP_branch( open_node_t * open_node,
@@ -161,13 +180,13 @@ bool MEWCP_branch( open_node_t * open_node,
 
 
 
-void MEWCP_branch_and_bound(open_node_t * open_root_node, constraint_t * constraints_matrix,  matrix_weights_t * matrix_weigths ,double * bi,
+solution_bb_t * MEWCP_branch_and_bound(open_node_t * open_root_node, constraint_t * constraints_matrix,  matrix_weights_t * matrix_weigths ,double * bi,
                             const unsigned int num_constraints,
                             const unsigned int dim_matrix,
                             const unsigned int num_nodes,
                             const unsigned int num_partitions,
                             double best_primal_obj,
-                             int * list_node_best_solution);
+                            int * list_node_best_solution);
 
 
 void MEWCP_close_open_node(list_branching_t * list_branching, open_node_t * open_node);
@@ -212,7 +231,7 @@ void MEWCP_compute_sdp_rounding(double * diag_X,  int * list_nodes_rounded_solut
 /* Calculate the Objective function related to a list_node_soluztion, the weights matrix is given into a vector of n*(n+1) elements */
 double MEWCP_evaluate_list_nodes_solution( int * list_node_solution, matrix_weights_t * matrix_weights ,const unsigned int m);
 int sort_compare (const void * a, const void * b);
-
+void Take_Time(double * user_time, double * system_time);
 
 
 /* ALLOCATION FUNCTIONS */
@@ -221,9 +240,10 @@ constraint_t * MEWCP_allocate_sdp_constraints_matrix(const unsigned int n, const
 double * MEWCP_allocate_bi(const unsigned int num_contraints );
 list_blocked_nodes_t *  MEWCP_allocate_list_blocked_nodes(const unsigned int num_nodes );
 double * MEWCP_allocate_diag_X(const unsigned int length);
- int * MEWCP_allocate_list_nodes_solution( const unsigned int m);
+int * MEWCP_allocate_list_nodes_solution( const unsigned int m);
 constraint_t * MEWCP_allocate_vect_mat_branching_constraints(const unsigned int dim_matrix);
 open_node_t * MEWCP_allocate_open_node(void);
+solution_bb_t * MEWCP_allocate_solution_bb(unsigned int num_partitions);
 
 // Print functions
 void MEWCP_print_contraints_matrix(double ** matrix, const unsigned int length_i, const unsigned int length_j);
@@ -242,6 +262,7 @@ void MEWCP_free_vect_y(double * vect_y);
 void MEWCP_free_list_nodes_solution( int * list_nodes_solution);
 void MEWCP_free_vect_mat_branching_constraints(constraint_t * vect_mat_branching_contraints);
 void MEWCP_free_open_node(open_node_t * open_node);
+void MEWCP_free_solution_bb(solution_bb_t * solution_bb);
 
 
 #endif /*MEWCP_DSDP_H_*/
