@@ -2,7 +2,7 @@
 #define MEWCP_DSDP_H_
 
 /*****************************************************************************
- *  Project: Maximum Edge Weighted Clique Problem
+ *  Project: Maximum Edge Weighted Clique Problem with multiple choice contraints
  * 
  *  Authors:
  *  (c) 2009 Yari Melzani (yari.melzani@gmail.com) 
@@ -15,7 +15,7 @@
 
 
 /* LOG DEFINITION */
-//#define ASSERT
+#define ASSERT
 
 //#define MEWCP_CONVERTER_DSDP_VERBOSE1
 //#define MEWCP_CONVERTER_DSDP_VERBOSE2
@@ -37,6 +37,10 @@
 //#define MEWCP_BOUNDING_VERBOSE2
 #define MEWCP_BOUNDING_VERBOSE1
 
+
+/* Verbosing for explicit_enumeration */
+#define MEWCP_EXPLICIT_ENUMERATION_DEBUG
+
 /* DSDP PARAMETERS */
 
 #define MEWCP_GAP_TOLERANCE 0.001
@@ -49,7 +53,7 @@
 
 #define MEWCP_EPSILON 10E-4
 #define MEWCP_MIN_DOUBLE -10E7 /* Is the (double) -infinity */
-
+#define MEWCP_MAX_EXPLICIT_SOLUTIONS 1000000
 
 /*
  * DSDP Data structures 

@@ -1,5 +1,5 @@
 /*****************************************************************************
- *  Project: Maximum Edge Weighted Clique Problem
+ *  Project: Maximum Edge Weighted Clique Problem with multiple choice contraints
  * 
  *  Authors:
  *  (c) 2009 Yari Melzani (yari.melzani@gmail.com) 
@@ -16,6 +16,7 @@
 #include <sys/times.h>
 
 #include "converter_dsdp.h"
+#include "MEWCP_explicit_enumeration.h"
 #include "MEWCP_tabu.h"
 #include "MEWCP_dsdp.h"
 #include "dsdp/dsdp5.h"
@@ -123,8 +124,25 @@ solution_bb_t * MEWCP_branch_and_bound(open_node_t * open_root_node, constraint_
                     list_branching->max_exploration_level =  (open_node_worst_bound->depth_level +1);
                 }
 
-                MEWCP_bound(son_left,constraints_matrix,matrix_weigths, bi,num_constraints,dim_matrix,num_nodes,num_partitions,  list_branching->best_primal );
-                MEWCP_bound(son_right,constraints_matrix,matrix_weigths, bi,num_constraints,dim_matrix,num_nodes,num_partitions, list_branching->best_primal );
+                /* I decide what type of bound use */
+                if ( MEWCP_is_node_little_enough(son_left->list_blocked_nodes,num_partitions,num_nodes/num_partitions,MEWCP_MAX_EXPLICIT_SOLUTIONS) == true)
+                {
+                    MEWCP_bound_explicit(son_left,matrix_weigths,num_partitions,num_nodes/num_partitions);
+                }
+                else
+                {
+                    MEWCP_bound(son_left,constraints_matrix,matrix_weigths, bi,num_constraints,dim_matrix,num_nodes,num_partitions,  list_branching->best_primal );
+                }
+
+                if ( MEWCP_is_node_little_enough(son_right->list_blocked_nodes,num_partitions,num_nodes/num_partitions,MEWCP_MAX_EXPLICIT_SOLUTIONS) == true)
+                {
+                    MEWCP_bound_explicit(son_right,matrix_weigths,num_partitions,num_nodes/num_partitions);
+                }
+                else
+                {
+                    MEWCP_bound(son_right,constraints_matrix,matrix_weigths, bi,num_constraints,dim_matrix,num_nodes,num_partitions, list_branching->best_primal );
+                }
+
 
                 /* I check if PB is improved */
                 if( (son_left->PB - list_branching->best_primal) >= MEWCP_EPSILON)
@@ -446,7 +464,7 @@ bool MEWCP_branch( open_node_t * open_node,
 
         son_left->id_node = 2*open_node->id_node +1;
         son_right->id_node = 2*open_node->id_node +2;
-        
+
         *serial_number_node +=1;
         son_left->serial_node = *serial_number_node;
         *serial_number_node +=1;

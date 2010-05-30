@@ -1,5 +1,5 @@
 /*****************************************************************************
- *  Project: Maximum Edge Weighted Clique Problem
+ *  Project: Maximum Edge Weighted Clique Problem with multiple choice contraints
  * 
  *  Authors:
  *  (c) 2009 Yari Melzani (yari.melzani@gmail.com) 
@@ -100,6 +100,7 @@ int main (int argc, char * argv[])
 
         filename_out = argv[3];
     }
+
 
     /* I take starting time */
     Take_Time(&t_user_start,&t_system_start);
@@ -222,6 +223,7 @@ void show_usage(void)
     printf(" ********************************************************\n");
     printf(" *\t\t\t\t\t\t\t*\n");
     printf(" *  Project: Maximum Edge Weighted Clique Problem\t*\n");
+    printf(" *\t\twith multiple choice contraints\t\t*\n");
     printf(" *  Authors:\t\t\t\t\t\t*\n");
     printf(" *  (c) 2009 Yari Melzani (yari.melzani@gmail.com)\t*\n");
     printf(" *\t\t\t\t\t\t\t*\n");
