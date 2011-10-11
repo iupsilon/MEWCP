@@ -269,6 +269,4 @@ void show_usage(void)
     printf("\t\t2) instance in format .dat\n");
     printf("\t\t3) <output file (optional)>\n");
     printf("\n");
-
-
 }
