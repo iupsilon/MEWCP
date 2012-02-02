@@ -120,7 +120,7 @@ int main (int argc, char * argv[])
     MEWCP_create_node_list(&matrix_weights,&node_list);
     MEWCP_initialize_node_list(&matrix_weights,&node_list);
     MEWCP_compute_starting_solution(&matrix_weights,&node_list);
-
+	
     tabu_result = MEWCP_compute_tabu_search(iterations,&matrix_weights,&node_list);
 
 #if defined MEWCP_DSDP_VERBOSE1
