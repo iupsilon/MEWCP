@@ -252,7 +252,6 @@ int main (int argc, char * argv[])
     return EXIT_SUCCESS;
 }
 
-
 void show_usage(void)
 {
     printf(" ********************************************************\n");
