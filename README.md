@@ -33,7 +33,7 @@ Modello matematico con le matrici:
 organizzando le variabili y in una matrice Y possiamo ottenere un altro modello di programmazione matematica basata su matrici
 A questo punto riscrivo la funzione obiettivo come il prodotto di frobenius tra la matrice peso e la matrice incognita Y, rappresento i vincoli di multiple choice mediante opportune matrici.
 
-I vincoli 8-10 impongono rispettivamente che Y abbia rango 1 e che sia semidefinita positiva. TECNICAMENTE questi vincoli misevono per imporre che Y possa essere scritta come Y=xx'  ovvero le righe e le colonne sono tutte linearmente dipendenti e gli elementi sono binari.
+I vincoli 8-10 impongono rispettivamente che Y abbia rango 1 e che sia semidefinita positiva. Tecnicamente questi vincoli mi sevono per imporre che Y possa essere scritta come Y=x*x'  ovvero le righe e le colonne sono tutte linearmente dipendenti e gli elementi sono binari.
 
 Euristiche:
 Trovare una soluzione ammissibile per il problema è semplice, basta selezionare un vertice per ogni classe ma trovare la clique di peso massimo è molto difficile.
@@ -56,7 +56,7 @@ La soluzione rappresenta un bound duale per il problema.
 In particolare il problema così formulato è un problema di programmazione semidefinita per cui esistono delle tecniche molto efficienti ovvero degli algoritmi di tipo primale-duale basati sul metodo del punto interno. 
 Per risolvere il modello abbiamo utilizzato il solutore sperimentale DSDP che implementa l'algoritmo del cammino centrale per determinare la matrice soiluzione Y.
 
-Alla soluzione frazionaria ottenuta possiamo applicare la tecnica dell'arrotondamento per ottenere una soluzione primale valida.
+Alla soluzione frazionaria ottenuta possiamo applicare la dell'arrotondamento per ottenere una soluzione primale valida.
 
 Bound duale combinatorio:
 
